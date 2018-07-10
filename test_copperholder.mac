@@ -1,0 +1,47 @@
+
+
+/venom/geom/setImplementation copperholder.gdml
+/venom/geom/update
+
+/venom/io/open test_copperholder
+/venom/action/setEventAction autowrite
+/venom/io/writeEvery 10000
+
+
+/venom/gun/setParticleGun chaingen
+/grdm/allVolumes
+/chaingen/verbosity 0
+/chaingen/posgen/verbosity 0
+/chaingen/posgen/switchOnIO
+
+
+/chaingen/AddIso 210 83 1
+/chaingen/posgen/type Volume
+
+# arguements: A Z X 
+# Kalium
+/chaingen/AddIso 40 19 1
+
+/chaingen/checklist
+
+# /chaingen/NuclDeexcitationOnly true
+
+#the sim fractions are necessary because of different cable length
+/chaingen/posgen/solidSourceIntrinsic left_element_physvol
+/run/beamOn 50000
+
+/chaingen/posgen/solidSourceIntrinsic top_element_physvol
+/run/beamOn 50000
+
+/chaingen/posgen/solidSourceIntrinsic bottom_element_physvol
+/run/beamOn 50000
+
+/chaingen/posgen/solidSourceIntrinsic right_element_physvol
+/run/beamOn 50000
+
+/chaingen/posgen/solidSourceIntrinsic middle_element_physvol
+/run/beamOn 50000
+
+
+#/chaingen/clearlist
+/venom/io/write

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+<!-- author: Christian Herrmann, date: 05.02.2018 -->
+	<!-- 
+	Description of single detectors
+	The detector is parted to four ,,Subdetectors" (2x2) because of the quad co-planar grids
+	-->
+
+	<define>
+		<!-- dimensions of the detector cube -->
+		<constant name="x" value="20.4"/>
+		<constant name="y" value="20.4"/>
+		<constant name="z" value="15"/>
+
+		<!-- dimensions of subdetectors -->
+		<constant name="x_subdet" value="x/2" />
+		<constant name="y_subdet" value="y/2" />
+		<constant name="z_subdet" value="z" />
+		
+		<!-- dimensions of the bottom detector plate (assuming to be the coplanar grid -> assumed to be a thin gold plate) -->
+		<constant name="x_plate_det" value="x"/>
+		<constant name="y_plate_det" value="y"/>
+		<constant name="z_plate_det" value="0.000090"/>
+		<constant name="paint_thickness" value="0.060" />	<!-- ticknesss of paint, varnish -->
+
+		<!-- Counter variables -->
+		<variable name="x_i" value="-1" />
+		<variable name="y_i" value="-1" />
+
+		<!-- position (0,0,0) is the center -->
+		<position name="det_pos" x="0" y="0" z="0" unit="mm"/>
+		
+		<position name="paint_pos" x="0" y="0" z="0" unit="mm"/>
+		<position name="plate_det_pos" x="0" y="0" z="-z/2-z_plate_det/2" unit="mm"/>
+
+		<!-- definitions of colours -->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+		<scale name="AuColour" x="220/255" y="208/255" z="42/255"/><!-- yellow-->
+		<scale name="DelrinColour" x="128/255" y="128/255" z="128/255"/><!-- grey-->
+		<scale name="GlyptalColour" x="255/255" y="0/255" z="0/255"/>
+	</define>
+	
+
+	<!-- Definition of elements, compositions, etc. -->
+	<!-- &materials; -->
+
+
+	<!-- shape and dimensions of the detectors -->
+	<solids>
+		<!-- Dimension of the whole detector -->
+		<box name="single_det_solid" x="x" y="y" z="z" lunit="mm" />
+		<box name="single_det_subtractionsolid" x="x" y="y" z="z+1" lunit="mm" />
+		<!-- Subdetectors -->
+		<box name="subdet_solid" x="x_subdet" y="y_subdet" z="z_subdet" lunit="mm"/>
+		
+		<!-- for paint -->
+		<box name="paintbox" x="x+2*paint_thickness" y="y+2*paint_thickness" z="z+paint_thickness" lunit="mm"/>
+		<!-- plates -->
+		<box name="plate_solid_1" x="x_plate_det" y="y_plate_det" z="z_plate_det" lunit="mm"/>
+		<!-- for world creation -->
+		<box name="Worldbox_det" x="x+2*paint_thickness" y="y+2*paint_thickness" z="z+paint_thickness" />
+
+		<!-- only paint coating-->
+		<subtraction name="paint_solid">
+			<first ref="paintbox"/>
+			<second ref="single_det_subtractionsolid"/>
+			<position x="0" y="0" z="-1/2" unit="mm"/>
+		</subtraction>
+	</solids>
+
+	<structure>
+		<!-- volume of the single detector, paint, subdetector and plate -->
+		<volume name="plate">
+			<materialref ref="Gold"/>
+			<solidref ref="plate_solid_1"/>
+		</volume>
+		<volume name="paint_vol">
+			<materialref ref="Glyptal"/>
+			<solidref ref="paint_solid"/>
+		</volume>
+
+
+		<!-- realizing detector -->
+		<volume name="detector_vol_glyp">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Worldbox_det"/>
+			<physvol name="Det_PHYSVOL">
+				<file name="naked_det.gdml" volname="naked_detector_vol"/>
+				<positionref ref="det_pos"/>
+			</physvol>
+			
+			<physvol name="paint_physvol_glyptal">
+				<volumeref ref="paint_vol"/>
+				<positionref ref="paint_pos"/>
+			</physvol>
+			<physvol name="goldplate_physvol">
+				<volumeref ref="plate"/>
+				<positionref ref="plate_det_pos"/>
+			</physvol>
+
+			<auxiliary auxtype="PlacedVolumes" auxvalue="Det_PHYSVOL" />
+			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Glyptal GlyptalColour"/>
+		</volume>
+	</structure>
+
+
+	<setup name="Test" version="1.0">
+		<world ref="detector_vol_glyp"/>	
+	</setup>
+</gdml>

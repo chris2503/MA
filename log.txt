@@ -1,0 +1,1035 @@
+Added object 0xc7eca0 with key default
+Added object 0xd04560 with key bkggen
+Added object 0x1f14440 with key chaingen
+Added object 0x1f14220 with key dbgen
+Added object 0x1f12d60 with key decay0
+
+*************************************************************
+ Geant4 version Name: geant4-10-00    (6-December-2013)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+ Register : dmphysicslist
+VXPhysicsFactory* VXPhysicsFactory::getInstance() is called
+VXPhysicsFactory::VXPhysicsFactory() is called
+Added object 0x1f13080 with key dmphysicslist
+Added object 0x1fea1c0 with key Germaniumcrystal
+Added object 0x1fea370 with key Germaniumsensitivecrystal
+Added object 0x1feb7d0 with key Snsetup
+Added object 0x1fecbb0 with key SnsetupMark1
+Added object 0x1fedfb0 with key SnsetupMark2
+Added object 0x1fef3b0 with key SnsetupMark3
+Added object 0x1ff07b0 with key SnsetupMark4
+Added object 0x1ff1bb0 with key GeDetsetup
+Added object 0x1ff2f50 with key GeDetHalfShield
+Added object 0x1ff42f0 with key autowrite
+Added object 0x1ff4470 with key liscGeometry
+Added object 0x1ff4500 with key muongen
+Added object 0x1ff4600 with key neutrongungen
+Added object 0x1ff9d50 with key NeutronHall
+ VXNeutronTracking::VXNeutronTracking 
+Added object 0x1ffda80 with key neutrontracking
+Added object 0x1ffdbe0 with key rdxcrystal
+Added object 0x1ffd590 with key rdxholder
+Added object 0x1ff7f90 with key rdxshield
+Added object 0x1ffecf0 with key rdxsensitivecrystal
+Added object 0x2187e70 with key rockneutrongen
+ VXSimpTrackAct::VXSimpTrackAct 
+Added object 0x2187fb0 with key simptrackact
+Added object 0x1ffb720 with key weird
+ Register : dmphysicslist
+VXPhysicsFactory* VXPhysicsFactory::getInstance() is called
+Added object 0x1ffa120 with key dmphysicslist
+ VXSimpTrackAct::VXSimpTrackAct 
+Added object 0x21c8e50 with key simptrackact
+ VXNeutronTracking::VXNeutronTracking 
+Added object 0x21c8f40 with key neutrontracking
+Added object 0x21c8dc0 with key autowrite
+Added object 0x21c9020 with key rdxsensitivecrystal
+Added object 0x21c9080 with key liscGeometry
+Added object 0x21c90e0 with key rdxcrystal
+Added object 0x21c9170 with key rdxholder
+Added object 0x21c8df0 with key rdxshield
+Added object 0x21c9460 with key dbgen
+Added object 0x21c9580 with key decay0
+Added object 0x21c9830 with key weird
+Added object 0x21c9b00 with key chaingen
+Added object 0x21c9c30 with key bkggen
+Added object 0x21c9d10 with key default
+Added object 0x21c9d30 with key rockneutrongen
+Added object 0x21c9e00 with key muongen
+<<< Geant4 Physics List simulation engine: Shielding 2.1
+
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully chosen to use the following graphics systems.
+Current available graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRep (HepRepXML)
+  G4HepRepFile (HepRepFile)
+  OpenGLImmediateX (OGLIX)
+  OpenGLImmediateXm (OGLIXm)
+  OpenGLStoredX (OGLSX)
+  OpenGLStoredXm (OGLSXm)
+  RayTracer (RayTracer)
+  VRML1FILE (VRML1FILE)
+  VRML2FILE (VRML2FILE)
+
+You have successfully registered the following graphics systems.
+Current available graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRep (HepRepXML)
+  G4HepRepFile (HepRepFile)
+  OpenGLImmediateX (OGLIX)
+  OpenGLImmediateXm (OGLIXm)
+  OpenGLStoredX (OGLSX)
+  OpenGLStoredXm (OGLSXm)
+  RayTracer (RayTracer)
+  VRML1FILE (VRML1FILE)
+  VRML2FILE (VRML2FILE)
+
+Registering model factories...
+G4VisManager: No model factories registered with G4VisManager.
+G4VisManager::RegisterModelFactories() should be overridden in derived
+class. See G4VisExecutive for an example.
+
+You have successfully registered the following model factories.
+Registered model factories:
+  None
+
+Registered filter factories:
+  None
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+Available colours:
+  black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
+
+
+--------- Ranecu engine status ---------
+ Initial seed (index) = 0
+ Current couple of seeds = 2095721534, 536101511
+----------------------------------------
+ VXUserTrackingAction::VXVUserTrackingAction()  
+Constructing geometry
+Extracted lV
+Placed world volume
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 78, A = 190 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 192 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 194 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 195 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 196 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 198 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+/afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 78, A = 190 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 192 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 194 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 195 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 196 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 198 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+G4GDML: Reading './Setup_with_shielding.gdml'...
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4Material WARNING: doublicate name of the new material Vacuum
+G4Material WARNING: doublicate name of the new material Air
+G4Material WARNING: doublicate name of the new material Aluminium
+G4Material WARNING: doublicate name of the new material Lead
+G4Material WARNING: doublicate name of the new material Gold
+G4Material WARNING: doublicate name of the new material CdZnTe
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+Checking overlaps for volume Standard_Pb_VOLUME_PV ... OK! 
+Checking overlaps for volume ULA_Pb_VOLUME_PV ... OK! 
+Checking overlaps for volume Cu_VOLUME_PV ... OK! 
+G4GDML: Reading module 'copperholder_with_detectorlayer.gdml'...
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 360
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 400
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 407
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'screw_physvol' is not unique . at line: 408
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'screw_pos' is not unique . at line: 410
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 414
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'screw_physvol' is not unique . at line: 415
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'screw_pos' is not unique . at line: 417
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 436
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 441
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 446
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 451
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 456
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 461
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 466
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 471
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 485
+G4GDML: VALIDATION ERROR! ID attribute 'PA_6.6' was referenced but never declared at line: 492
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 492
+G4GDML: VALIDATION ERROR! ID attribute 'Polyoxymethylene' was referenced but never declared at line: 492
+G4GDML: VALIDATION ERROR! ID attribute 'Polytetraflourethylene' was referenced but never declared at line: 492
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'copperholder_leftside_element.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Copper' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'copperholder_leftside_element.gdml' done!
+G4GDML: Reading module 'copperholder_top-bottom_element.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 164
+G4GDML: VALIDATION ERROR! ID attribute 'Copper' was referenced but never declared at line: 164
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'copperholder_top-bottom_element.gdml' done!
+G4GDML: Reading module 'copperholder_top-bottom_element.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 164
+G4GDML: VALIDATION ERROR! ID attribute 'Copper' was referenced but never declared at line: 164
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'copperholder_top-bottom_element.gdml' done!
+G4GDML: Reading module 'copperholder_rightside_element.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Copper' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'copperholder_rightside_element.gdml' done!
+G4GDML: Reading module 'copperholder_middle_element.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 70
+G4GDML: VALIDATION ERROR! ID attribute 'Copper' was referenced but never declared at line: 70
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'copperholder_middle_element.gdml' done!
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
+G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
+G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
+G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
+G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
+G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det.gdml'...
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'copperholder_with_detectorlayer.gdml' done!
+Checking overlaps for volume Detektor_Block_PV ... OK! 
+G4GDML: Reading setup...
+G4GDML: Reading './Setup_with_shielding.gdml' done!
+Stripping off GDML names of materials, solids and volumes ...
+KingCOBRA_sd is not found in /
+Have Set 9 Isotopes in the table
+Setting lepton mode to TwoBetaMinus
+
+phot:   for  gamma    SubType= 12
+      LambdaPrime table from 200 keV to 10 TeV in 54 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+       PhotoElectric :  Emin=        0 eV    Emax=       10 TeV   AngularGenSauterGavrila  FluoActive
+
+compt:   for  gamma    SubType= 13
+      Lambda table from 100 eV  to 1 MeV in 28 bins, spline: 1
+      LambdaPrime table from 1 MeV to 10 TeV in 49 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+       Klein-Nishina :  Emin=        0 eV    Emax=       10 TeV
+
+conv:   for  gamma    SubType= 14
+      Lambda table from 1.022 MeV to 10 TeV in 49 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        BetheHeitler :  Emin=        0 eV    Emax=       80 GeV
+     BetheHeitlerLPM :  Emin=       80 GeV   Emax=       10 TeV
+
+msc:   for e-    SubType= 10
+      RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=      100 MeV  Table with 42 bins Emin=    100 eV    Emax=    100 MeV
+        WentzelVIUni :  Emin=      100 MeV   Emax=       10 TeV  Table with 35 bins Emin=    100 MeV   Emax=     10 TeV
+
+eIoni:   for  e-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        MollerBhabha :  Emin=        0 eV    Emax=       10 TeV
+
+eBrem:   for  e-    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      LPM flag: 1 for E > 1 GeV
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB :  Emin=        0 eV    Emax=        1 GeV   DipBustGen
+            eBremLPM :  Emin=        1 GeV   Emax=       10 TeV   DipBustGen
+
+CoulombScat:   for  e-    SubType= 1
+      Lambda table from 100 MeV to 10 TeV in 35 bins, spline: 1
+      180 < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering :  Emin=      100 MeV   Emax=       10 TeV
+
+msc:   for e+    SubType= 10
+      RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=      100 MeV  Table with 42 bins Emin=    100 eV    Emax=    100 MeV
+        WentzelVIUni :  Emin=      100 MeV   Emax=       10 TeV  Table with 35 bins Emin=    100 MeV   Emax=     10 TeV
+
+eIoni:   for  e+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        MollerBhabha :  Emin=        0 eV    Emax=       10 TeV
+
+eBrem:   for  e+    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      LPM flag: 1 for E > 1 GeV
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB :  Emin=        0 eV    Emax=        1 GeV   DipBustGen
+            eBremLPM :  Emin=        1 GeV   Emax=       10 TeV   DipBustGen
+
+annihil:   for  e+    SubType= 5
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            eplus2gg :  Emin=        0 eV    Emax=       10 TeV
+
+CoulombScat:   for  e+    SubType= 1
+      Lambda table from 100 MeV to 10 TeV in 35 bins, spline: 1
+      180 < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering :  Emin=      100 MeV   Emax=       10 TeV
+
+msc:   for proton    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  proton    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=        2 MeV
+          BetheBloch :  Emin=        2 MeV   Emax=       10 TeV
+
+hBrems:   for  proton    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem :  Emin=        0 eV    Emax=       10 TeV
+
+hPairProd:   for  proton    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 13x1001; from 7.50618 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for GenericIon    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV
+
+ionIoni:   for  GenericIon    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.01, dRoverRange= 0.1, integral: 1, fluct: 1, linLossLimit= 0.02
+      Stopping Power data for 17 ion/material pairs 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            BraggIon :  Emin=        0 eV    Emax=        2 MeV
+          BetheBloch :  Emin=        2 MeV   Emax=       10 TeV
+
+msc:   for alpha    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+ionIoni:   for  alpha    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.01, dRoverRange= 0.1, integral: 1, fluct: 1, linLossLimit= 0.02
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            BraggIon :  Emin=        0 eV    Emax=   7.9452 MeV
+          BetheBloch :  Emin=   7.9452 MeV   Emax=       10 TeV
+
+msc:   for anti_proton    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  anti_proton    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=        2 MeV
+          BetheBloch :  Emin=        2 MeV   Emax=       10 TeV
+
+hBrems:   for  anti_proton    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem :  Emin=        0 eV    Emax=       10 TeV
+
+hPairProd:   for  anti_proton    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 13x1001; from 7.50618 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for kaon+    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  kaon+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=  1.05231 MeV
+          BetheBloch :  Emin=  1.05231 MeV   Emax=       10 TeV
+
+hBrems:   for  kaon+    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem :  Emin=        0 eV    Emax=       10 TeV
+
+hPairProd:   for  kaon+    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 14x1001; from 3.94942 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for kaon-    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  kaon-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=  1.05231 MeV
+          BetheBloch :  Emin=  1.05231 MeV   Emax=       10 TeV
+
+hBrems:   for  kaon-    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem :  Emin=        0 eV    Emax=       10 TeV
+
+hPairProd:   for  kaon-    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 14x1001; from 3.94942 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for mu+    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+muIoni:   for  mu+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=      200 keV
+          BetheBloch :  Emin=      200 keV   Emax=        1 GeV
+        MuBetheBloch :  Emin=        1 GeV   Emax=       10 TeV
+
+muBrems:   for  mu+    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem :  Emin=        0 eV    Emax=       10 TeV
+
+muPairProd:   for  mu+    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 17x1001; from 1 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+CoulombScat:   for  mu+    SubType= 1
+      Lambda table from 100 eV  to 10 TeV in 43 bins, spline: 1
+      180 < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for mu-    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+muIoni:   for  mu-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=      200 keV
+          BetheBloch :  Emin=      200 keV   Emax=        1 GeV
+        MuBetheBloch :  Emin=        1 GeV   Emax=       10 TeV
+
+muBrems:   for  mu-    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem :  Emin=        0 eV    Emax=       10 TeV
+
+muPairProd:   for  mu-    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 17x1001; from 1 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+CoulombScat:   for  mu-    SubType= 1
+      Lambda table from 100 eV  to 10 TeV in 43 bins, spline: 1
+      180 < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering :  Emin=        0 eV    Emax=       10 TeV
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 78, A = 190 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 190 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Inelastic file for Z = 78, A = 190 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 192 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 192 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Inelastic file for Z = 78, A = 192 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 194 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 194 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Inelastic file for Z = 78, A = 194 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 195 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 195 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Inelastic file for Z = 78, A = 195 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 196 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 196 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Inelastic file for Z = 78, A = 196 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 78, A = 198 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/79_197_Gold
+NeutronHP: /Elastic file for Z = 78, A = 198 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/79_197_Gold
+NeutronHP: /Inelastic file for Z = 78, A = 198 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/79_197_Gold
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/8_17_Oxygen
+NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/8_17_Oxygen
+NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/8_17_Oxygen
+NeutronHP: /Capture file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/82_208_Lead
+NeutronHP: /Elastic file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/82_208_Lead
+NeutronHP: /Inelastic file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/82_208_Lead
+
+msc:   for pi+    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  pi+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=  297.505 keV
+          BetheBloch :  Emin=  297.505 keV   Emax=       10 TeV
+
+hBrems:   for  pi+    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem :  Emin=        0 eV    Emax=       10 TeV
+
+hPairProd:   for  pi+    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 16x1001; from 1.11656 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for pi-    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  pi-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=  297.505 keV
+          BetheBloch :  Emin=  297.505 keV   Emax=       10 TeV
+
+hBrems:   for  pi-    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem :  Emin=        0 eV    Emax=       10 TeV
+
+hPairProd:   for  pi-    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV in 77 bins, spline: 1
+      Sampling table 16x1001; from 1.11656 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+====================================================================
+                  HADRONIC PROCESSES SUMMARY (verbose level 1)
+
+---------------------------------------------------
+                           Hadronic Processes for GenericIon
+
+  Process: ionInelastic
+        Model:  Binary Light Ion Cascade: 0 eV  ---> 110 MeV
+        Model:                  QMDModel: 100 MeV ---> 10 GeV
+        Model:                      FTFP: 9.99 GeV ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+  Process: ionElastic
+        Model:          NNDiffuseElastic: 0 eV  ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_neutron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_neutronInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_proton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_protonInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for e+
+
+  Process: positronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for e-
+
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for gamma
+
+  Process: photonNuclear
+        Model:            BertiniCascade: 0 eV  ---> 3.5 GeV
+        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
+     Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon+
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: kaon+Inelastic
+        Model:                      FTFP: 4 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 5 GeV
+     Cr_sctns:  ChipsKaonPlusInelasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: kaon-Inelastic
+        Model:                      FTFP: 4 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 5 GeV
+     Cr_sctns: ChipsKaonMinusInelasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for lambda
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: lambdaInelastic
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+        Model:                      FTFP: 2 GeV ---> 100 TeV
+     Cr_sctns:   ChipsHyperonInelasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for mu-
+
+  Process: muMinusCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for neutron
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 19.5 MeV ---> 100 TeV
+        Model:          NeutronHPElastic: 0 eV  ---> 20 MeV
+     Cr_sctns:        NeutronHPElasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns:     ChipsNeutronElasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: neutronInelastic
+        Model:                      FTFP: 4 GeV ---> 100 TeV
+        Model:            BertiniCascade: 19.9 MeV ---> 5 GeV
+        Model:        NeutronHPInelastic: 0 eV  ---> 20 MeV
+     Cr_sctns:      NeutronHPInelasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns: JENDLHEInelasticCrossSection: 0 eV  ---> 100 TeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:      NeutronHPInelasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+  Process: nCapture
+        Model:          NeutronHPCapture: 0 eV  ---> 20 MeV
+        Model:               nRadCapture: 19.9 MeV ---> 100 TeV
+     Cr_sctns:        NeutronHPCaptureXS: 0 eV  ---> 20 MeV
+     Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
+     Cr_sctns:        NeutronHPCaptureXS: 0 eV  ---> 20 MeV
+     Cr_sctns:          GheishaCaptureXS: 0 eV  ---> 100 TeV
+
+  Process: nFission
+        Model:          NeutronHPFission: 0 eV  ---> 20 MeV
+        Model:                G4LFission: 19.9 MeV ---> 2.88022e+295 J  
+     Cr_sctns:        NeutronHPFissionXS: 0 eV  ---> 20 MeV
+     Cr_sctns:          GheishaFissionXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi+
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
+        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: pi+Inelastic
+        Model:                      FTFP: 4 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 5 GeV
+     Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
+                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
+                           below 91 GeV, Glauber-Gribov above 
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
+        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: pi-Inelastic
+        Model:                      FTFP: 4 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 5 GeV
+     Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
+                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
+                           below 91 GeV, Glauber-Gribov above 
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for proton
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: protonInelastic
+        Model:                      FTFP: 4 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 5 GeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+================================================================
+LOG: Wrote at Event 100000
+LOG: Wrote at Event 200000
+LOG: Wrote at Event 300000
+LOG: Wrote at Event 400000
+LOG: Wrote at Event 500000
+LOG: Wrote at Event 600000
+LOG: Wrote at Event 700000
+LOG: Wrote at Event 800000
+LOG: Wrote at Event 900000
+LOG: Wrote at Event 1000000
+
+--------- Ranecu engine status ---------
+ Initial seed (index) = 0
+ Current couple of seeds = 379185847, 1161967705
+----------------------------------------
+rmdir
+notify
+close
+closed
+Cleaning up...
+Cleaning singletons...
+Cleaning IOServices...
+VXIOServices destructor called...
+rmdir
+notify
+Cleaning GeometryFactory...
+Calling destructor on Factory... contains 16 keys.
+Deleting pointer 0x1ff2f50 keyed to GeDetHalfShield
+Deleting pointer 0x1ff1bb0 keyed to GeDetsetup
+Deleting pointer 0x1fea1c0 keyed to Germaniumcrystal
+Deleting pointer 0x1fea370 keyed to Germaniumsensitivecrystal
+Deleting pointer 0x1ff9d50 keyed to NeutronHall
+Deleting pointer 0x1feb7d0 keyed to Snsetup
+Deleting pointer 0x1fecbb0 keyed to SnsetupMark1
+Deleting pointer 0x1fedfb0 keyed to SnsetupMark2
+Deleting pointer 0x1fef3b0 keyed to SnsetupMark3
+Deleting pointer 0x1ff07b0 keyed to SnsetupMark4
+Deleting pointer 0xc7eca0 keyed to default
+Deleting pointer 0x1ff4470 keyed to liscGeometry
+Deleting pointer 0x1ffdbe0 keyed to rdxcrystal
+Deleting pointer 0x1ffd590 keyed to rdxholder
+Deleting pointer 0x1ffecf0 keyed to rdxsensitivecrystal
+Deleting pointer 0x1ff7f90 keyed to rdxshield
+Clearing registry...
+Registry cleared...
+Cleaning GunFactory...
+Calling destructor on Factory... contains 8 keys.
+Deleting pointer 0xd04560 keyed to bkggen
+Deleting pointer 0x1f14440 keyed to chaingen
+Deleting pointer 0x1f14220 keyed to dbgen
+Deleting pointer 0x1f12d60 keyed to decay0
+Deleting pointer 0x1ff4500 keyed to muongen
+Deleting pointer 0x1ff4600 keyed to neutrongungen
+Deleting pointer 0x2187e70 keyed to rockneutrongen

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+	
+	<define>
+
+		<!-- Angaben in mm - immer! -->
+
+		<!-- definitions of dimensions -->
+		<constant name="x_element_right" value="9"/>
+		<constant name="y_element_right" value="97"/>
+		<constant name="z_element_right" value="46"/>
+
+		<constant name="x_subtraction_element_1_right" value="5"/>
+		<constant name="y_subtraction_element_1_right" value="89"/>
+		<constant name="z_subtraction_element_1_right" value="39"/>
+
+		<constant name="x_subtraction_element_2_right" value="5"/>
+		<constant name="y_subtraction_element_2_right" value="8"/>
+		<constant name="z_subtraction_element_2_right" value="32"/>		
+
+		<constant name="x_subtraction_element_3_right" value="5"/>
+		<constant name="y_subtraction_element_3_right" value="81"/>
+		<constant name="z_subtraction_element_3_right" value="7"/>		
+
+		<constant name="x_subtraction_element_4_right" value="7"/>
+		<constant name="y_subtraction_element_4_right" value="97"/>
+		<constant name="z_subtraction_element_4_right" value="3"/>	
+
+		<constant name="x_subtraction_element_5_right" value="7"/>
+		<constant name="y_subtraction_element_5_right" value="89"/>
+		<constant name="z_subtraction_element_5_right" value="3"/>		
+
+		<!-- screws' dimensions -->
+		<constant name="r_subtraction_element_6_right" value="2"/>
+		<constant name="z_subtraction_element_6_right" value="6"/>		
+
+		<!-- dimension of the hole for the calibration tube -->
+		<constant name="r_subtraction_element_7_right" value="2"/>
+		<constant name="z_subtraction_element_7_right" value="9"/>		
+
+		<!-- rotation about y-axis -->
+		<rotation name="x_rotation_90_right" x="90" unit="degree"/>
+		<rotation name="y_rotation_90_right" y="90" unit="degree"/>
+		
+		<!-- positions -->
+		<position name="element_0_pos_right" x="0" y="0" z="0" unit="mm"/>
+		<position name="screw_1_pos_right" x="x_element_right/2 - 4" y="-(y_element_right/2 - 4)" z="z_element_right/2 - z_subtraction_element_6_right/2 + 1/2" unit="mm"/>
+		<position name="screw_2_pos_right" x="x_element_right/2 - 4" y="-(-y_element_right/2 + 4)  " z="-z_element_right/2 + z_subtraction_element_6_right/2 -1/2" unit="mm"/>
+		<position name="screw_3_pos_right" x="x_element_right/2 - 4" y="-(y_element_right/2 - z_subtraction_element_6_right/2 + 1/2)" z="-z_element_right/2 + 3" unit="mm"/>
+		<position name="subtraction_element_1_pos_right" x="x_element_right/2 - x_subtraction_element_1_right/2 + 1/2" y="-(-y_element_right/2 + y_subtraction_element_1_right/2 - 1/2)" z="z_element_right/2 - z_subtraction_element_1_right/2" unit="mm"/>
+		<position name="subtraction_element_2_pos_right" x="x_element_right/2 - x_subtraction_element_2_right/2 + 1/2" y="-(y_element_right/2 - y_subtraction_element_2_right/2)" z="0" unit="mm"/>
+		<position name="subtraction_element_3_pos_right" x="x_element_right/2 - x_subtraction_element_3_right/2 + 1/2" y="0" z="(-z_element_right + 7)/2" unit="mm"/>
+		<position name="subtraction_element_4_pos_right" x="x_element_right/2 - x_subtraction_element_4_right/2 + 1/2" y="0" z="-z_element_right/2 + (20 + 17)/2" unit="mm"/>
+		<position name="subtraction_element_5_pos_right" x="x_element_right/2 - x_subtraction_element_4_right/2 + 1/2" y="-(-y_element_right/2 + y_subtraction_element_5_right/2 - 1/2)" z="z_element_right/2 - (5 + 3)/2" unit="mm"/>
+		<position name="hole_pos_right" x="0" y="-(y_element_right/2 - 46)" z="-z_element_right/2 + 3" unit="mm"/>
+		
+
+		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+
+	</define>
+		
+	
+	<materials>
+
+	</materials>
+
+	<solids>
+		<!-- elements' definitions -->
+		<box name="element_0_right" x="x_element_right" y="y_element_right" z="z_element_right" lunit="mm" />
+		<box name="subtraction_element_1_right" x="x_subtraction_element_1_right + 1" y="y_subtraction_element_1_right + 1" z="z_subtraction_element_1_right + 1" lunit="mm" />
+		<box name="subtraction_element_2_right" x="x_subtraction_element_2_right + 1" y="y_subtraction_element_2_right + 1" z="z_subtraction_element_2_right" lunit="mm" />
+		<box name="subtraction_element_3_right" x="x_subtraction_element_3_right + 1" y="y_subtraction_element_3_right" z="z_subtraction_element_3_right + 1" lunit="mm" />
+		<box name="subtraction_element_4_right" x="x_subtraction_element_4_right + 1" y="y_subtraction_element_4_right + 1" z="z_subtraction_element_4_right" lunit="mm" />
+		<box name="subtraction_element_5_right" x="x_subtraction_element_5_right + 1" y="y_subtraction_element_5_right + 1" z="z_subtraction_element_5_right" lunit="mm" />
+
+
+		<tube name="screw_right" rmin="0" rmax="r_subtraction_element_6_right" deltaphi="360" z="z_subtraction_element_6_right+1" lunit="mm" aunit="degree"/> 
+		<tube name="hole_right" rmin="0" rmax="r_subtraction_element_7_right" deltaphi="360" z="z_subtraction_element_7_right + 1" lunit="mm" aunit="degree"/> 
+		<!-- subtracting these elements -->
+		<subtraction name="element_1_right">
+			<first ref="element_0_right"/>
+			<second ref="subtraction_element_1_right"/>
+				<positionref ref="subtraction_element_1_pos_right" />
+		</subtraction>
+		<subtraction name="element_2_right">
+			<first ref="element_1_right"/>
+			<second ref="subtraction_element_2_right"/>
+				<positionref ref="subtraction_element_2_pos_right" />
+		</subtraction>
+		<subtraction name="element_3_right">
+			<first ref="element_2_right"/>
+			<second ref="subtraction_element_3_right"/>
+				<positionref ref="subtraction_element_3_pos_right" />
+		</subtraction>
+		<subtraction name="element_4_right">
+			<first ref="element_3_right"/>
+			<second ref="subtraction_element_4_right"/>
+				<positionref ref="subtraction_element_4_pos_right" />
+		</subtraction>
+		<subtraction name="element_5_right">
+			<first ref="element_4_right"/>
+			<second ref="subtraction_element_5_right"/>
+				<positionref ref="subtraction_element_5_pos_right" />
+		</subtraction>
+
+		<!-- screws -->
+		<subtraction name="element_6_right">
+			<first ref="element_5_right"/>
+			<second ref="screw_right"/>
+				<positionref ref="screw_1_pos_right" />
+		</subtraction>
+		<subtraction name="element_7_right">
+			<first ref="element_6_right"/>
+			<second ref="screw_right"/>
+				<positionref ref="screw_2_pos_right" />
+		</subtraction>
+		<subtraction name="element_8_right">
+			<first ref="element_7_right"/>
+			<second ref="screw_right"/>
+				<positionref ref="screw_3_pos_right" />
+				<rotationref ref="x_rotation_90_right" />
+		</subtraction>
+
+		<!-- hole for calibration tube-->
+		<subtraction name="element_1_solid_right">
+			<first ref="element_8_right"/>
+			<second ref="hole_right"/>
+				<positionref ref="hole_pos_right" />
+				<rotationref ref="y_rotation_90_right" />
+		</subtraction>
+		
+		<box name="Worldbox_right" x="x_element_right" y="y_element_right" z="z_element_right" lunit="mm" />
+	</solids>
+	
+	<structure>
+		<volume name="right_vol">
+			<materialref ref="Copper"/>
+			<solidref ref="element_1_solid_right"/>
+		</volume>
+
+		<volume name="World_right">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Worldbox_right"/>
+		
+			<physvol name="rightside_copper_element_physvol">
+				<volumeref ref="right_vol"/>
+				<positionref ref="element_0_pos_right"/>
+			</physvol>
+
+			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+		</volume>	
+	</structure>
+
+	<setup name="Test" version="1.0">
+		<world ref="World_right"/>	
+	</setup>
+</gdml>

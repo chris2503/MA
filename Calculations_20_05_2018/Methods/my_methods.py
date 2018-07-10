@@ -1,0 +1,158 @@
+import numpy as np
+import datetime
+import os
+import uncertainties
+import uncertainties.unumpy as unp
+from uncertainties.unumpy import(nominal_values as noms, std_devs as stds)
+
+# read data and list elements as strings, returns a nxm array
+def read_File(filename):
+	print('\nReading file "%s" ...' %(filename))
+	with open(filename, 'r') as file:
+		read_data = file.readlines()
+
+	counter = 0					#	just a counter as a local variable
+	for line in read_data:		#	extract lines
+		if line[0]=='#':		#	skip comments
+			continue
+		element = line.split()	#	extract data from single lines
+		if counter == 0:
+			my_data = element 		#	1. line  
+		else:
+			my_data = np.vstack((my_data, element))		#	append all other lines
+		counter = counter + 1
+	return my_data
+
+# converts a stringvalue into an integer or float
+def convert_str2num(array):
+	counter = 0
+	for value in array:
+		try:
+			value = np.int32(value)
+		except:
+			 value = np.float32(value)
+		if counter == 0:
+			return_array = value
+		else:
+			return_array = np.append([return_array], [value])
+		counter = counter + 1
+	return return_array
+
+# write data to a txt-file without any information
+def write_txtfile(data, dir, dataname):
+	print('\nSaving data to "%s"' %(dir+dataname))
+	if not os.path.exists(dir):
+		os.makedirs(dir)
+	size = data.shape[0]
+	save_data = open((dir + dataname),'w')
+	# write data only
+	for i in range(0, size):
+		array_len = np.size(data[i])
+		for j in range(0, array_len):
+			if(j == array_len-1):
+				try:
+					save_data.write(str(format(float(data[i][j]), '.4e')) + "\n")
+				except:
+					save_data.write(str(data[i][j]) + "\n")
+			else:
+				try:
+					save_data.write(str(format(float(data[i][j]), '.4e')) + "\t")
+				except:
+					save_data.write(str(data[i][j]) + "\t")
+	save_data.close()
+
+# write data to a txt-file with information. Comments will cointain '#' at the beginning
+# date and time will be commented on top of the file
+# var_names should contain the name of the variable and its unit
+# e.g.: var = ['name', 't / [s]']
+# description should contain what the list it is and which function the variables have#
+# e.g: desctiption = ['List of sth.', 't: time']
+def write_detailed_txtfile(data, var_names, description, dir, dataname):
+	print('\nSaving data to "%s"' %(dir+dataname))
+	if not os.path.exists(dir):
+		os.makedirs(dir)
+	data_size = data.shape[0]
+	save_data = open((dir + dataname),'w')
+	# write information
+	save_data.write(str("# Date: " + datetime.datetime.now().strftime("%y-%m-%d %H:%M") + "\n"))
+	for i in range(0, len(description)):
+		save_data.write(str("# ") + description[i] + "\n")
+	save_data.write("#\n# ")
+	for i in range(0, len(var_names)):
+		save_data.write(var_names[i] + "\t")
+	save_data.write("\n")
+
+	# write data
+	for i in range(0, data_size):
+		array_len = np.size(data[i])
+		for j in range(0, array_len):
+			if(j == array_len-1):
+				try:
+					save_data.write(str(format(float(data[i][j]), '.4e')) + "\n")
+				except:
+					save_data.write(str(data[i][j]) + "\n")
+			else:
+				try:
+					save_data.write(str(format(float(data[i][j]), '.4e')) + "\t")
+				except:
+					save_data.write(str(data[i][j]) + "\t")
+	save_data.close()
+
+# transforms data to latex_table if its length is 1 page or shorter
+def transform2latex_tab(data, dir, dataname):
+	if not os.path.exists(dir):
+		os.makedirs(dir)
+	size = len(data)
+	save_data = open((dir + 'latex_' + dataname),'w')
+	print('\nSaving data to "%s"' %(dir+dataname))
+	for i in range (0, size):
+		array_len = np.size(data[i])
+		for j in range(0, array_len):
+			if(j == array_len-1):
+				save_data.write("\\num{" + str(data[i][j]) + "}\t \\\\ \n")
+			else:
+				save_data.write("\\num{" + str(data[i][j]) + "}\t	&	\t")
+	save_data.close()
+
+def transform2latex_tab_2(data, dir, dataname):
+	if not os.path.exists(dir):
+		os.makedirs(dir)
+	size = len(data)
+	save_data = open((dir + 'latex_' + dataname),'w')
+	print('\nSaving data to "%s"' %(dir+dataname))
+	for i in range (0, size):
+		array_len = len(data[i])
+		for j in range(0, array_len):
+			if(j == array_len-1):
+				save_data.write("\\num{" + str(noms(data[i][j])) + " \\pm " + str(stds(data[i][j])) + "}\t \\\\ \n")
+			else:
+				save_data.write("\\num{" + str(noms(data[i][j])) + " \\pm " + str(stds(data[i][j])) + "}\t	&	\t")
+	save_data.close()
+
+
+# for large tables, this method transfroms data to tables but this written data are going through the pages before the next cloumn is set :(
+def transform2latex_tab_long(data, division, dir, dataname):
+	if not os.path.exists(dir):
+		os.makedirs(dir)
+	size = data.shape[0]
+	save_data = open((dir + 'latex_' + dataname),'w')
+	print('\nSaving data to "%s"' %(dir+dataname))
+	temp = int(groesse/einteilung) + 1 
+	for i in range (0, temp):
+		array_len = np.size(data[i])
+		for k in range(0, division):
+			n= k
+			for j in range(0, array_len):
+				if n < (division-1) or j < (array_len-1):
+					m = temp*k
+					if (size-1 < (i+m)):
+						save_data.write("{}" + "\t & \t")
+					else:
+						save_data.write(str(data[i+m][j]) + "\t & \t")
+				else:
+					m = temp*k
+					if(groesse-1 < (i+m)):
+						save_data.write("{}" + "\t 	\\\\ \n")
+					else:
+						save_data.write(str(data[i+m][j]) + "\t 	\\\\ \n")
+	save_data.close()

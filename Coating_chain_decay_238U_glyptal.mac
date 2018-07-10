@@ -1,0 +1,33 @@
+/venom/geom/setImplementation ./Setup_with_shielding.gdml
+/venom/geom/update
+
+/venom/io/open ./rootfiles/chain_decay_238U_glyptal_coating
+/venom/action/setEventAction autowrite
+/venom/io/writeEvery 100000
+
+
+/venom/gun/setParticleGun chaingen
+/grdm/allVolumes
+/chaingen/verbosity 0
+/chaingen/posgen/verbosity 0
+#/chaingen/posgen/switchOnIO 1								# additional output
+
+
+#/chaingen/posgen/type Volume
+
+/chaingen/U238chain 1
+
+/chaingen/checklist
+
+# /chaingen/NuclDeexcitationOnly true
+
+#the sim fractions are necessary because of different cable length
+/chaingen/posgen/solidSourceIntrinsic paint_physvol_glyptal
+/chaingen/posgen/confine paint_physvol_glyptal
+
+/array64data/storeEventInfo 1								# extra output enabled
+/array64data/ignoreNoEdep 1									# events without energy deposition ignored
+/run/beamOn 1000000
+
+/chaingen/clearlist
+/venom/io/write

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+	
+	<define>
+		<constant name="right_left_element_thickness" value="9"/>
+		<constant name="middle_element_thickness" value="3"/>
+		<constant name="top_bottom_element_thickness" value="3"/>
+
+		<constant name="r_screw" value="2" />
+		<constant name="z_screw_8mm" value="8" />
+
+		<constant name="x_copperelement" value="100"/>
+		<constant name="y_copperelement" value="97"/>
+		<constant name="z_copperelement" value="50"/> 
+
+		<variable name="x_i" value="-1"/>
+		<variable name="y_i" value="-1"/>
+		<variable name="z_i" value="-1"/>
+
+
+
+		<position name="left_element_pos" x="-x_copperelement/2 + right_left_element_thickness/2 " y="0" z="0" unit="mm"/>
+		<position name="middle_element_pos" x="0" y="y_copperelement/2 + middle_element_thickness/2" z="0" unit="mm"/>
+		<position name="right_element_pos" x="x_copperelement/2 - right_left_element_thickness/2" y="0" z="0" unit="mm"/>
+		<position name="top_element_pos" x="0" y="0" z="z_copperelement/2 - top_bottom_element_thickness/2" unit="mm"/>
+		<position name="bottom_element_pos" x="0" y="0" z="-z_copperelement/2 + top_bottom_element_thickness/2" unit="mm"/>	
+
+
+		<rotation name="x_rot_90" x="90" unit="deg" />
+		<rotation name="y_rot_90" y="90" unit="deg" />
+		<rotation name="z_rot_180" z="180" unit="deg" />
+		<rotation name="x_rot_180" x="180" unit="deg" />
+		<rotation name="xz_rot_180" x="180" z="180" unit="deg" />
+
+		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+		<scale name="DelrinColour" x="1/255" y="50/255" z="200/255"/>
+		<scale name="AuColour" x="220/255" y="208/255" z="42/255"/><!-- yellow-->
+		<scale name="E-CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="BrassColour" x="100/255" y="100/255" z="100/255"/><!-- orange-->
+	</define>
+
+	&materials;
+
+
+	<solids>
+		<tube name="screw_8mm" rmin="0" rmax="r_screw" deltaphi="360" z="z_screw_8mm" lunit="mm" aunit="degree"/> 
+
+		<box name="Worldbox_copperholder" x="120" y="120" z="70" lunit="mm" />
+	</solids>
+	
+	<structure>
+		<volume name="screw_8mm_vol">
+			<materialref ref="Brass"/>
+			<solidref ref="screw_8mm"/>
+		</volume>
+
+		<volume name="Copperholder">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Worldbox_copperholder"/>
+			<physvol name="left_element_physvol">
+				<file name="copperholder_leftside_element.gdml" volname="left_vol"/>
+				<positionref ref="left_element_pos"/>
+			</physvol>
+			
+			<physvol name="top_element_physvol">
+				<file name="copperholder_top-bottom_element.gdml" volname="top_vol"/>
+				<positionref ref="top_element_pos"/>
+				<rotationref ref="xz_rot_180" />
+			</physvol>
+
+			<physvol name="bottom_element_physvol">
+				<file name="copperholder_top-bottom_element.gdml" volname="bottom_vol"/>
+				<positionref ref="bottom_element_pos"/>
+				<rotationref ref="z_rot_180" />
+			</physvol>
+			
+			<physvol name="right_element_physvol">
+				<file name="copperholder_rightside_element.gdml" volname="right_vol"/>
+				<positionref ref="right_element_pos"/>
+				<rotationref ref="z_rot_180" />
+			</physvol>
+
+			<physvol name="middle_element_physvol">
+				<file name="copperholder_middle_element.gdml" volname="middle_vol"/>
+				<positionref ref="middle_element_pos"/>
+				<rotationref ref="x_rot_180"/>
+			</physvol>
+
+			<loop for="x_i" from="-1" to="1" step="2">
+				<physvol name="screw_physvol">
+					<volumeref ref="screw_8mm_vol"/>
+					<position name="screw_pos" x="x_i * (x_copperelement/2 - 5)" y="y_copperelement/2 - 4" z="z_copperelement/2 - z_screw_8mm/2"/>
+				</physvol>
+			</loop>
+
+			<loop for="x_i" from="-1" to="1" step="2">
+				<physvol name="screw_physvol">
+					<volumeref ref="screw_8mm_vol"/>
+					<position name="screw_pos" x="x_i * (x_copperelement/2 - 5)" y="-(y_copperelement/2 - 4)" z="-(z_copperelement/2 - z_screw_8mm/2)"/>
+				</physvol>
+			</loop>
+
+			<loop for="x_i" from="-1" to="1" step="2">
+				<physvol name="screw_physvol">
+					<volumeref ref="screw_8mm_vol"/>
+					<position name="screw_pos" x="x_i * (x_copperelement/2 - 5)" y=" y_copperelement/2 + 3  - z_screw_8mm/2 " z="-(z_copperelement/2 - 5)"/>
+					<rotationref ref="x_rot_90"/>
+				</physvol>
+			</loop>
+
+
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Delrin DelrinColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Brass BrassColour"/>
+		</volume>
+	</structure>
+
+	<setup name="Test" version="1.0">
+		<world ref="Copperholder"/>	
+	</setup>
+
+</gdml>

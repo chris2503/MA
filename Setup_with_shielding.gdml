@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+	
+	<define>
+		<constant name="Setup_height" value="700"/> 
+
+		<!-- Center position of the whole Setup --> 
+		<position name="Setup_center_pos" x="0" y="0" z="0" unit="mm"/>
+		<!-- Center position of the old detector layer -->
+		<position name="DET_center_pos" x="0" y="0" z="-Setup_height/2 + 250 + 150/2" unit="mm"/>
+		<!-- Center position of the XDEM -->
+		<position name="XDEM_center_pos" x="0" y="0" z="-Setup_height/2 + 250 + 100 + 50/2" unit="mm"/>
+		<!-- Center position of the old detector layer -->
+		<position name="Old_Layer_center_pos" x="0" y="0" z="-Setup_height/2 + 250 + 100/2" unit="mm"/>
+
+		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+		<scale name="DelrinColour" x="1/255" y="50/255" z="200/255"/>
+		<scale name="AuColour" x="220/255" y="208/255" z="42/255"/><!-- yellow-->
+		<scale name="BrassColour" x="100/255" y="100/255" z="100/255"/><!-- orange-->
+		<scale name="PA_6.6Colour" x="150/255" y="150/255" z="150/255"/> <!-- grey -->
+		<scale name="PolytetraflourethyleneColour" x="250/255" y="250/255" z="250/255"/> <!-- white -->
+		<scale name="EpoxyColour" x="70/255" y="255/255" z="255/255"/>
+		<scale name="GlyptalColour" x="255/255" y="0/255" z="0/255"/>
+		<scale name="LeadColour" x="105/255" y="105/255" z="105/255"/><!-- orange-->
+		<scale name="NitrogenColour" x="0/255" y="255/255" z="0/255"/>
+	</define>
+
+	&materials;
+
+	<solids>
+		<box name="Shielding_World" x="600" y="600" z="700" lunit="mm" />
+		<box name="ULA_Pb_box" x="300" y="300" z="350" lunit="mm" />
+		<box name="Cu_box" x="200" y="200" z="250" lunit="mm" />
+		<box name="DET_box" x="100" y="100" z="150" lunit="mm" />
+
+		<!-- Standard Pb Shielding -->
+		<subtraction name="Standard_Pb_BOX">
+			<first ref="Shielding_World"/>
+			<second ref="ULA_Pb_box"/>
+			<positionref ref="DET_center_pos"/>
+		</subtraction>
+
+		<subtraction name="ULA_Pb_BOX">
+			<first ref="ULA_Pb_box"/>
+			<second ref="Cu_box"/>
+			<positionref ref="Setup_center_pos"/>
+		</subtraction>
+
+		<subtraction name="Cu_BOX">
+			<first ref="Cu_box"/>
+			<second ref="DET_box"/>
+			<positionref ref="Setup_center_pos"/>
+		</subtraction>
+	</solids>
+	
+	<structure>
+		<volume name="Standard_Pb_VOLUME">
+			<materialref ref="Lead"/>
+			<solidref ref="Standard_Pb_BOX"/>
+		</volume>
+		<volume name="ULA_Pb_VOLUME">
+			<materialref ref="Lead"/>
+			<solidref ref="ULA_Pb_BOX"/>
+		</volume>
+		<volume name="Cu_VOLUME">
+			<materialref ref="Copper"/>
+			<solidref ref="Cu_BOX"/>
+		</volume>
+
+		<volume name="SETUP">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Shielding_World"/>
+			<physvol name="Standard_Pb_PHYSVOL">
+				<volumeref ref="Standard_Pb_VOLUME"/>
+				<positionref ref="Setup_center_pos"/>
+			</physvol>
+
+			<physvol name="ULA_Pb_PHYSVOL">
+				<volumeref ref="ULA_Pb_VOLUME"/>
+				<positionref ref="DET_center_pos"/>
+			</physvol>
+
+			<physvol name="Cu_PHYSVOL">
+				<volumeref ref="Cu_VOLUME"/>
+				<positionref ref="DET_center_pos"/>
+			</physvol>
+
+			<physvol name="XDEM_PHYSVOL">
+				<file name="copperholder_with_detectorlayer.gdml" volname="Detektor_Block"/>
+				<positionref ref="XDEM_center_pos"/>
+			</physvol>
+			<auxiliary auxtype="PlacedVolumes" auxvalue="detector_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Delrin DelrinColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="PA_6.6 PA_6.6Colour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Polytetraflourethylene PolytetraflourethyleneColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Epoxy EpoxyColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Glyptal GlyptalColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Lead LeadColour"/>
+			<!-- <auxiliary auxtype="MaterialColour" auxvalue="Nitrogengas NitrogenColour"/> -->
+		</volume>
+	</structure>
+
+	<setup name="Test" version="1.0">
+		<world ref="SETUP"/>	
+	</setup>
+
+</gdml>

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+	
+	<define>
+		<!-- copper holder -->
+		<constant name="right_left_element_thickness" value="9"/>
+		<constant name="middle_element_thickness" value="3"/>
+		<constant name="top_bottom_element_thickness" value="3"/>
+
+		<constant name="r_screw" value="2" />
+		<constant name="z_screw_8mm" value="8" />
+
+		<constant name="x_copperelement" value="100"/>
+		<constant name="y_copperelement" value="97"/>
+		<constant name="z_copperelement" value="50"/> 
+
+		<variable name="x_i" value="-1"/>
+		<variable name="y_i" value="-1"/>
+		<variable name="z_i" value="-1"/>
+
+		<constant name="paint_thickness_max" value="0.154"/>
+
+
+		<!-- delrin layer elements -->
+		<!-- shift of the layer -->
+		<constant name="y_layer_shift" value="97/2 - 46"/>
+		<constant name="z_layer_shift" value="(-46/2 + 20 - 3/2) + 17/2 - 3/2"/>
+		
+		<!-- dimensions top plate und upper bottom plate -->
+		<constant name="x_plate" value="2*(47.8 - 2.0)"/>
+		<constant name="y_plate" value="2*46.0"/>
+		<constant name="z_plate" value="1"/>
+		
+
+		<!-- dimensions lower bottom plate -->
+		<constant name="x_plate_2" value="2 * 47.8"/>
+		<constant name="z_plate_2" value="2"/>
+
+		<!-- dimensions holes -->
+		<!-- quadratic holes -->
+		<constant name="x_qhole" value="2*5 + 2*5.2 +  2*paint_thickness_max"/>
+		<constant name="y_qhole" value="2*5 + 2*5.2 +  2*paint_thickness_max" />
+		<constant name="x_qhole_2" value="2*5"/>
+		<constant name="y_qhole_2" value="2*5"/>
+
+		<!-- Screws -->
+		<constant name="r_delrin_screw" value="2/2"/>
+		<constant name="z_delrin_screw" value="17"/>
+
+		<!-- distance between detectors (center - center)-->
+		<constant name="dist_detects" value="2*5 + 16.40"/>
+
+		<!-- distance round hole - layer margin -->
+		<constant name="x_dist_delrin_screw_solid" value="4.0"/>
+		<constant name="y_dist_delrin_screw_solid" value="4.0"/>
+
+		<!-- detector -->
+		<constant name="z_detector" value="15"/>
+		
+		<!-- location and numbering the holes where the detectors will be inserted-->
+		<!-- Illustration of the positions
+			1	2 	3
+			4	5	6
+			7	8	9
+		-->
+		<position name="plate_element_pos_1" x="-dist_detects" y="dist_detects" z="0" unit="mm"/>
+		<position name="plate_element_pos_2" x="0" y="dist_detects" z="0" unit="mm"/>
+		<position name="plate_element_pos_3" x="dist_detects" y="dist_detects" z="0" unit="mm"/>
+		<position name="plate_element_pos_4" x="-dist_detects" y=" 0" z="0" unit="mm"/>
+		<position name="plate_element_pos_5" x="0" y="0" z="0" unit="mm"/>
+		<position name="plate_element_pos_6" x="dist_detects" y="0" z="0" unit="mm"/>
+		<position name="plate_element_pos_7" x="-dist_detects" y="-dist_detects" z="0" unit="mm"/>
+		<position name="plate_element_pos_8" x="0" y="-dist_detects" z="0" unit="mm"/>
+		<position name="plate_element_pos_9" x="dist_detects" y="-dist_detects" z="0" unit="mm"/>
+
+		<!-- location of edge-elements with round holes -->
+		<!-- Illustrations of these positions (), 
+			(1)				(2)
+				1	2 	3
+				4	5	6
+				7	8	9
+			(3)				(4)
+		-->
+		<position name="corner_element_1_pos" x="-x_plate_2/2 + 6" y="y_plate/2 - 4" z="0" unit="mm"/>
+		<position name="corner_element_2_pos" x="x_plate_2/2 - 6" y="y_plate/2 - 4" z="0" unit="mm"/>
+		<position name="corner_element_3_pos" x="-x_plate_2/2 + 6" y="-y_plate /2 + 4" z="0" unit="mm"/>
+		<position name="corner_element_4_pos" x="x_plate_2/2 - 6" y="-y_plate/2 + 4" z="0" unit="mm"/>
+
+
+		<!-- copperholder elements' locations -->
+		<position name="left_element_pos" x="-x_copperelement/2 + right_left_element_thickness/2 " y="0" z="0" unit="mm"/>
+		<position name="middle_element_pos" x="0" y="y_copperelement/2 + middle_element_thickness/2" z="0" unit="mm"/>
+		<position name="right_element_pos" x="x_copperelement/2 - right_left_element_thickness/2" y="0" z="0" unit="mm"/>
+		<position name="top_element_pos" x="0" y="0" z="z_copperelement/2 - top_bottom_element_thickness/2" unit="mm"/>
+		<position name="bottom_element_pos" x="0" y="0" z="-z_copperelement/2 + top_bottom_element_thickness/2" unit="mm"/>	
+		<position name="calibration_tube_pos" x="0" y="-y_copperelement/2 + 51" z="-46/2 + 3" unit="mm"/> 
+
+		<!-- plates' locations -->
+		<position name="top_pos" x="0" y="y_layer_shift" z="17/2 - 1/2 + z_layer_shift" unit="mm"/>
+		<position name="middle_pos" x="0" y="y_layer_shift" z="-17/2 + 2 + 1/2 + z_layer_shift" unit="mm"/>
+		<position name="bottom_pos" x="0" y="y_layer_shift" z="-17/2 + 1 + z_layer_shift" unit="mm"/>
+
+
+		<rotation name="x_rot_90" x="90" unit="deg" />
+		<rotation name="y_rot_90" y="90" unit="deg" />
+		<rotation name="z_rot_180" z="180" unit="deg" />
+		<rotation name="x_rot_180" x="180" unit="deg" />
+		<rotation name="xz_rot_180" x="180" z="180" unit="deg" />
+
+		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+		<scale name="DelrinColour" x="1/255" y="50/255" z="200/255"/>
+		<scale name="AuColour" x="220/255" y="208/255" z="42/255"/><!-- yellow-->
+		<scale name="BrassColour" x="100/255" y="100/255" z="100/255"/><!-- orange-->
+		<scale name="PA_6.6Colour" x="150/255" y="150/255" z="150/255"/> <!-- grey -->
+		<scale name="PolytetraflourethyleneColour" x="250/255" y="250/255" z="250/255"/> <!-- white -->
+		<scale name="EpoxyColour" x="70/255" y="255/255" z="255/255"/>
+		<scale name="GlyptalColour" x="255/255" y="0/255" z="0/255"/>
+	</define>
+
+	
+	<materials>
+
+	</materials>
+
+	<solids>
+		<!-- delrin layer-->
+		<!-- whole plate -->
+		<box name="plate" x="x_plate" y="y_plate" z="z_plate" lunit="mm" />
+		<box name="plate_2" x="x_plate_2" y="y_plate" z="z_plate_2" lunit="mm" />
+		<!-- quadratic holes -->
+		<box name="qhole" x="x_qhole" y="y_qhole" z="z_plate + 1" lunit="mm" />
+		<box name="qhole_2" x="x_qhole_2" y="y_qhole_2" z="z_plate + 2" lunit="mm" />
+		<!-- round holes -->
+		<tube name="delrin_screw_solid" rmin="0" rmax="r_delrin_screw" deltaphi="360" z="z_delrin_screw" lunit="mm" aunit="degree"/>
+
+
+		<!-- copper holder -->
+		<tube name="screw_8mm" rmin="0" rmax="r_screw" deltaphi="360" z="z_screw_8mm" lunit="mm" aunit="degree"/> 
+		<tube name="calibration_tube_solid" rmin="1" rmax="2" deltaphi="360" z="x_copperelement" lunit="mm" aunit="degree"/> 
+
+		<box name="Worldbox_copperholder" x="100" y="100" z="50" lunit="mm" />
+
+
+		<!-- Construction of the Delrin Layers -->
+		<!-- Subtract for round stilts (German: stilt -> Stütze) -->
+		<subtraction name="plate_node_1">
+			<first ref="plate"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_1_pos"/>
+		</subtraction>
+
+		<subtraction name="plate_node_2">
+			<first ref="plate_node_1"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_2_pos"/>
+		</subtraction>
+
+		<subtraction name="plate_node_3">
+			<first ref="plate_node_2"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_3_pos"/>
+		</subtraction>
+		<subtraction name="plate_solid_element">
+			<first ref="plate_node_3"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_4_pos"/>
+		</subtraction>
+
+		<!-- same for bottom plate -->
+		<subtraction name="plate_2_node_1">
+			<first ref="plate_2"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_1_pos"/>
+		</subtraction>
+
+		<subtraction name="plate_2_node_2">
+			<first ref="plate_2_node_1"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_2_pos"/>
+		</subtraction>
+
+		<subtraction name="plate_2_node_3">
+			<first ref="plate_2_node_2"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_3_pos"/>
+		</subtraction>
+
+		<subtraction name="plate_2_solid_element">
+			<first ref="plate_2_node_3"/>
+			<second ref="delrin_screw_solid"/>
+				<positionref ref="corner_element_4_pos"/>
+		</subtraction>
+
+
+		<!-- Subtractions where the detectors will be -->
+		<!-- for the top plate and the upper bottom plate -->
+		<subtraction name="plate_solid_node_1">
+			<first ref="plate_solid_element"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_1"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_node_2">
+			<first ref="plate_solid_node_1"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_2"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_node_3">
+			<first ref="plate_solid_node_2"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_3"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_node_4">
+			<first ref="plate_solid_node_3"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_4"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_node_5">
+			<first ref="plate_solid_node_4"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_5"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_node_6">
+			<first ref="plate_solid_node_5"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_6"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_node_7">
+			<first ref="plate_solid_node_6"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_7"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_node_8">
+			<first ref="plate_solid_node_7"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_8"/>
+		</subtraction>
+
+		<subtraction name="plate_1_solid">
+			<first ref="plate_solid_node_8"/>
+			<second ref="qhole"/>
+				<positionref ref="plate_element_pos_9"/>
+		</subtraction>
+
+	<!-- for lower bottom plate -->
+		<subtraction name="plate_solid_2_node_1">
+			<first ref="plate_2_solid_element"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_1"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_2_node_2">
+			<first ref="plate_solid_2_node_1"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_2"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_2_node_3">
+			<first ref="plate_solid_2_node_2"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_3"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_2_node_4">
+			<first ref="plate_solid_2_node_3"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_4"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_2_node_5">
+			<first ref="plate_solid_2_node_4"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_5"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_2_node_6">
+			<first ref="plate_solid_2_node_5"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_6"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_2_node_7">
+			<first ref="plate_solid_2_node_6"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_7"/>
+		</subtraction>
+
+		<subtraction name="plate_solid_2_node_8">
+			<first ref="plate_solid_2_node_7"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_8"/>
+		</subtraction>
+
+		<subtraction name="plate_2_solid">
+			<first ref="plate_solid_2_node_8"/>
+			<second ref="qhole_2"/>
+				<positionref ref="plate_element_pos_9"/>
+		</subtraction>	
+	</solids>
+	
+	<structure>
+		<!-- Delrin Layer -->
+		<volume name="plate_1_vol" >
+			<materialref ref="Polyoxymethylene" />
+			<solidref ref="plate_1_solid" />
+		</volume>
+
+		<volume name="plate_2_vol" >
+			<materialref ref="Polyoxymethylene" />
+			<solidref ref="plate_2_solid" />
+		</volume>
+
+		<volume name="delrin_screw_vol" >
+			<materialref ref="PA_6.6" />
+			<solidref ref="delrin_screw_solid" />
+		</volume>
+
+
+		<!-- Copper holder -->
+		<volume name="screw_8mm_vol">
+			<materialref ref="PA_6.6"/>
+			<solidref ref="screw_8mm"/>
+		</volume>
+
+		<volume name="calibration_tube_vol">
+			<materialref ref="Polytetraflourethylene"/>
+			<solidref ref="calibration_tube_solid"/>
+		</volume>
+
+		<volume name="Detektor_Block">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Worldbox_copperholder"/>
+
+			<!-- Delrin Layer -->
+			<physvol name="top_physvol">
+				<volumeref ref="plate_1_vol"/>
+				<positionref ref="top_pos"/>
+			</physvol>
+
+			<physvol name="middle_physvol">
+				<volumeref ref="plate_1_vol"/>
+				<positionref ref="middle_pos"/>
+			</physvol>
+
+			<physvol name="bottom_physvol">
+				<volumeref ref="plate_2_vol"/>
+				<positionref ref="bottom_pos"/>
+			</physvol>
+			
+			<loop for="y_i" from="-1" to="1" step="2">
+				<loop for="x_i" from="-1" to="1" step="2">
+					<physvol name="delrin_screw_physvol">
+						<volumeref ref="delrin_screw_vol"/>
+						<position name="delrin_screw_pos" x="x_i * (47.8 - 6)" y=" y_i * (46 - 4) + y_layer_shift" z="z_layer_shift"/>
+					</physvol>
+				</loop>
+			</loop>
+			
+
+			<!-- copperholder -->
+			<physvol name="left_element_physvol">
+				<file name="copperholder_leftside_element.gdml" volname="left_vol"/>
+				<positionref ref="left_element_pos"/>
+			</physvol>
+			
+			<physvol name="top_element_physvol">
+				<file name="copperholder_top-bottom_element.gdml" volname="top_vol"/>
+				<positionref ref="top_element_pos"/>
+				<rotationref ref="xz_rot_180" />
+			</physvol>
+
+			<physvol name="bottom_element_physvol">
+				<file name="copperholder_top-bottom_element.gdml" volname="bottom_vol"/>
+				<positionref ref="bottom_element_pos"/>
+				<rotationref ref="z_rot_180" />
+			</physvol>
+			
+			<physvol name="right_element_physvol">
+				<file name="copperholder_rightside_element.gdml" volname="right_vol"/>
+				<positionref ref="right_element_pos"/>
+				<rotationref ref="z_rot_180" />
+			</physvol>
+
+			<physvol name="middle_element_physvol">
+				<file name="copperholder_middle_element.gdml" volname="middle_vol"/>
+				<positionref ref="middle_element_pos"/>
+				<rotationref ref="x_rot_180"/>
+			</physvol>
+
+			<loop for="x_i" from="-1" to="1" step="2">
+				<physvol name="screw_physvol">
+					<volumeref ref="screw_8mm_vol"/>
+					<position name="screw_pos" x="x_i * (x_copperelement/2 - 5)" y="y_copperelement/2 - 4" z="z_copperelement/2 - z_screw_8mm/2"/>
+				</physvol>
+			</loop>
+
+			<loop for="x_i" from="-1" to="1" step="2">
+				<physvol name="screw_physvol">
+					<volumeref ref="screw_8mm_vol"/>
+					<position name="screw_pos" x="x_i * (x_copperelement/2 - 5)" y="-(y_copperelement/2 - 4)" z="-(z_copperelement/2 - z_screw_8mm/2)"/>
+				</physvol>
+			</loop>
+
+			<loop for="x_i" from="-1" to="1" step="2">
+				<physvol name="screw_physvol">
+					<volumeref ref="screw_8mm_vol"/>
+					<position name="screw_pos" x="x_i * (x_copperelement/2 - 5)" y=" y_copperelement/2 + 3  - z_screw_8mm/2 " z="-(z_copperelement/2 - 5)"/>
+					<rotationref ref="x_rot_90"/>
+				</physvol>
+			</loop>
+
+			<!-- calibration tube -->
+			<physvol name="calibration_tube_physvol">
+				<volumeref ref="calibration_tube_vol"/>
+				<positionref ref="calibration_tube_pos"/>
+				<rotationref ref="y_rot_90"/>
+			</physvol>
+
+
+		<!-- Detectors -->			
+			<physvol name="detector_physvol">
+				<file name="single_detector_epoxyPaint.gdml" volname="detector_vol_epox"/>
+				<position name="detector_pos_1" x="-dist_detects" y="dist_detects + y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_epoxyPaint.gdml" volname="detector_vol_epox"/>
+				<position name="detector_pos_2" x="0" y="dist_detects + y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_epoxyPaint.gdml" volname="detector_vol_epox"/>
+				<position name="detector_pos_3" x="dist_detects" y="dist_detects + y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_epoxyPaint.gdml" volname="detector_vol_epox"/>
+				<position name="detector_pos_4" x="-dist_detects" y="y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_epoxyPaint.gdml" volname="detector_vol_epox"/>
+				<position name="detector_pos_5" x="0" y="y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_glyptalPaint.gdml" volname="detector_vol_glyp"/>
+				<position name="detector_pos_6" x="dist_detects" y="y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_glyptalPaint.gdml" volname="detector_vol_glyp"/>
+				<position name="detector_pos_7" x="-dist_detects" y="-dist_detects + y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_glyptalPaint.gdml" volname="detector_vol_glyp"/>
+				<position name="detector_pos_8" x="0" y="-dist_detects + y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+
+			<physvol name="detector_physvol">
+				<file name="single_detector_glyptalPaint.gdml" volname="detector_vol_glyp"/>
+				<position name="detector_pos_9" x="dist_detects" y="-dist_detects + y_layer_shift" z="17/2 - 15/2 + paint_thickness_max/2 + z_layer_shift"/>
+			</physvol>
+			<auxiliary auxtype="PlacedVolumes" auxvalue="detector_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Delrin DelrinColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="PA_6.6 PA_6.6Colour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Polytetraflourethylene PolytetraflourethyleneColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Epoxy EpoxyColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Glyptal GlyptalColour"/>
+		</volume>
+	</structure>
+
+	<setup name="Test" version="1.0">
+		<world ref="Detektor_Block"/>	
+	</setup>
+
+</gdml>

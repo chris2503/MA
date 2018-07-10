@@ -1,0 +1,32 @@
+
+
+# choose geometry
+
+# update the geometry
+/venom/geom/update
+
+
+/venom/io/open 2vbb_cd116_array64physvol
+/venom/action/setEventAction autowrite
+/venom/io/writeEvery 5000
+
+
+
+/venom/gun/setParticleGun dbgen
+/grdm/allVolumes
+/dbgen/verbosity 0
+/dbgen/posgen/verbosity 0
+
+
+/dbgen/DBisotope 116Cd
+/dbgen/energylevel 0
+/dbgen/zeroNeutrinos false
+
+/dbgen/posgen/type Volume
+/dbgen/posgen/solidSourceIntrinsic quad_det_physvol
+
+
+# simulate events here (just a few)
+/run/beamOn 10000
+
+/venom/io/write

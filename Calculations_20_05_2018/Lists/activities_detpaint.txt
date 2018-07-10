@@ -1,0 +1,7 @@
+# Date: 14.02.2018
+# [1] 20-3001 Coating
+# [2] LNGS data
+# decay chain	a1 / [Bq/kg] (epoxy[1])	a2 / [Bq/kg] (glyptal[1])
+40K	1.2e-3	32.0e-3
+232Th	4.8e-3	5.0e-3
+238U	8.0e-3	16.0e-3

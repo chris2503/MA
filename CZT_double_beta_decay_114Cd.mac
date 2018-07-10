@@ -1,0 +1,32 @@
+/venom/geom/setImplementation ./Setup_with_shielding.gdml
+/venom/geom/update
+
+/array64data/ignoreNoEdep 1									# events without energy deposition ignored
+/array64data/storeEventInfo 1								# extra output enabled
+
+
+/venom/io/open ./rootfiles/double_beta_decay_114Cd
+/venom/action/setEventAction autowrite
+/venom/io/writeEvery 100000
+
+
+/venom/gun/setParticleGun dbgen
+/grdm/allVolumes
+/dbgen/verbosity 0
+/dbgen/posgen/verbosity 0
+/dbgen/posgen/switchOnIO 1								# additional output
+
+/dbgen/posgen/type Volume
+
+
+#the sim fractions are necessary because of different cable length
+/dbgen/DBisotope 114Cd
+/dbgen/posgen/solidSourceIntrinsic naked_det_physvol
+
+
+/dbgen/leptonMode TwoBetaMinus    # X=TwoBetaPlus, BetaPlusEC, TwoEC, TwoBetaMinus
+/dbgen/zeroNeutrinos false	# X=true for 0nü, or X=false for 2nü 
+/run/beamOn 1000000
+
+/dggen/clearlist
+/venom/io/write

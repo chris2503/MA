@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+<!-- author: Christian Herrmann, date: 05.02.2018 -->
+	<!-- 
+	Description of single detectors
+	The detector is parted to four ,,Subdetectors" (2x2) because of the quad co-planar grids
+	-->
+
+	<define>
+		<!-- dimensions of the detector cube -->		
+		<constant name="xDET" value="20.4"/>
+		<constant name="yDET" value="20.4"/>
+		<constant name="zDET" value="15"/>
+
+		<!-- dimensions of subdetectors -->
+		<constant name="x_subdet" value="xDET/2" />
+		<constant name="y_subdet" value="yDET/2" />
+		<constant name="z_subdet" value="zDET" />
+
+		<!-- Counter variables -->
+		<variable name="x_i" value="-1" />
+		<variable name="y_i" value="-1" />
+
+		<!-- position (0,0,0) is the center -->
+		<position name="naked_det_pos" x="0" y="0" z="0" unit="mm"/>
+
+
+		<!-- definitions of colours -->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+	</define>
+	
+	<materials>
+
+	</materials>
+
+	<!-- Definition of elements, compositions, etc. -->
+	<!-- &materials; -->
+
+
+	<!-- shape and dimensions of the detectors -->
+	<solids>
+		<!-- Dimension of the whole detector -->
+		<box name="single_det_solid" x="xDET" y="yDET" z="zDET" lunit="mm" />
+		<!-- Subdetectors -->
+		<box name="subdet_solid" x="x_subdet" y="y_subdet" z="z_subdet" lunit="mm"/>
+		
+		<box name="Worldbox_nakeddet" x="xDET" y="yDET" z="zDET" />
+	</solids>
+
+	<structure>
+		<volume name="subdet_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="subdet_solid"/>
+			
+			<auxiliary auxtype="VolSensitivity" auxvalue="KingCOBRA_sd"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="0"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="3"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="5"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="7"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="8"/>
+		</volume>
+
+		<volume name="single_det_vol">
+			<materialref ref="CdZnTe" />
+			<solidref ref="single_det_solid"/>
+			<loop for="y_i" from="0" to="1" step="1">
+				<loop for="x_i" from="0" to="1" step="1">
+					<physvol name="sub_det_physvol">
+						<volumeref ref="subdet_vol"/>
+						<position name="subnaked_det_pos" x="-xDET/2 + x_i*x_subdet + x_subdet/2" y="yDET/2 - y_i*y_subdet - y_subdet/2" z="0"/>
+					</physvol>
+				</loop>
+			</loop>
+			<auxiliary auxtype="PlacedVolumes" auxvalue="sub_det_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+		</volume>
+
+		<!-- realizing detector -->
+		<volume name="naked_detector_vol">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Worldbox_nakeddet"/>
+			<physvol name="naked_det_physvol">
+				<volumeref ref="single_det_vol"/>
+				<positionref ref="naked_det_pos"/>
+			</physvol>
+			<auxiliary auxtype="PlacedVolumes" auxvalue="quad_det_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+		</volume>
+	</structure>
+
+
+	<setup name="Test" version="1.0">
+		<world ref="naked_detector_vol"/>	
+	</setup>
+</gdml>

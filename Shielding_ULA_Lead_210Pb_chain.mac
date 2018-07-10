@@ -1,0 +1,31 @@
+/venom/geom/setImplementation ./Setup_with_shielding.gdml
+/venom/geom/update
+
+/venom/io/open ./rootfiles/shielding_ULAPb_210Pb_chain
+/venom/action/setEventAction autowrite
+/venom/io/writeEvery 100000000
+
+
+/venom/gun/setParticleGun chaingen
+/grdm/allVolumes
+/chaingen/verbosity 0
+/chaingen/posgen/verbosity 0
+#/chaingen/posgen/switchOnIO 1								# additional output
+
+
+/chaingen/posgen/type Volume
+/chaingen/Pb210chain 1
+/chaingen/checklist
+
+# /chaingen/NuclDeexcitationOnly true
+
+#the sim fractions are necessary because of different cable length
+/chaingen/posgen/solidSourceIntrinsic ULA_Pb_PHYSVOL
+/chaingen/posgen/confine ULA_Pb_PHYSVOL
+
+/array64data/storeEventInfo 1								# extra output enabled
+/array64data/ignoreNoEdep 1									# events without energy deposition ignored
+/run/beamOn 1000000000
+
+/chaingen/clearlist
+/venom/io/write

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+	
+	<define>
+		<constant name="x_plate_middle" value="100"/>
+		<constant name="y_plate_middle" value="3"/>
+		<constant name="z_plate_middle" value="50"/>
+
+		<constant name="r_screw_middle" value="2"/>
+		<constant name="z_screw_middle" value="10"/>
+
+		<rotation name="x_rotation_90_middle" x="90" unit="degree"/>
+
+		<position name="plate_pos_middle" x="0" y="0" z="0" unit="mm"/>
+		<position name="screw_1_pos_middle" x="-x_plate_middle/2 + 5" y="0" z="z_plate_middle/2 - 5" unit="mm"/>
+		<position name="screw_2_pos_middle" x="x_plate_middle/2 - 5" y="0" z="z_plate_middle/2 - 5" unit="mm"/>
+
+		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+	</define>
+
+	
+	<materials>
+
+	</materials>
+
+	<solids>
+		<box name="plate_solid_element_middle" x="x_plate_middle" y="y_plate_middle" z="z_plate_middle" lunit="mm"/>
+		<tube name="screw_middle" rmin="0" rmax="r_screw_middle" deltaphi="360" z="z_screw_middle" lunit="mm" aunit="degree"/>
+
+		<subtraction name="plate_solid_element_2_middle">
+			<first ref="plate_solid_element_middle"/>
+			<second ref="screw_middle"/>
+				<positionref ref="screw_1_pos_middle" />
+				<rotationref ref="x_rotation_90_middle" />
+		</subtraction>
+		<subtraction name="middle_solid">
+			<first ref="plate_solid_element_2_middle"/>
+			<second ref="screw_middle"/>
+				<positionref ref="screw_2_pos_middle" />
+				<rotationref ref="x_rotation_90_middle" />
+		</subtraction>
+
+		<box name="Worldbox_middle" x="x_plate_middle" y="y_plate_middle" z="z_plate_middle" lunit="mm" />
+	</solids>
+	
+	<structure>
+		<volume name="middle_vol">
+			<materialref ref="Copper"/>
+			<solidref ref="middle_solid"/>
+		</volume>
+		<volume name="World_middle">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Worldbox_middle"/>
+			<physvol name="middle_copper_element_physvol">
+				<volumeref ref="middle_vol"/>
+				<positionref ref="plate_pos_middle"/>
+			</physvol>
+
+			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+		</volume>
+
+	</structure>
+
+	<setup name="Test" version="1.0">
+		<world ref="World_middle"/>	
+	</setup>
+</gdml>
+

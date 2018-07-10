@@ -1,0 +1,21 @@
+# A quick macro to visualise your chosen geometry with the freewrl viewer.
+
+/vis/scene/create
+# choose viewer
+/vis/open VRML2FILE
+# choose geometry
+/venom/geom/setImplementation delrin_layer_with_detectors.gdml
+# specify only one layer of array in place
+#/array64/nest/sfalayers 1
+# update the geometry
+/venom/geom/update
+# and view
+/vis/viewer/flush
+
+# to view events, also need these commands
+/tracking/storeTrajectory 1
+/vis/scene/add/trajectories
+/vis/scene/endOfEventAction accumulate
+
+# simulate events here (just a few)
+/run/beamOn 1

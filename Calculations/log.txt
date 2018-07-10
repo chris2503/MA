@@ -1,0 +1,8 @@
+
+Glyptal-Lackdichte: 0.000060
+Epoxy-Lackdichte: 0.000154
+
+Reading file ./Lists/activities_detpaint.txt ...
+
+Reading "['../rootfiles/edep_entries/entries_40K_epoxy.txt', '../rootfiles/edep_entries/entries_40K_glyptal.txt', '../rootfiles/edep_entries/entries_232Th_epoxy.txt', '../rootfiles/edep_entries/entries_232Th_glyptal.txt', '../rootfiles/edep_entries/entries_238U_epoxy.txt', '../rootfiles/edep_entries/entries_238U_glyptal.txt']" ...
+

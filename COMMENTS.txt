@@ -1,0 +1,4 @@
+Simulation with old copperholder
+
+1) New Simulation of 1 million events for each decay -> requires new rebinning after that
+2)

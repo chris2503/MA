@@ -1,0 +1,13 @@
+# List of isotopes: 30.11.2017 
+# sources: 
+# https://wiki.cobra-experiment.org/Limits	[1]
+# http://atom.kaeri.re.kr/nuchart/		[2]
+#
+# t1/2: half life, a: specific avtivity, p: percentage of the isotopes of the elements, M: molar mass
+#
+# isotope	t1/2 / [yr]	p 	M / [g/mole]
+114Cd		1.3e18		0.2873	113.903365086
+116Cd		2.69e19		0.0749	115.904763148
+70Zn		2.3e17		0.0060	69.925319208
+128Te		2.0e24		0.3169	127.904461279
+130Te		8.2e20		0.3380	129.906222748
