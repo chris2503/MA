@@ -112,7 +112,7 @@ print()
 
 
 # fractions of Cd, Zn and Te in CZT in this order:
-CdZnTe_fractions = np.array([0.50, 0.05, 0.45])
+CdZnTe_fractions = np.array([0.45, 0.05, 0.50])
 CdZnTe_molmass = np.array([112.41, 65.38, 127.6]) *1e-3 # http://www.periodensystem.info/periodensystem/
 
 

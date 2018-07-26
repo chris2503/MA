@@ -131,6 +131,7 @@ def create_iso_hist(hists, eventfile):
 
 # get the histogram for a sector
 def get_sectorHist(hists, i, j):
+	print(len(hists))
 	return hists[4*i+j]
 
 def get_detHist(hists, i):
@@ -747,41 +748,41 @@ for i in range(len(N_norm_czt)):
 
 
 # creating plots
-#for i_file in range(len(eventfile)):
-#	data = read_evData(eventfile[i_file])
-#	my_secHists = create_sector_hists(data, scale[i_file])
-#	save_single_sector_hists(my_secHists, eventfile[i_file], x_range[i_file])
-#	delete_all_sectorHists(my_secHists)
-#
-#	my_secHists = create_sector_hists(data, scale[i_file])
-#	my_detHists = create_det_hists(my_secHists)
-#	save_single_det_hists(my_detHists, eventfile[i_file], x_range[i_file])
-#	delete_all_detHists(my_detHists)
-#	delete_all_sectorHists(my_secHists)
-#
-#	my_secHists = create_sector_hists(data, scale[i_file])
-#	my_detHists = create_det_hists(my_secHists)
-#
-#	iso_hist = create_iso_hist(my_detHists, eventfile[i_file])
-#	save_single_iso_hists(iso_hist, eventfile[i_file], x_range[i_file])
-#	delete_iso_Hist(iso_hist, eventfile[i])
-#	delete_all_detHists(my_detHists)
-#	delete_all_sectorHists(my_secHists)
-
 for i_file in range(len(eventfile)):
 	data = read_evData(eventfile[i_file])
-	my_depHists = create_dep_secHist(data, scale[i_file])
-	save_dep_sec_hists(my_depHists, eventfile[i_file])
-	delete_all_detHists(my_depHists)
+	my_secHists = create_sector_hists(data, scale[i_file])
+	save_single_sector_hists(my_secHists, eventfile[i_file], x_range[i_file])
+	delete_all_sectorHists(my_secHists)
 
-	my_depHist = create_dep_detHist(data, eventfile[i_file], scale[i_file])
-	save_dep_det_hists(my_depHist, eventfile[i_file])
-	delete_iso_Hist(my_depHist, eventfile[i])
+	my_secHists = create_sector_hists(data, scale[i_file])
+	my_detHists = create_det_hists(my_secHists)
+	save_single_det_hists(my_detHists, eventfile[i_file], x_range[i_file])
+	delete_all_detHists(my_detHists)
+	delete_all_sectorHists(my_secHists)
 
-	my_depHists = create_dep_secHist(data, scale[i_file])
-	save_dep_sec_hists_2(my_depHists, eventfile[i_file])
-	delete_all_detHists(my_depHists)
+	my_secHists = create_sector_hists(data, scale[i_file])
+	my_detHists = create_det_hists(my_secHists)
 
+	iso_hist = create_iso_hist(my_detHists, eventfile[i_file])
+	save_single_iso_hists(iso_hist, eventfile[i_file], x_range[i_file])
+	delete_iso_Hist(iso_hist, eventfile[i])
+	delete_all_detHists(my_detHists)
+	delete_all_sectorHists(my_secHists)
+
+#for i_file in range(len(eventfile)):
+#	data = read_evData(eventfile[i_file])
+#	my_depHists = create_dep_secHist(data, scale[i_file])
+#	save_dep_sec_hists(my_depHists, eventfile[i_file])
+#	delete_all_detHists(my_depHists)
+#
+#	my_depHist = create_dep_detHist(data, eventfile[i_file], scale[i_file])
+#	save_dep_det_hists(my_depHist, eventfile[i_file])
+#	delete_iso_Hist(my_depHist, eventfile[i])
+#
+#	my_depHists = create_dep_secHist(data, scale[i_file])
+#	save_dep_sec_hists_2(my_depHists, eventfile[i_file])
+#	delete_all_detHists(my_depHists)
+#
 #for i_file in range(len(eventfile)):
 #	data = read_evData(eventfile[i_file])
 #	my_depHists_heat = create_dep_secHist(data, scale[i_file])

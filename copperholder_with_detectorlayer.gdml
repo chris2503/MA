@@ -21,8 +21,6 @@
 		<variable name="y_i" value="-1"/>
 		<variable name="z_i" value="-1"/>
 
-		<constant name="paint_thickness_max" value="0.154"/>
-
 
 		<!-- delrin layer elements -->
 		<!-- shift of the layer -->
@@ -41,6 +39,7 @@
 
 		<!-- dimensions holes -->
 		<!-- quadratic holes -->
+		<constant name="paint_thickness_max" value="0.154"/>
 		<constant name="x_qhole" value="2*5 + 2*5.2 +  2*paint_thickness_max"/>
 		<constant name="y_qhole" value="2*5 + 2*5.2 +  2*paint_thickness_max" />
 		<constant name="x_qhole_2" value="2*5"/>
