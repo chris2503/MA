@@ -171,7 +171,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 		for i in range(len(contrib_at116Cd)):
 		#	print(type(contrib_at116Cd[i]))
 			for j in range(len(contrib_at116Cd[i])):
-				print(contrib_at116Cd[i][j])
+			#	print(contrib_at116Cd[i][j])
 				sum = sum + contrib_at116Cd[i][j]
 		all_contrib_at116Cd.append(sum)
 		for i in range(len(contrib_at116Cd_err)):
@@ -184,7 +184,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 		all_contrib_at130Te.append(sum)
 		for i in range(len(contrib_at130Te_err)):
 			for j in range(len(contrib_at130Te_err[i])):
-				print(contrib_at130Te[i][j])
+			#	print(contrib_at130Te[i][j])
 				sum = sum + contrib_at130Te_err[i][j]
 		all_contrib_at130Te_err.append(sum)
 		#save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
