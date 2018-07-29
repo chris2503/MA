@@ -48,13 +48,21 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 	if Q_val_returns:
 		Q_116Cd = 2813
 		Q_130Te = 2527
-	
+		contrib_at116Cd = []
+		contrib_at116Cd_err = []
+		contrib_at130Te = []
+		contrib_at130Te_err = []
+
+
+		atQ_116Cd = np.int(np.around(Q_116Cd*bins/E_range, decimals=0))
+		atQ_130Te = np.int(np.around(Q_130Te*bins/E_range, decimals=0))
+
 	all_hists = []
 	# reading all eventdata and: MeV -> keV
 	events = 1000*ev_data[0] 				# keV
 	crystal_id = ev_data[1]
 	sector_id = ev_data[2]
-	particle_id = ev_data[4]	
+	particle_id = ev_data[4]
 	all_events = events
 
 	subdets = 4
@@ -63,9 +71,18 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 	if k:
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
+			t_d_contrib_at116Cd =[]
+			t_d_contrib_at130Te = []
+			t_d_contrib_at116Cd_err = []
+			t_d_contrib_at130Te_err = []
+
 			for j in range(subdets):	# for all 4 sectors
 				# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 				j_h = j+1
+				t_sd_contrib_at116Cd = []
+				t_sd_contrib_at130Te = []
+				t_sd_contrib_at116Cd_err = []
+				t_sd_contrib_at130Te_err = []
 
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)] =  ROOT.TH1F(('hist_%s_%i%i' %(k,i_h,j_h)), ('Detector %i, Sector %i' %(i_h,j_h)), bins, 0, E_range)
 				for i_entry in range(len(all_events)):
@@ -74,11 +91,26 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 				if Q_val_returns:
 					temp_contrib_at116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(Q_116Cd)
 					temp_contrib_at130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(Q_130Te)
-					temp_contrib_at116Cd_err = 1/np.sqrt(contrib_at116Cd)
-					temp_contrib_at130Te_err = 1/np.sqrt(contrib_at130Cd)
+					temp_contrib_at116Cd_err = 1/np.sqrt(contrib_at116Cd) * scale
+					temp_contrib_at130Te_err = 1/np.sqrt(contrib_at130Cd) * scale
+
+					t_sd_contrib_at116Cd.append(temp_contrib_at116Cd)
+					t_sd_contrib_at130Te.append(temp_contrib_at130Te)
+					t_sd_contrib_at116Cd_err.append(temp_contrib_at116Cd_err)
+					t_sd_contrib_at130Te_err.append(temp_contrib_at130Te_err)
+				t_d_contrib_at116Cd.append(t_sd_contrib_at116Cd)
+				t_d_contrib_at130Te.append(t_sd_contrib_at130Te)
+				t_d_contrib_at116Cd_err.append(t_sd_contrib_at116Cd_err)
+				t_d_contrib_at130Te_err.append(t_sd_contrib_at130Te_err)
+
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].Scale(scale)
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetStats(False)
 				all_hists.append(locals()['hist_%s_%i%i' %(k,i_h,j_h)])
+			contrib_at116Cd.append(t_d_contrib_at116Cd)
+			contrib_at130Te.append(t_d_contrib_at130Te)
+			contrib_at116Cd_err.append(t_d_contrib_at116Cd_err)
+			contrib_at130Te_err.append(t_d_contrib_at130Te_err)
+
 
 	else:
 		for i in range(dets):			# for all 9 detectors
@@ -86,7 +118,7 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 			for j in range(subdets):	# for all 4 sectors
 				# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 				j_h = j+1
-	
+
 				locals()['hist_%i%i' %(i_h,j_h)] =  ROOT.TH1F(('hist_%i%i' %(i_h,j_h)), ('Detector %i, Sector %i' %(i_h,j_h)), bins, 0, E_range)
 				for i_entry in range(len(all_events)):
 					if crystal_id[i_entry] == i_h and sector_id[i_entry] == j_h:
@@ -100,7 +132,7 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 				locals()['hist_%i%i' %(i_h,j_h)].SetStats(False)
 				all_hists.append(locals()['hist_%i%i' %(i_h,j_h)])
 	if Q_val_returns:
-		return all_hists, contrib_at116Cd, contrib_at130Te
+		return all_hists, contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err
 	else:
 		print(Q_116Cd[10])
 		return all_hists
@@ -117,7 +149,7 @@ def create_sumsecHist(hists, hcolor=None, k=None):
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
 			locals()['sumhist_%s_%i' %(k,i_h)] = ROOT.TH1F("sumhist_%s_%i" %(k,i_h), "", bins, 0, E_range)
-			
+
 			for j in range(subdets):	# for all 4 sectors
 				# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 				j_h = j+1
@@ -129,7 +161,7 @@ def create_sumsecHist(hists, hcolor=None, k=None):
 						locals()['sumhist_%s_%i' %(k,i_h)].SetLineColor(kOrange-3)
 					else:
 						locals()['sumhist_%s_%i' %(k,i_h)].SetLineColor(i_h+1)
-					
+
 				else:
 					locals()['sumhist_%s_%i' %(k, i_h)].SetLineColor(1)
 			all_sumhists.append(locals()['sumhist_%s_%i' %(k,i_h)])
@@ -138,7 +170,7 @@ def create_sumsecHist(hists, hcolor=None, k=None):
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
 			locals()['sumhist_%i' %(i_h)] = ROOT.TH1F("sumhist_%i" %(i_h), "", bins, 0, E_range)
-			
+
 			for j in range(subdets):	# for all 4 sectors
 				# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 				j_h = j+1
@@ -150,7 +182,7 @@ def create_sumsecHist(hists, hcolor=None, k=None):
 						locals()['sumhist_%i' %(i_h)].SetLineColor(kOrange-3)
 					else:
 						locals()['sumhist_%i' %(i_h)].SetLineColor(i_h+1)
-					
+
 				else:
 					locals()['sumhist_%i' %(i_h)].SetLineColor(1)
 			all_sumhists.append(locals()['sumhist_%i' %(i_h)])
@@ -169,14 +201,14 @@ def create_sumdetHist(hists, hcolor=None, k=None):
 		locals()['sumdethist_%s' %(k)].SetLineWidth(2)
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
-			
+
 			locals()['sumhist_%s_%i' %(k,i_h)] = get_detHist(hists, i)
 			locals()['sumhist_%s_%i' %(k,i_h)].SetLineWidth(1)
 			locals()['sumdethist_%s' %(k)].Add(locals()['sumhist_%s_%i' %(k, i_h)])
 			if i_h == 9:
 				locals()['sumhist_%s_%i' %(k,i_h)].SetLineColor(kOrange-3)
 			else:
-				locals()['sumhist_%s_%i' %(k,i_h)].SetLineColor(i_h+1)	
+				locals()['sumhist_%s_%i' %(k,i_h)].SetLineColor(i_h+1)
 			locals()['sumdethist_%s' %(k)].SetLineColor(1)
 		all_sumhists.append(locals()['sumdethist_%s' %(k)])
 
@@ -185,14 +217,14 @@ def create_sumdetHist(hists, hcolor=None, k=None):
 		locals()['sumdethist'].SetLineWidth(1)
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
-			
+
 			locals()['sumhist_%i' %(i_h)] = get_detHist(hists, i)
 			locals()['sumhist_%i' %(i_h)].SetLineWidth(1)
 			locals()['sumdethist'].Add(locals()['sumhist_%i' %(i_h)])
 			if i_h == 9:
 				locals()['sumhist_%i' %(i_h)].SetLineColor(kOrange-3)
 			else:
-				locals()['sumhist_%i' %(i_h)].SetLineColor(i_h+1)	
+				locals()['sumhist_%i' %(i_h)].SetLineColor(i_h+1)
 			locals()['sumdethist'].SetLineColor(1)
 		all_sumhists.append(locals()['sumdethist'])
 	return all_sumhists
@@ -215,7 +247,7 @@ def create_det_hists(hists, k=None):
 			for j in range(subdets):	# for all 4 sectors
 				# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 				j_h = j+1
-				
+
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)] = get_sectorHist(hists, i, j)
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetStats(False)
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetLineWidth(1)
@@ -230,7 +262,7 @@ def create_det_hists(hists, k=None):
 			for j in range(subdets):	# for all 4 sectors
 				# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 				j_h = j+1
-				
+
 				locals()['hist_%i%i' %(i_h,j_h)] = get_sectorHist(hists, i, j)
 				locals()['hist_%i%i' %(i_h,j_h)].SetStats(False)
 				locals()['hist_%i%i' %(i_h,j_h)].SetLineWidth(1)
@@ -238,7 +270,7 @@ def create_det_hists(hists, k=None):
 				locals()['hist_%i' %(i_h)].Add(locals()['hist_%i%i' %(i_h,j_h)])
 			all_hists.append(locals()['hist_%i' %(i_h)])
 	return all_hists
-	
+
 
 def create_iso_hist(hists, eventfile, k=None):
 	dets = 9
@@ -261,7 +293,7 @@ def create_iso_hist(hists, eventfile, k=None):
 		for j in range(dets):	# for all 4 sectors
 			# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 			j_h = j+1
-			
+
 			locals()['hist_%s_%i' %(k,j_h)] = get_detHist(hists, j)
 			locals()['hist_%s_%i' %(k,j_h)].SetStats(False)
 			locals()['hist_%s_%i' %(k,j_h)].SetLineWidth(1)
@@ -274,7 +306,7 @@ def create_iso_hist(hists, eventfile, k=None):
 		for j in range(dets):	# for all 4 sectors
 			# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 			j_h = j+1
-			
+
 			locals()['hist_%i' %(j_h)] = get_detHist(hists, j)
 			locals()['hist_%i' %(j_h)].SetLineWidth(1)
 			if j == 9:
@@ -305,7 +337,7 @@ def create_material_hist(hist, b):
 def create_summaterial_hist(hist, b):
 	bins = 1000
 	E_range = 10000
-	
+
 	summathist= []
 	locals()['allmathist_%s' %(b)] = ROOT.TH1F("allmathist_%s" %(b), "", bins, 0, E_range)
 	for i in range(len(hist)):
@@ -329,7 +361,7 @@ def create_sumHist(hists, b):
 def create_allsumHist(hists, b):
 	bins = 1000
 	E_range = 10000
-	
+
 	sumhist= []
 	locals()['all_sumhists'] = ROOT.TH1F("all_sumhists", "", bins, 0, E_range)
 	for i in range(len(hists)):
@@ -397,7 +429,7 @@ def delete_iso_Hist(hist, eventfile, k=None):
 	sim = sim[len(sim)-1]
 	sim = sim.split('.')
 	sim = sim[0]
-	
+
 	if k:
 		locals()['hist_%s_%s' %(k,sim)] = get_isoHist(hist)
 		locals()['hist_%s_%s' %(k,sim)].Delete()
@@ -459,7 +491,7 @@ def save_sumHist(hists, sumhist, b):
 	leg.SetHeader("Isotope contributions")
 	leg.SetNColumns(np.int(np.ceil(len(labels)/2)))
 	leg.SetTextSize(0.025)
-	
+
 	for i in range(locals()['all_hists'].GetNhists()-1):	# isotopes
 		if i == 0:
 			locals()['all_hists'].GetHists().First().SetLineColor(2)
@@ -472,7 +504,7 @@ def save_sumHist(hists, sumhist, b):
 
 	canvas.SetLogy(True)
 	canvas.Update()
-			
+
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	canvas.Print(dir+'whole_contributions.pdf' %(b))
@@ -521,7 +553,7 @@ def save_material_hists(hists, sumhist, b):
 	leg.SetHeader("Isotope contributions")
 	leg.SetNColumns(np.int(np.ceil(len(labels)/2)))
 	leg.SetTextSize(0.025)
-	
+
 	for i in range(locals()['summathist_%s' %(b)].GetNhists()-1):	# isotopes
 		if i == 0:
 			locals()['summathist_%s' %(b)].GetHists().First().SetLineColor(2)
@@ -534,7 +566,7 @@ def save_material_hists(hists, sumhist, b):
 
 	canvas.SetLogy(True)
 	canvas.Update()
-			
+
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	canvas.Print(dir+'%s_test.pdf' %(b))
@@ -567,7 +599,7 @@ def save_single_sector_hists(hists, eventfile, x_range, k=None):
 				locals()['hist_%i_%i%i' %(k,i_h,j_h)] = get_sectorHist(hists, i, j)
 				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetLineColor(2)
 				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetLineWidth(1)
-				
+
 				# nice labeling
 				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitleSize(0.03)
 				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitle("E in keV")
@@ -588,11 +620,11 @@ def save_single_sector_hists(hists, eventfile, x_range, k=None):
 				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
 				locals()['hist_%i_%i%i' %(k,i_h,j_h)].Draw()
 
-			else:	
+			else:
 				locals()['hist_%i%i' %(i_h,j_h)] = get_sectorHist(hists, i, j)
 				locals()['hist_%i%i' %(i_h,j_h)].SetLineColor(2)
 				locals()['hist_%i%i' %(i_h,j_h)].SetLineWidth(1)
-				
+
 				# nice labeling
 				locals()['hist_%i%i' %(i_h,j_h)].GetXaxis().SetTitleSize(0.03)
 				locals()['hist_%i%i' %(i_h,j_h)].GetXaxis().SetTitle("E in keV")
@@ -615,7 +647,7 @@ def save_single_sector_hists(hists, eventfile, x_range, k=None):
 
 			canvas.SetLogy(True)
 			canvas.Update()
-			
+
 			if not os.path.exists(dir):
 				os.makedirs(dir)
 			canvas.Print('%shist_%i%i.pdf' %(dir,i_h,j_h))
@@ -713,7 +745,7 @@ def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None):
 
 			canvas.SetLogy(True)
 			canvas.Update()
-				
+
 			if not os.path.exists(dir):
 				os.makedirs(dir)
 			canvas.Print('%shist_%i.pdf' %(dir,i_h))
@@ -806,7 +838,7 @@ def save_single_iso_hists(hist, sumhist, eventfile, x_range, k=None):
 
 	canvas.SetLogy(True)
 	canvas.Update()
-			
+
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	canvas.Print('%shist_%s.pdf' %(dir, sim))
@@ -823,13 +855,13 @@ def create_dep_secHist(ev_data, scale):
 	# entries at Qvalues:
 	#Q_116Cd = 2813
 	#Q_130Te = 2527
-	
+
 	all_hists = []
 	# reading all eventdata and: MeV -> keV
 	events = 1000*ev_data[0] 				# keV
 	crystal_id = ev_data[1]
 	sector_id = ev_data[2]
-	particle_id = ev_data[4]	
+	particle_id = ev_data[4]
 	all_events = events
 
 	subdets = 4
@@ -928,7 +960,7 @@ def save_dep_sec_hists_2(hists, eventfile=None, background=None):
 	y_max = 0
 	for i in range(dets):
 		i_h = i+1
-		
+
 		locals()['hist_%i' %(i_h)] = get_detHist(hists, i)
 		y_tmax = locals()['hist_%i' %(i_h)].GetMaximum()
 		if y_tmax > y_max:
@@ -937,7 +969,7 @@ def save_dep_sec_hists_2(hists, eventfile=None, background=None):
 
 	for i in range(dets):			# for all 9 detectors
 		i_h = i+1
-		
+
 		canvas.cd(i_h)
 
 		# nice labeling
@@ -986,13 +1018,13 @@ def create_dep_detHist(ev_data, eventfile, scale):
 	# entries at Qvalues:
 	#Q_116Cd = 2813
 	#Q_130Te = 2527
-	
+
 	hist = []
 	# reading all eventdata and: MeV -> keV
 	events = 1000*ev_data[0] 				# keV
 	crystal_id = ev_data[1]
 	sector_id = ev_data[2]
-	particle_id = ev_data[4]	
+	particle_id = ev_data[4]
 	all_events = events
 
 	sim = eventfile.split('/')
@@ -1050,11 +1082,11 @@ def save_dep_det_hists(hist, eventfile):
 	locals()['hist_%s' %(sim)].GetYaxis().SetTicks("+")
 	locals()['hist_%s' %(sim)].GetYaxis().SetLabelOffset(-0.025)
 	locals()['hist_%s' %(sim)].GetYaxis().SetTitleOffset(-1.8)
-	
+
 	y_max = locals()['hist_%s' %(sim)].GetMaximum()
 	y_max = 1.2 * y_max
 	locals()['hist_%s' %(sim)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
-	
+
 	canvas.SetLogy(False)
 	canvas.Update()
 
@@ -1077,7 +1109,7 @@ def save_dep_heatmap(hists, eventfile=None, background=None):
 		sim = sim.split('.')
 		sim = sim[0]
 		dir = './Plots/%s/' %(sim)
-	else: 
+	else:
 		dir = './Plots/'
 
 	y_min = 0
@@ -1110,7 +1142,7 @@ def save_dep_heatmap(hists, eventfile=None, background=None):
 	norm = matplotlib.colors.Normalize(vmin= 0, vmax= x_transf.max())
 
 	gridspec_kw = {"height_ratios":[2,2,2], "width_ratios" : [2,2,2]}
-	heatmapkws = dict(square=False, cbar=False, linewidths=0.0, cmap=cmap, vmin=0, vmax= x_transf.max() ) 
+	heatmapkws = dict(square=False, cbar=False, linewidths=0.0, cmap=cmap, vmin=0, vmax= x_transf.max() )
 	tickskw =  dict(xticklabels=False, yticklabels=False)
 
 	left = 0.1; right = 0.8
@@ -1140,4 +1172,3 @@ def save_dep_heatmap(hists, eventfile=None, background=None):
 		plt.savefig('%sheatmap_%s.pdf' %(dir, sim))
 	else:
 		print('This case has not been implemented yet!')
-
