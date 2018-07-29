@@ -162,7 +162,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 		my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
 		print(len(contrib_at116Cd))
 		for i in range(len(contrib_at116Cd)):
-			print len(contrib_at116Cd[i])
+			print(len(contrib_at116Cd[i]))
 		save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
 		delete_all_sectorHists(my_secHists)
 
