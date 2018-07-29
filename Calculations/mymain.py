@@ -103,29 +103,29 @@ for i in range(len(N_norm_czt)):
 def my_main(eventfile, scale, x_range, background, returns = None):
 	# creating plots
 	# 1) single plots
-#	for i_file in range(len(eventfile)):
-#		data = read_evData(eventfile[i_file])
-#		my_secHists = create_sector_hists(data, scale[i_file])
-#		save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
-#		delete_all_sectorHists(my_secHists)
-#
-#		my_secHists = create_sector_hists(data, scale[i_file])
-#		my_detHists = create_det_hists(my_secHists)
-#		my_sumhists = create_sumsecHist(my_secHists)
-#		save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range)
-#		delete_all_sumdetHists(my_sumhists)
-#		delete_all_detHists(my_detHists)
-#		delete_all_sectorHists(my_secHists)
-#
-#		my_secHists = create_sector_hists(data, scale[i_file])
-#		my_detHists = create_sumsecHist(my_secHists, hcolor=True)
-#		iso_hist = create_iso_hist(my_detHists, eventfile[i_file])
-#		iso_sumhist = create_sumdetHist(my_detHists)
-#		save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range)
-#		delete_iso_Hist(iso_hist, eventfile[i])
-#		delete_all_detHists(my_detHists)
-#		delete_all_sectorHists(my_secHists)
-#		delete_iso_sumHist(iso_sumhist)
+	for i_file in range(len(eventfile)):
+		data = read_evData(eventfile[i_file])
+		my_secHists = create_sector_hists(data, scale[i_file])
+		save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
+		delete_all_sectorHists(my_secHists)
+
+		my_secHists = create_sector_hists(data, scale[i_file])
+		my_detHists = create_det_hists(my_secHists)
+		my_sumhists = create_sumsecHist(my_secHists)
+		save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range)
+		delete_all_sumdetHists(my_sumhists)
+		delete_all_detHists(my_detHists)
+		delete_all_sectorHists(my_secHists)
+
+		my_secHists = create_sector_hists(data, scale[i_file])
+		my_detHists = create_sumsecHist(my_secHists, hcolor=True)
+		iso_hist = create_iso_hist(my_detHists, eventfile[i_file])
+		iso_sumhist = create_sumdetHist(my_detHists)
+		save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range)
+		delete_iso_Hist(iso_hist, eventfile[i])
+		delete_all_detHists(my_detHists)
+		delete_all_sectorHists(my_secHists)
+		delete_iso_sumHist(iso_sumhist)
 
 
 	#for i_file in range(len(eventfile)):
@@ -148,53 +148,48 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 #		my_depHists = create_dep_secHist(data, scale[i_file])
 #		save_dep_sec_hists_2(my_depHists, eventfile[i_file], None)
 #		delete_all_detHists(my_depHists)
-#
-#	for i_file in range(len(eventfile)):
-#		data = read_evData(eventfile[i_file])
-#		my_depHists_heat = create_dep_secHist(data, scale[i_file])
-#		save_dep_heatmap(my_depHists_heat, eventfile[i_file])
-#		delete_all_detHists(my_depHists_heat)
-#
+
+	for i_file in range(len(eventfile)):
+		data = read_evData(eventfile[i_file])
+		my_depHists_heat = create_dep_secHist(data, scale[i_file])
+		save_dep_heatmap(my_depHists_heat, eventfile[i_file])
+		delete_all_detHists(my_depHists_heat)
+
 
 	# 2) Values
-	all_contrib_at116Cd = []
-	all_contrib_at116Cd_err = []
-	all_contrib_at130Te = []
-	all_contrib_at130Te_err = []
-	for i_file in range(len(eventfile)):
-		thiscase = background+str(i_file)
-		data = read_evData(eventfile[i_file])
+	#all_contrib_at116Cd = []
+	#all_contrib_at116Cd_err = []
+	#all_contrib_at130Te = []
+	#all_contrib_at130Te_err = []
+	#for i_file in range(len(eventfile)):
+	#	thiscase = background+str(i_file)
+	#	data = read_evData(eventfile[i_file])
 
-		my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
-		sum = 0
-		#print(type(contrib_at116Cd))
-		for i in range(len(contrib_at116Cd)):
-		#	print(type(contrib_at116Cd[i]))
-			for j in range(len(contrib_at116Cd[i])):
-			#	print(contrib_at116Cd[i][j])
-				sum = sum + contrib_at116Cd[i][j]
-		all_contrib_at116Cd.append(sum)
-		for i in range(len(contrib_at116Cd_err)):
-			for j in range(len(contrib_at116Cd_err[i])):
-				sum = sum + contrib_at116Cd_err[i][j]
-		all_contrib_at116Cd_err.append(sum)
-		for i in range(len(contrib_at130Te)):
-			for j in range(len(contrib_at130Te[i])):
-				sum = sum + contrib_at130Te[i][j]
-		all_contrib_at130Te.append(sum)
-		for i in range(len(contrib_at130Te_err)):
-			for j in range(len(contrib_at130Te_err[i])):
-			#	print(contrib_at130Te[i][j])
-				sum = sum + contrib_at130Te_err[i][j]
-		all_contrib_at130Te_err.append(sum)
-		#save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
-		delete_all_sectorHists(my_secHists)
-	print(len(all_contrib_at116Cd))
-	new_data = np.array([eventfile, all_contrib_at116Cd, all_contrib_at116Cd_err, all_contrib_at130Te, all_contrib_at130Te_err])
-	#write_txtfile(np.transpose(new_data), '../calc_solutions/', 'calculated_events.txt')
-	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
-	var_names = ['File', 'N_at116Cd', 'N_at116Cd_err', 'N_at130Te', 'N_at130Te_err']
-	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
+	#	my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
+	#	sum = 0
+	#	#print(type(contrib_at116Cd))
+	#	for i in range(len(contrib_at116Cd)):
+	#		for j in range(len(contrib_at116Cd[i])):
+	#			sum = sum + contrib_at116Cd[i][j]
+	#	all_contrib_at116Cd.append(sum)
+	#	for i in range(len(contrib_at116Cd_err)):
+	#		for j in range(len(contrib_at116Cd_err[i])):
+	#			sum = sum + contrib_at116Cd_err[i][j]
+	#	all_contrib_at116Cd_err.append(sum)
+	#	for i in range(len(contrib_at130Te)):
+	#		for j in range(len(contrib_at130Te[i])):
+	#			sum = sum + contrib_at130Te[i][j]
+	#	all_contrib_at130Te.append(sum)
+	#	for i in range(len(contrib_at130Te_err)):
+	#		for j in range(len(contrib_at130Te_err[i])):
+	#			sum = sum + contrib_at130Te_err[i][j]
+	#	all_contrib_at130Te_err.append(sum)
+	#	delete_all_sectorHists(my_secHists)
+	#print(len(all_contrib_at116Cd))
+	#new_data = np.array([eventfile, all_contrib_at116Cd, all_contrib_at116Cd_err, all_contrib_at130Te, all_contrib_at130Te_err])
+	#descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
+	#var_names = ['File', 'N_at116Cd', 'N_at116Cd_err', 'N_at130Te', 'N_at130Te_err']
+	#write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
 
 	# 3) combined plots
 	#all_isohist =[]
