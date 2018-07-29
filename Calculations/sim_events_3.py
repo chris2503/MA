@@ -456,6 +456,8 @@ def save_sumHist(hists, sumhist, b):
 	for i_lab in range(len(b)):
 		if b[i_lab] == 'czt':
 			labels.append('CdZnTe')
+		if b[ilab] == 'czt_nolim':
+			labels.append('CdZnTe')
 		elif b[i_lab] == 'coating':
 			labels.append('Detector Coatings')
 
