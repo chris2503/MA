@@ -134,9 +134,9 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 				locals()['hist_%i%i' %(i_h,j_h)].SetStats(False)
 				all_hists.append(locals()['hist_%i%i' %(i_h,j_h)])
 	if Q_val_returns:
+		#print(Q_116Cd[10])
 		return all_hists, contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err
 	else:
-		print(Q_116Cd[10])
 		return all_hists
 
 
