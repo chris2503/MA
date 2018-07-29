@@ -98,14 +98,16 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 					t_sd_contrib_at130Te.append(temp_contrib_at130Te)
 					t_sd_contrib_at116Cd_err.append(temp_contrib_at116Cd_err)
 					t_sd_contrib_at130Te_err.append(temp_contrib_at130Te_err)
-				t_d_contrib_at116Cd.append(t_sd_contrib_at116Cd)
-				t_d_contrib_at130Te.append(t_sd_contrib_at130Te)
-				t_d_contrib_at116Cd_err.append(t_sd_contrib_at116Cd_err)
-				t_d_contrib_at130Te_err.append(t_sd_contrib_at130Te_err)
 
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].Scale(scale)
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetStats(False)
 				all_hists.append(locals()['hist_%s_%i%i' %(k,i_h,j_h)])
+			if Q_val_returns:
+				t_d_contrib_at116Cd.append(t_sd_contrib_at116Cd)
+				t_d_contrib_at130Te.append(t_sd_contrib_at130Te)
+				t_d_contrib_at116Cd_err.append(t_sd_contrib_at116Cd_err)
+				t_d_contrib_at130Te_err.append(t_sd_contrib_at130Te_err)
+		if Q_val_returns:
 			contrib_at116Cd.append(t_d_contrib_at116Cd)
 			contrib_at130Te.append(t_d_contrib_at130Te)
 			contrib_at116Cd_err.append(t_d_contrib_at116Cd_err)
