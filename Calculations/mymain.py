@@ -186,8 +186,9 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 			for j in range(len(contrib_at130Te_err[i])):
 				sum = sum + contrib_at130Te_err[i][j]
 		all_contrib_at130Te_err.append(sum)
-		save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
+		#save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
 		delete_all_sectorHists(my_secHists)
+	print(len(all_contrib_at116Cd))
 	new_data = np.array([i_file, all_contrib_at116Cd, all_contrib_at116Cd_err, all_contrib_at130Te, all_contrib_at130Te_err])
 	#write_txtfile(np.transpose(new_data), '../calc_solutions/', 'calculated_events.txt')
 	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']

@@ -79,7 +79,7 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 			for j in range(subdets):	# for all 4 sectors
 				# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 				j_h = j+1
-				
+
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)] =  ROOT.TH1F(('hist_%s_%i%i' %(k,i_h,j_h)), ('Detector %i, Sector %i' %(i_h,j_h)), bins, 0, E_range)
 				for i_entry in range(len(all_events)):
 					if crystal_id[i_entry] == i_h and sector_id[i_entry] == j_h:
@@ -88,12 +88,12 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 					temp_contrib_at116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(Q_116Cd)
 					temp_contrib_at130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(Q_130Te)
 					if temp_contrib_at116Cd == 0:
-						temp_contrib_at116Cd_err = 0
+						temp_contrib_at116Cd_err = 0.
 					else:
 						temp_contrib_at116Cd_err = 1/np.sqrt(contrib_at116Cd) * scale
 
 					if temp_contrib_at130Te == 0:
-						temp_contrib_at130Te_err = 0
+						temp_contrib_at130Te_err = 0.
 					else:
 						temp_contrib_at130Te_err = 1/np.sqrt(contrib_at130Te) * scale
 
