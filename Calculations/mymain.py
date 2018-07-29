@@ -169,7 +169,9 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 		sum = 0
 		print(type(contrib_at116Cd))
 		for i in range(len(contrib_at116Cd)):
+			print(type(contrib_at116Cd[i]))
 			for j in range(len(contrib_at116Cd[i])):
+				print(type(contrib_at116Cd[i][j]))
 				sum = sum + contrib_at116Cd[i][j]
 		all_contrib_at116Cd.append(sum)
 		for i in range(len(contrib_at116CdCd_err)):
