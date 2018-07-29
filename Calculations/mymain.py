@@ -193,7 +193,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 	#write_txtfile(np.transpose(new_data), '../calc_solutions/', 'calculated_events.txt')
 	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
 	var_names = ['File', 'N_at116Cd', 'N_at116Cd_err', 'N_at130Te', 'N_at130Te_err']
-	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' (%background))
+	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
 
 	# 3) combined plots
 	#all_isohist =[]
