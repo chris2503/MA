@@ -168,7 +168,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 
 	all_mat_hist = create_material_hist(all_isohist, background)
 	sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
-	#save_material_hists(all_mat_hist, sum_all_mat_hist, background)
+	save_material_hists(all_mat_hist, sum_all_mat_hist, background)
 
 	if returns:
 		return sum_all_mat_hist

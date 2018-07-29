@@ -511,7 +511,7 @@ def save_sumHist(hists, sumhist, b):
 
 	if not os.path.exists(dir):
 		os.makedirs(dir)
-	canvas.Print(dir+'whole_contributions.pdf' %(b))
+	canvas.Print(dir+'whole_contributions_%s.pdf' %(b))
 	canvas.Clear()
 	print('Plotting successful :) \n')
 
@@ -576,7 +576,7 @@ def save_material_hists(hists, sumhist, b):
 
 	if not os.path.exists(dir):
 		os.makedirs(dir)
-	canvas.Print(dir+'%s_test.pdf' %(b))
+	canvas.Print(dir+'%s.pdf' %(b))
 	canvas.Clear()
 	print('Plotting successful :) \n')
 
