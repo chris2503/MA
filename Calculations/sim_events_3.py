@@ -519,6 +519,9 @@ def save_material_hists(hists, sumhist, b):
 	if b == 'czt':
 		labels = ['114Cd', '116Cd', '70Zn', '128Te', '130Te']
 
+	if b == 'czt_nolim':
+		labels = ['116Cd', '128Te', '130Te']
+
 	if b == 'coating':
 		labels = ['40K_glyp', '40K_epox', '232Th_glyp', '232Th_epox', '238U_glyp', '238U_epox']
 
