@@ -129,7 +129,7 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 					temp_contrib_at116Cd = locals()['hist_%i%i' %(i_h,j_h)].GetBinContent(Q_116Cd)
 					temp_contrib_at130Te = locals()['hist_%i%i' %(i_h,j_h)].GetBinContent(Q_130Te)
 					temp_contrib_at116Cd_err = 1/np.sqrt(contrib_at116Cd)
-					temp_contrib_at130Te_err = 1/np.sqrt(contrib_at130Cd)
+					temp_contrib_at130Te_err = 1/np.sqrt(contrib_at130Te)
 				locals()['hist_%i%i' %(i_h,j_h)].Scale(scale)
 				locals()['hist_%i%i' %(i_h,j_h)].SetStats(False)
 				all_hists.append(locals()['hist_%i%i' %(i_h,j_h)])
