@@ -95,10 +95,11 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 						temp_contrib_at116Cd_err = 0
 					else:
 						temp_contrib_at116Cd_err = 1/np.sqrt(contrib_at116Cd) * scale
+
 					if temp_contrib_at130Te == 0:
 						temp_contrib_at130Te_err = 0
 					else:
-						temp_contrib_at130Te_err = 1/np.s qrt(contrib_at130Te) * scale
+						temp_contrib_at130Te_err = 1/np.sqrt(contrib_at130Te) * scale
 
 					t_sd_contrib_at116Cd.append(temp_contrib_at116Cd)
 					t_sd_contrib_at130Te.append(temp_contrib_at130Te)
