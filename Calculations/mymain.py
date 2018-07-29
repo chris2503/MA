@@ -5,18 +5,18 @@ from sim_events_3 import *
 ##############################################
 kprint=None
 
-eventfile_coating = ['../rootfiles/edep_entries/entries_40K_glyptal.txt', 
-						'../rootfiles/edep_entries/entries_40K_epoxy.txt', 
+eventfile_coating = ['../rootfiles/edep_entries/entries_40K_glyptal.txt',
+						'../rootfiles/edep_entries/entries_40K_epoxy.txt',
 						'../rootfiles/edep_entries/entries_232Th_glyptal.txt',
 						'../rootfiles/edep_entries/entries_232Th_epoxy.txt',
 						'../rootfiles/edep_entries/entries_238U_glyptal.txt',
 						'../rootfiles/edep_entries/entries_238U_epoxy.txt']
-eventfile_czt = ['../rootfiles/edep_entries/entries_114Cd.txt', 
-					'../rootfiles/edep_entries/entries_116Cd.txt', 
+eventfile_czt = ['../rootfiles/edep_entries/entries_114Cd.txt',
+					'../rootfiles/edep_entries/entries_116Cd.txt',
 					'../rootfiles/edep_entries/entries_70Zn.txt',
 					'../rootfiles/edep_entries/entries_128Te.txt',
 					'../rootfiles/edep_entries/entries_130Te.txt']
-				
+
 
 
 x_range_coating = 1e4
@@ -51,8 +51,8 @@ rho_epoxy = 1.2*1e3 		# kg/m^3
 # source: https://www.google.de/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&ved=0ahUKEwixx9XCpKrZAhXL2KQKHUu_COYQFghCMAM&url=https%3A%2F%2Fwww.epoxies.com%2F_resources%2Fcommon%2Fuserfiles%2Ffile%2F20-3001NC.pdf&usg=AOvVaw2UKPhVUDbO2-M9trv9BrR-
 args_0 = (m_detpaint_epoxy, rho_epoxy)
 
-x_D = 10.2*1e-3				# m													
-z_D = 16.0*1e-3				# m	
+x_D = 10.2*1e-3				# m
+z_D = 16.0*1e-3				# m
 
 
 O = x_D**2 + z_D*x_D*4
@@ -94,13 +94,13 @@ iso_list = data[:,0]							# get isotope
 N_norm_czt = convert_str2num(data[:,4])			# get norming factors, number convertion necessary
 N_simEv = 1e6									# 1 Mio simulated Events
 
-for i in range(len(N_norm_czt)):									
+for i in range(len(N_norm_czt)):
 	scale_czt.append(1/36 * N_norm_czt[i] / N_simEv) # It was calculated for 9 detectors
 
 
 def my_main(eventfile, scale, x_range, background, returns = None):
 	# creating plots
-	# 1) single plots                                                                  
+	# 1) single plots
 #	for i_file in range(len(eventfile)):
 #		data = read_evData(eventfile[i_file])
 #		my_secHists = create_sector_hists(data, scale[i_file])
@@ -124,7 +124,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 #		delete_all_detHists(my_detHists)
 #		delete_all_sectorHists(my_secHists)
 #		delete_iso_sumHist(iso_sumhist)
-	
+
 
 	#for i_file in range(len(eventfile)):
 	#	delete_iso_Hist(iso_hist, eventfile[i], k=i_file)
@@ -153,10 +153,22 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 #		save_dep_heatmap(my_depHists_heat, eventfile[i_file])
 #		delete_all_detHists(my_depHists_heat)
 #
-	# 2) combined plots
+
+	# 2) Values
+	for i_file in range(len(eventfile)):
+		thiscase = background+str(i_file)
+		data = read_evData(eventfile[i_file])
+
+		my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
+		print(contrib_at116Cd.size)
+		save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
+		delete_all_sectorHists(my_secHists)
+
+
+	# 3) combined plots
 	all_isohist =[]
 	for i_file in range(len(eventfile)):
-		thiscase = background+str(i_file) 
+		thiscase = background+str(i_file)
 		data = read_evData(eventfile[i_file])
 
 		my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
@@ -169,11 +181,14 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 	sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
 	#save_material_hists(all_mat_hist, sum_all_mat_hist, background)
 
+
+
+
 	if returns:
 		return sum_all_mat_hist
-	
 
-		
+
+
 
 
 background = ['coating', 'czt']
