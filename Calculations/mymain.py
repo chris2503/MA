@@ -167,7 +167,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 
 		my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
 		sum = 0
-		print type(contrib_at116Cd)
+		print(type(contrib_at116Cd))
 		for i in range(len(contrib_at116Cd)):
 			for j in range(len(contrib_at116Cd[i])):
 				sum = sum + contrib_at116Cd[i][j]
