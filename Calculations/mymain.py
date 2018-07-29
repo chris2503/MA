@@ -189,11 +189,11 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 		#save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
 		delete_all_sectorHists(my_secHists)
 	print(len(all_contrib_at116Cd))
-	new_data = np.array([i_file, all_contrib_at116Cd, all_contrib_at116Cd_err, all_contrib_at130Te, all_contrib_at130Te_err])
+	new_data = np.array([eventfile, all_contrib_at116Cd, all_contrib_at116Cd_err, all_contrib_at130Te, all_contrib_at130Te_err])
 	#write_txtfile(np.transpose(new_data), '../calc_solutions/', 'calculated_events.txt')
 	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
 	var_names = ['File', 'N_at116Cd', 'N_at116Cd_err', 'N_at130Te', 'N_at130Te_err']
-	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues.txt')
+	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' (%background))
 
 	# 3) combined plots
 	#all_isohist =[]
@@ -218,16 +218,16 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 		return sum_all_mat_hist
 
 
-
-
-
 background = ['coating', 'czt']
-#my_main(eventfile_coating, scale_coating, x_range_coating, background[0])
-#my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
-all_hists = []
-all_hists.append(my_main(eventfile_coating, scale_coating, x_range_coating, background[0], returns=True))
-all_hists.append(my_main(eventfile_czt, scale_czt, x_range_czt, background[1], returns=True))
+#my_main(eventfile, scale, x_range, background)
 
-hists = create_sumHist(all_hists, background)
-all_sumhists = create_allsumHist(all_hists, background)
-save_sumHist(hists, all_sumhists, background)
+
+my_main(eventfile_coating, scale_coating, x_range_coating, background[0])
+my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
+#all_hists = []
+#all_hists.append(my_main(eventfile_coating, scale_coating, x_range_coating, background[0], returns=True))
+#all_hists.append(my_main(eventfile_czt, scale_czt, x_range_czt, background[1], returns=True))
+#
+#hists = create_sumHist(all_hists, background)
+#all_sumhists = create_allsumHist(all_hists, background)
+#save_sumHist(hists, all_sumhists, background)
