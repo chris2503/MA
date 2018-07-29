@@ -1,5 +1,7 @@
 import numpy as np
 from sim_events_3 import *
+from Methods.my_methods import read_File, convert_str2num, write_txtfile, write_detailed_txtfile
+
 ##############################################
 # main
 ##############################################
@@ -155,32 +157,54 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 #
 
 	# 2) Values
+	all_contrib_at116Cd = []
+	all_contrib_at116Cd_err = []
+	all_contrib_at130Te = []
+	all_contrib_at130Te_err = []
 	for i_file in range(len(eventfile)):
 		thiscase = background+str(i_file)
 		data = read_evData(eventfile[i_file])
 
 		my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
-		print(len(contrib_at116Cd))
+		sum = 0
 		for i in range(len(contrib_at116Cd)):
-			print(len(contrib_at116Cd[i]))
+			for j in range(len(contrib_at116Cd[i])):
+				sum = sum + contrib_at116Cd[i][j]
+		all_contrib_at116Cd.append(sum)
+		for i in range(len(contrib_at116CdCd_err)):
+			for j in range(len(contrib_at116CdCd_err[i])):
+				sum = sum + contrib_at116CdCd_err[i][j]
+		all_contrib_at116Cd_err.append(sum)
+		for i in range(len(contrib_at130Te)):
+			for j in range(len(contrib_at130Te[i])):
+				sum = sum + contrib_at130Te[i][j]
+		all_contrib_at130Te.append(sum)
+		for i in range(len(contrib_at130Te_err)):
+			for j in range(len(contrib_at130Te_err[i])):
+				sum = sum + contrib_at130Te_err[i][j]
+		all_contrib_at130Te_err.append(sum)
 		save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
 		delete_all_sectorHists(my_secHists)
-
+	new_data = np.array([i_file, all_contrib_at116Cd, all_contrib_at116Cd_err, all_contrib_at130Te, all_contrib_at130Te_err])
+	#write_txtfile(np.transpose(new_data), '../calc_solutions/', 'calculated_events.txt')
+	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
+	var_names = ['File', 'N_at116Cd', 'N_at116Cd_err', 'N_at130Te', 'N_at130Te_err']
+	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues.txt')
 
 	# 3) combined plots
-	all_isohist =[]
-	for i_file in range(len(eventfile)):
-		thiscase = background+str(i_file)
-		data = read_evData(eventfile[i_file])
+	#all_isohist =[]
+	#for i_file in range(len(eventfile)):
+	#	thiscase = background+str(i_file)
+	#	data = read_evData(eventfile[i_file])
 
-		my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
-		my_detHists = create_sumsecHist(my_secHists, hcolor=True, k=thiscase)
-		iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=thiscase)
-		iso_sumhist = create_sumdetHist(my_detHists, k=thiscase)
-		all_isohist.append(iso_sumhist)
+	#	my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
+	#	my_detHists = create_sumsecHist(my_secHists, hcolor=True, k=thiscase)
+	#	iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=thiscase)
+	#	iso_sumhist = create_sumdetHist(my_detHists, k=thiscase)
+	#	all_isohist.append(iso_sumhist)
 
-	all_mat_hist = create_material_hist(all_isohist, background)
-	sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
+	#all_mat_hist = create_material_hist(all_isohist, background)
+	#sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
 	#save_material_hists(all_mat_hist, sum_all_mat_hist, background)
 
 
