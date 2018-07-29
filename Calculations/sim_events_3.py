@@ -85,8 +85,8 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 					if crystal_id[i_entry] == i_h and sector_id[i_entry] == j_h:
 						locals()['hist_%s_%i%i' %(k,i_h,j_h)].Fill(all_events[i_entry])
 				if Q_val_returns:
-					temp_contrib_at116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(Q_116Cd)
-					temp_contrib_at130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(Q_130Te)
+					temp_contrib_at116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(atQ_116Cd)
+					temp_contrib_at130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(atQ_130Te)
 					if temp_contrib_at116Cd == 0:
 						temp_contrib_at116Cd_err = 0.
 					else:
