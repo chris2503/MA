@@ -104,7 +104,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 	# creating plots
 	# 1) single plots
 	for i_file in range(len(eventfile)):
-	#	data = read_evData(eventfile[i_file])
+		data = read_evData(eventfile[i_file])
 	#	my_secHists = create_sector_hists(data, scale[i_file])
 	#	save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
 	#	delete_all_sectorHists(my_secHists)
