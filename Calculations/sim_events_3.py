@@ -1011,7 +1011,7 @@ def save_dep_sec_hists_2(hists, eventfile=None, background=None):
 	if eventfile:
 		canvas.Print('%shist_allSects_%s.pdf' %(dir, sim))
 	elif background:
-		canvas.Print('%shist_allSects_%s.pdf' %(dir, background))
+		canvas.Print('%shist_allSects_%s_%s.pdf' %(dir, sim, background))
 	else:
 		print('This case has not been implemented yet!')
 	canvas.Clear()
