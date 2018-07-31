@@ -211,7 +211,7 @@ background = ['coating', 'czt']
 #my_main(eventfile, scale, x_range, background)
 
 
-#my_main(eventfile_coating, scale_coating, x_range_coating, background[0])
+my_main(eventfile_coating, scale_coating, x_range_coating, background[0])
 my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
 #all_hists = []
 #all_hists.append(my_main(eventfile_coating, scale_coating, x_range_coating, background[0], returns=True))
