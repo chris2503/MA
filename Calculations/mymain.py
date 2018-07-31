@@ -103,7 +103,7 @@ for i in range(len(N_norm_czt)):
 	scale_czt.append(1/36 * N_norm_czt[i] / N_simEv) # It was calculated for 9 detectors
 
 
-def my_main(eventfile, scale, x_range, background, returns = None):
+def my_main(eventfile, scale, x_range, background, returns=None, Q_val_ret=None):
 	# creating plots
 	# 1) single plots
 	#for i_file in range(len(eventfile)):
@@ -183,7 +183,8 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
 	var_names = ['File', 'N_at116Cd', 'N_at130Te']
 	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
-
+	if Q_val_ret:
+		return all_contrib_at116Cd, all_contrib_at130Te
 	# 3) combined plots
 	#all_isohist =[]
 	#for i_file in range(len(eventfile)):
@@ -211,8 +212,18 @@ background = ['coating', 'czt']
 #my_main(eventfile, scale, x_range, background)
 
 
-my_main(eventfile_coating, scale_coating, x_range_coating, background[0])
+all_contrib_at116Cd_coating, all_contrib_at130Te_coating = my_main(eventfile_coating, scale_coating, x_range_coating, background[0], Q_val_ret=True)
 my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
+sum_glyp_at116Cd = all_contrib_at116Cd_coating[0] + all_contrib_at116Cd_coating[2] + all_contrib_at116Cd_coating[4]
+sum_epox_at116Cd = all_contrib_at116Cd_coating[1] + all_contrib_at116Cd_coating[3] + all_contrib_at116Cd_coating[5]
+sum_glyp_at130Te = all_contrib_at130Te_coating[0] + all_contrib_at130Te_coating[2] + all_contrib_at130Te_coating[4]
+sum_epox_at130Te = all_contrib_at130Te_coating[1] + all_contrib_at130Te_coating[3] + all_contrib_at130Te_coating[5]
+sum_coating_at_116Cd = sum_glyp_at116Cd + sum_epox_at116Cd
+sum_coating_at_130Te= sum_glyp_at130Te + sum_epox_at130Te
+new_data = np.array([[glyptal, epoxy, sum], [sum_epox_at116Cd, sum_glyp_at116Cd, sum_coating_at_116Cd], [sum_epox_at130Te, sum_glyp_at130Te, sum_coating_at_130Te]])
+descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
+var_names = ['Isotope', 'N_at116Cd', 'N_at130Te']
+write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_allcoating.txt' )
 #all_hists = []
 #all_hists.append(my_main(eventfile_coating, scale_coating, x_range_coating, background[0], returns=True))
 #all_hists.append(my_main(eventfile_czt, scale_czt, x_range_czt, background[1], returns=True))
