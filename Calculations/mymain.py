@@ -146,7 +146,7 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 		delete_iso_Hist(my_depHist, eventfile[i])
 
 		my_depHists = create_dep_secHist(data, scale[i_file])
-		save_dep_sec_hists_2(my_depHists, eventfile[i_file], None)
+		save_dep_sec_hists_2(my_depHists, eventfile[i_file], k=True)
 		delete_all_detHists(my_depHists)
 
 	#for i_file in range(len(eventfile)):
