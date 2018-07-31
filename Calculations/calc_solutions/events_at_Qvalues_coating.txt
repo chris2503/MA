@@ -1,11 +1,11 @@
-# Date: 18-07-31 04:06
+# Date: 18-07-31 04:16
 # Contributions at Qvalues
 # N in 1/kg/keV/yr 
 #
 # File	N_at116Cd	N_at130Te	
 ../rootfiles/edep_entries/entries_40K_glyptal.txt	0.0+/-0	0.0+/-0
 ../rootfiles/edep_entries/entries_40K_epoxy.txt	0.0+/-0	0.0+/-0
-../rootfiles/edep_entries/entries_232Th_glyptal.txt	58.0000+/-0.0005	114.0000+/-0.0005
-../rootfiles/edep_entries/entries_232Th_epoxy.txt	72.0000+/-0.0008	138.0000+/-0.0008
-../rootfiles/edep_entries/entries_238U_glyptal.txt	57.0000+/-0.0016	116.0000+/-0.0016
-../rootfiles/edep_entries/entries_238U_epoxy.txt	69.0000+/-0.0016	128.0000+/-0.0016
+../rootfiles/edep_entries/entries_232Th_glyptal.txt	0.0106+/-0.0005	0.0208+/-0.0005
+../rootfiles/edep_entries/entries_232Th_epoxy.txt	0.0215+/-0.0008	0.0411+/-0.0008
+../rootfiles/edep_entries/entries_238U_glyptal.txt	0.0467+/-0.0016	0.0950+/-0.0016
+../rootfiles/edep_entries/entries_238U_epoxy.txt	0.0480+/-0.0016	0.0890+/-0.0016
