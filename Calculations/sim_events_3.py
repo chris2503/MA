@@ -87,15 +87,17 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 				if Q_val_returns:
 					temp_contrib_at116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(atQ_116Cd)
 					temp_contrib_at130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(atQ_130Te)
-					if temp_contrib_at116Cd < 1.0:
+					if temp_contrib_at116Cd == 0.0:
 						temp_contrib_at116Cd_err = 0.0
 					else:
 						temp_contrib_at116Cd_err = scale * 1/np.sqrt(temp_contrib_at116Cd)
 
-					if temp_contrib_at130Te < 1.0:
+					if temp_contrib_at130Te == 0.0:
 						temp_contrib_at130Te_err = 0.0
 					else:
 						temp_contrib_at130Te_err = scale * 1/np.sqrt(temp_contrib_at130Te)
+					temp_contrib_at116Cd = temp_contrib_at116Cd * scale
+					temp_contrib_at130Te = temp_contrib_at130Te * scale
 
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].Scale(scale)
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetStats(False)

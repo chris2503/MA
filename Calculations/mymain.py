@@ -213,7 +213,7 @@ background = ['coating', 'czt']
 
 
 all_contrib_at116Cd_coating, all_contrib_at130Te_coating = my_main(eventfile_coating, scale_coating, x_range_coating, background[0], Q_val_ret=True)
-#my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
+my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
 sum_glyp_at116Cd = all_contrib_at116Cd_coating[0] + all_contrib_at116Cd_coating[2] + all_contrib_at116Cd_coating[4]
 sum_epox_at116Cd = all_contrib_at116Cd_coating[1] + all_contrib_at116Cd_coating[3] + all_contrib_at116Cd_coating[5]
 sum_glyp_at130Te = all_contrib_at130Te_coating[0] + all_contrib_at130Te_coating[2] + all_contrib_at130Te_coating[4]
