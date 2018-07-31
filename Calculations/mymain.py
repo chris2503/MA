@@ -137,13 +137,13 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 
 	for i_file in range(len(eventfile)):
 		data = read_evData(eventfile[i_file])
-		my_depHists = create_dep_secHist(data, scale[i_file])
-		save_dep_sec_hists(my_depHists, eventfile[i_file])
-		delete_all_detHists(my_depHists)
+		#my_depHists = create_dep_secHist(data, scale[i_file])
+		#save_dep_sec_hists(my_depHists, eventfile[i_file])
+		#delete_all_detHists(my_depHists)
 
-		my_depHist = create_dep_detHist(data, eventfile[i_file], scale[i_file])
-		save_dep_det_hists(my_depHist, eventfile[i_file])
-		delete_iso_Hist(my_depHist, eventfile[i])
+		#my_depHist = create_dep_detHist(data, eventfile[i_file], scale[i_file])
+		#save_dep_det_hists(my_depHist, eventfile[i_file])
+		#delete_iso_Hist(my_depHist, eventfile[i])
 
 		my_depHists = create_dep_secHist(data, scale[i_file])
 		save_dep_sec_hists_2(my_depHists, eventfile[i_file])
