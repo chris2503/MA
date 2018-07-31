@@ -117,15 +117,15 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 	#	delete_all_detHists(my_detHists)
 	#	delete_all_sectorHists(my_secHists)
 
-	#	my_secHists = create_sector_hists(data, scale[i_file])
-	#	my_detHists = create_sumsecHist(my_secHists, hcolor=True)
-	#	iso_hist = create_iso_hist(my_detHists, eventfile[i_file])
-	#	iso_sumhist = create_sumdetHist(my_detHists)
-	#	save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range)
-	#	delete_iso_Hist(iso_hist, eventfile[i])
-	#	delete_all_detHists(my_detHists)
-	#	delete_all_sectorHists(my_secHists)
-	#	delete_iso_sumHist(iso_sumhist)
+		my_secHists = create_sector_hists(data, scale[i_file])
+		my_detHists = create_sumsecHist(my_secHists, hcolor=True)
+		iso_hist = create_iso_hist(my_detHists, eventfile[i_file])
+		iso_sumhist = create_sumdetHist(my_detHists)
+		save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range)
+		delete_iso_Hist(iso_hist, eventfile[i])
+		delete_all_detHists(my_detHists)
+		delete_all_sectorHists(my_secHists)
+		delete_iso_sumHist(iso_sumhist)
 
 
 	#for i_file in range(len(eventfile)):
@@ -192,20 +192,20 @@ def my_main(eventfile, scale, x_range, background, returns = None):
 	#write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
 
 	# 3) combined plots
-	all_isohist =[]
-	for i_file in range(len(eventfile)):
-		thiscase = background+str(i_file)
-		data = read_evData(eventfile[i_file])
+	#all_isohist =[]
+	#for i_file in range(len(eventfile)):
+	#	thiscase = background+str(i_file)
+	#	data = read_evData(eventfile[i_file])
 
-		my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
-		my_detHists = create_sumsecHist(my_secHists, hcolor=True, k=thiscase)
-		iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=thiscase)
-		iso_sumhist = create_sumdetHist(my_detHists, k=thiscase)
-		all_isohist.append(iso_sumhist)
+	#	my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
+	#	my_detHists = create_sumsecHist(my_secHists, hcolor=True, k=thiscase)
+	#	iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=thiscase)
+	#	iso_sumhist = create_sumdetHist(my_detHists, k=thiscase)
+	#	all_isohist.append(iso_sumhist)
 
-	all_mat_hist = create_material_hist(all_isohist, background)
-	sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
-	save_material_hists(all_mat_hist, sum_all_mat_hist, background)
+	#all_mat_hist = create_material_hist(all_isohist, background)
+	#sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
+	#save_material_hists(all_mat_hist, sum_all_mat_hist, background)
 
 
 
