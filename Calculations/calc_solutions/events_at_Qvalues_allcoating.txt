@@ -1,0 +1,8 @@
+# Date: 18-07-31 04:06
+# Contributions at Qvalues
+# N in 1/kg/keV/yr 
+#
+# Isotope	N_at116Cd	N_at130Te	
+glyptal	141.0000+/-0.0018	266.0000+/-0.0018
+epoxy	115.0000+/-0.0017	230.0000+/-0.0017
+sum	256.0000+/-0.0025	496.0000+/-0.0025
