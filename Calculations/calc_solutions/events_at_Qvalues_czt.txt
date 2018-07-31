@@ -1,10 +1,10 @@
-# Date: 18-07-30 02:21
+# Date: 18-07-31 03:25
 # Contributions at Qvalues
 # N in 1/kg/keV/yr 
 #
-# File	N_at116Cd	N_at116Cd_err	N_at130Te	N_at130Te_err	
-../rootfiles/edep_entries/entries_114Cd.txt	0.0000e+00	0.0000e+00	0.0000e+00	0.0000e+00
-../rootfiles/edep_entries/entries_116Cd.txt	0.0000e+00	0.0000e+00	1.4000e+01	1.4001e+01
-../rootfiles/edep_entries/entries_70Zn.txt	0.0000e+00	0.0000e+00	0.0000e+00	0.0000e+00
-../rootfiles/edep_entries/entries_128Te.txt	0.0000e+00	0.0000e+00	0.0000e+00	0.0000e+00
-../rootfiles/edep_entries/entries_130Te.txt	0.0000e+00	0.0000e+00	0.0000e+00	0.0000e+00
+# File	N_at116Cd	N_at130Te	
+../rootfiles/edep_entries/entries_114Cd.txt	0.0+/-0	0.0+/-0
+../rootfiles/edep_entries/entries_116Cd.txt	0.0+/-0	14.0+/-0
+../rootfiles/edep_entries/entries_70Zn.txt	0.0+/-0	0.0+/-0
+../rootfiles/edep_entries/entries_128Te.txt	0.0+/-0	0.0+/-0
+../rootfiles/edep_entries/entries_130Te.txt	0.0+/-0	0.0+/-0
