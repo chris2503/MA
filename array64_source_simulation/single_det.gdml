@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+       <define>
+	       <position name="CENTER" x="0"  y="0"  z="0"/>
+	       <constant name="au_thickness" value="8E-5"/>
+		<constant name="pt_thickness" value="1E-4"/>
+		<constant name="passivation_thickness" value="2*10E-3"/>
+		
+		<position  name="pt_pos" x="0" y="0" z="-5-pt_thickness/2" />
+		<position name="au_pos" x="0" y="0" z="-5-pt_thickness-au_thickness/2" />
+       </define>
+<!--        &materials; -->
+       <solids>
+	       <box name="det_box" x="10+passivation_thickness" y="10+passivation_thickness" z="10+au_thickness+pt_thickness+passivation_thickness" lunit="mm"/>
+		<box name="crystal_box" x="10" y="10" z="10" lunit="mm"/>
+		<box name="paint_box" x="10+passivation_thickness" y="10+passivation_thickness" z="10+au_thickness+pt_thickness+passivation_thickness" lunit="mm"/>
+		<box name="gold_box" x="10" y="10" z="au_thickness" lunit="mm"/>
+		<box name="platin_box" x="10" y="10" z="pt_thickness" lunit="mm"/>
+		
+		
+		<subtraction name="paint_cut">
+			<first ref="paint_box"/>
+			<second ref="crystal_box"/>
+			<position name="paint_pos" x="0" y="0" z="(au_thickness+pt_thickness)/2"/>
+		</subtraction>
+		
+		<subtraction name="paint_sol">
+			<first ref="paint_cut"/>
+			<second ref="crystal_box"/>
+			<position name="paint_pos2" x="0" y="0" z="-5"/>
+		</subtraction>
+       </solids>
+       
+       <structure>
+	       <volume name="paint_vol">
+			<materialref ref="Polyoxymethylene"/>
+			<solidref ref="paint_sol"/>
+		</volume>
+		
+		<volume name="au_vol">
+			<materialref ref="Gold"/>
+			<solidref ref="gold_box"/>
+		</volume>
+		
+		
+		<volume name="pt_vol">
+			<materialref ref="Gold"/>
+			<solidref ref="platin_box"/>
+		</volume>
+		
+		<volume name="crystal_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="crystal_box"/>
+			<auxiliary auxtype="VolSensitivity" auxvalue="array64SensitiveCrystal_sd"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="1"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="2"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="3"/>
+		</volume>
+		
+		<volume name="det_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="det_box"/>
+			<physvol>
+				<volumeref ref="paint_vol"/>
+				<positionref ref="CENTER"/>
+			</physvol>
+				
+			<physvol>
+				<volumeref ref="crystal_vol"/>
+				<position name="cryst_pos" x="0" y="0" z="(pt_thickness+au_thickness)/2"/>
+			</physvol>
+			<physvol>
+				<volumeref ref="pt_vol"/>
+				<positionref ref="pt_pos"/>
+			</physvol>
+			
+			<physvol>
+				<volumeref ref="au_vol"/>
+				<positionref  ref="au_pos"/>
+			</physvol>
+			
+		</volume>
+       </structure>
+       
+       <setup name="single_det" version="0.1">
+		<world ref="det_vol"/>
+	</setup>
+
+
+</gdml>
+

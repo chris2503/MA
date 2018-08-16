@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+	<define>
+	  <!-- variables for loops-->
+		<variable name="x" value="0"/>
+		<variable name="y" value="0"/>
+		<variable name="p" value="0"/> 		
+		<variable name="t" value="0"/> 		
+		<variable name="u" value="0"/> 		
+		<variable name="v" value="0"/> 	
+
+	  <!-- variables for building crystal and holder-->
+		<variable name="NumX" value="4"/> 		
+		<variable name="NumY" value="4"/> 
+		<variable name="crystalspacingX" value="4.3"/> 
+		<variable name="crystalspacingY" value="4.3"/> 
+		<variable name="BorderX1" value="7.2"/> 
+		<variable name="BorderX2" value="14.7"/> 
+		<variable name="BorderY1" value="7.2"/> 
+		<variable name="BorderY2" value="7.2"/> 
+		<variable name="crystalgap" value="0.35"/> 
+		<variable name="AuCathZ" value="8e-05"/>
+		<variable name="PtCathZ" value="0.0001"/>
+		<variable name="crystalX" value="10"/> 
+		<variable name="crystalY" value="10"/> 
+		<variable name="crystalZ" value="10"/> 
+		<variable name="crystalsumZ" value="crystalZ+AuCathZ+PtCathZ"/> <!--10.00018-->
+		<variable name="holderX" value="NumX*crystalX+2*NumX*crystalgap+(NumX-1)*crystalspacingX+BorderX1+BorderX2"/> <!--77.6-->
+		<variable name="holderY" value="NumY*crystalY+2*NumY*crystalgap+(NumY-1)*crystalspacingY+BorderY1+BorderY2"/> <!--70.1-->
+		<variable name="holderZ_delrin" value="1"/> 
+		<variable name="holderZ" value="crystalsumZ+2*(holderZ_delrin+crystalgap)"/> <!--12.70018-->
+		<variable name="WorldZ" value="holderZ"/> 	
+
+		<variable name="posX_first_crystal" value="-holderY/2+BorderY1+crystalgap+crystalX/2"/> <!--holderY and holderX are interchanged to fit the picture in the venom manual-->
+		<variable name="posY_first_crystal" value="-holderX/2+BorderX1+(BorderX2-BorderX1)/2+crystalgap+crystalY/2"/>
+		<variable name="posX_cal_crystal" value="crystalX+crystalspacingX+2*crystalgap"/>		
+		<variable name="posY_cal_crystal" value="crystalY+crystalspacingY+2*crystalgap"/>
+
+		<variable name="posX_first_holderpartD" value="-holderY/2+BorderY1+crystalgap+crystalX/2"/>
+		<variable name="posY_first_holderpartD" value="-holderX/2+BorderX1+(BorderX2-BorderX1)/2+2*crystalgap+crystalY+crystalspacingY/2"/>
+		<variable name="posX_cal_holderpartD" value="crystalX+crystalspacingX+2*crystalgap"/>		
+		<variable name="posY_cal_holderpartD" value="crystalY+crystalspacingY+2*crystalgap"/>
+
+		<position name="array64nakedcrystal_pos" unit="mm" x="0" y="0" z="9e-05"/>
+		<position name="array64crystalPtCathode_pos" unit="mm" x="0" y="0" z="-4.99996"/>
+		<position name="array64crystalAuCathode_pos" unit="mm" x="0" y="0" z="-5.00005"/>
+		
+		<position name="crystalrow_pos" unit="mm" x="0" y="0" z="0"/>
+		<position name="crystalbox_pos" unit="mm" x="(BorderY2-BorderY1)/2" y="(BorderX2-BorderX1)/2" z="0"/>
+		<position name="holderbox_pos_up" unit="mm" x="0" y="0" z="crystalgap+(crystalsumZ+holderZ_delrin)/2"/>
+		<position name="holderbox_pos_down" unit="mm" x="0" y="0" z="-crystalgap-(crystalsumZ+holderZ_delrin)/2"/>
+
+
+	  <!-- variables for building nest-->
+		<variable name="nShelves" value="4"/> 
+		<variable name="width_runner" value="4"/> 
+		<variable name="height_delrinrunner" value="2"/> 
+		<variable name="shelfhole" value="2.5"/> 
+		<variable name="gas_front" value="16.65"/> 
+		<variable name="gas_between" value="10.9"/> 
+		<variable name="gas_top" value="8.8"/> 
+		<variable name="gas_bottom" value="8.3"/> 
+
+
+		<variable name="CopperX" value="holderY+2*10.6+2*width_runner"/> 
+		<variable name="CopperY" value="100"/> 
+		<variable name="CopperZ" value="100"/> 		
+		
+		<variable name="posZ_first_holder" value="-CopperZ/2+0.3+gas_bottom+holderZ/2"/>
+		<variable name="posZ_cal_holder" value="holderZ+gas_between"/>		
+		<variable name="posZ_first_delrinrunner" value="-CopperZ/2+0.3+gas_bottom+holderZ-height_delrinrunner/2"/>
+		<variable name="posZ_cal_delrinrunner" value="holderZ+gas_between"/>	
+
+		<position name="center" unit="mm" x="0" y="0" z="0"/>
+		<position name="pos_delrinrunner_left" unit="mm" x="-CopperX/2+10.6+width_runner/2" y="gas_front/2" z="0"/>
+		<position name="pos_delrinrunner_right" unit="mm" x="+CopperX/2-10.6-width_runner/2" y="gas_front/2" z="0"/>
+
+	  <!-- definition of the colours-->
+		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+		<scale name="AuColour" x="220/255" y="208/255" z="42/255"/><!-- yellow-->
+		<scale name="DelrinColour" x="128/255" y="128/255" z="128/255"/><!-- grey-->
+	</define>
+
+	<materials>
+	</materials>
+
+	<solids>
+		<box lunit="mm" name="WorldNestBox" x="CopperX" y="CopperY" z="CopperZ"/>
+
+    		<box lunit="mm" name="crysBox" x="crystalX" y="crystalY" z="crystalZ"/>
+    		<box lunit="mm" name="crysPtCathBox" x="crystalX" y="crystalY" z="PtCathZ"/>
+    		<box lunit="mm" name="crysAuCathBox" x="crystalX" y="crystalY" z="AuCathZ"/>
+    		<box lunit="mm" name="crysTotBox" x="crystalX" y="crystalY" z="crystalsumZ"/>
+
+    		<box lunit="mm" name="theCrystalBox" x="2*NumX*crystalgap+NumX*crystalX+(NumX-1)*crystalspacingX" y="2*NumY*crystalgap+NumY*crystalY+(NumY-1)*crystalspacingY" z="10.00018"/>
+		<box lunit="mm" name="theCrystalRow" x="crystalX" y="2*NumY*crystalgap+NumY*crystalY+(NumY-1)*crystalspacingY" z="crystalsumZ"/>
+
+		<box lunit="mm" name="theHolderBoxA" x="holderY" y="holderX" z="holderZ_delrin"/>
+    		<box lunit="mm" name="theHolderBoxB" x="holderY" y="holderX" z="holderZ_delrin"/>
+    		<box lunit="mm" name="theHolderBoxC" x="holderY" y="holderX" z="holderZ_delrin"/>
+		<box lunit="mm" name="theHolderBoxD" x="holderY" y="holderX" z="holderZ_delrin"/>
+		<box lunit="mm" name="theHolderBoxTot" x="holderY" y="holderX" z="holderZ_delrin"/>
+    		<box lunit="mm" name="theHolder_partA" x="holderY" y="BorderX1" z="holderZ_delrin"/>
+    		<box lunit="mm" name="theHolder_partB" x="BorderY1" y="holderX-BorderX1-BorderX2" z="holderZ_delrin"/>
+    		<box lunit="mm" name="theHolder_partC" x="crystalspacingX" y="2*NumY*crystalgap+NumY*crystalY+(NumY-1)*crystalspacingY" z="holderZ_delrin"/>
+		<box lunit="mm" name="theHolder_partD" x="crystalX+2*crystalgap" y="crystalspacingY" z="holderZ_delrin"/>
+		<box lunit="mm" name="theHolder_partDrow" x="crystalX+2*crystalgap" y="NumY*crystalY+2*NumY*crystalgap+(NumY-1)*crystalspacingY" z="holderZ_delrin"/>
+
+		<box lunit="mm" name="OneHolderBox" x="holderY" y="holderX" z="holderZ"/>
+		<box lunit="mm" name="MultiHolderBox" x="holderY" y="holderX+gas_front" z="nShelves*holderZ+(nShelves-1)*gas_between+gas_top+gas_bottom"/>
+
+		<box lunit="mm" name="OneDelrinRunnerBox" x="width_runner" y="holderX" z="height_delrinrunner"/>
+		<box lunit="mm" name="MultiDelrinRunnerBox" x="width_runner" y="holderX" z="nShelves*holderZ+(nShelves-1)*gas_between+gas_top+gas_bottom"/>
+
+		<box lunit="mm" name="CopperNestBox" x="CopperX" y="CopperY" z="CopperZ"/>
+	</solids>
+
+	<structure>
+
+	 <!-- Start building Crystal-->
+	<volume name="array64nakedcrystal_vol">
+      	<materialref ref="CdZnTe"/>
+      	<solidref ref="crysBox"/>
+	</volume>
+
+    <volume name="array64crystalPtCathode_vol">
+      	<materialref ref="Gold"/>
+      	<solidref ref="crysPtCathBox"/>
+    </volume>
+
+    <volume name="array64crystalAuCathode_vol">
+      	<materialref ref="Gold"/>
+      	<solidref ref="crysAuCathBox"/>
+    </volume>
+
+    <volume name="array64crystal_vol">
+      	<materialref ref="NitrogenGas"/>
+      	<solidref ref="crysTotBox"/>
+      	<physvol name="array64nakedcrystal_physvol">
+       		<volumeref ref="array64nakedcrystal_vol"/>
+       		<positionref ref="array64nakedcrystal_pos"/>
+      	</physvol>
+      	<physvol name="array64crystalPtCathode_physvol">
+       		<volumeref ref="array64crystalPtCathode_vol"/>
+       		<positionref ref="array64crystalPtCathode_pos"/>
+     	</physvol>
+      	<physvol name="array64crystalAuCathode_physvol">
+       		<volumeref ref="array64crystalAuCathode_vol"/>
+       		<positionref ref="array64crystalAuCathode_pos"/>
+      	</physvol>
+    </volume>
+	
+	 <!-- Start building Holder-->
+	 	<!-- First 16 Crystals are placed, then different parts of the Delrin Holder are defined (left, right, top, bottom (parta and partb) from the Crystal and between (partc and parts)).-->
+		<volume name="crystalbox_vol">
+      			<materialref ref="NitrogenGas"/>
+			<solidref ref="theCrystalBox"/>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy1pos" x="posX_first_crystal+0*posX_cal_crystal" y="posY_first_crystal+0*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy2pos" x="posX_first_crystal+0*posX_cal_crystal" y="posY_first_crystal+1*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy3pos" x="posX_first_crystal+0*posX_cal_crystal" y="posY_first_crystal+2*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy4pos" x="posX_first_crystal+0*posX_cal_crystal" y="posY_first_crystal+3*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy5pos" x="posX_first_crystal+1*posX_cal_crystal" y="posY_first_crystal+0*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy6pos" x="posX_first_crystal+1*posX_cal_crystal" y="posY_first_crystal+1*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy7pos" x="posX_first_crystal+1*posX_cal_crystal" y="posY_first_crystal+2*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy8pos" x="posX_first_crystal+1*posX_cal_crystal" y="posY_first_crystal+3*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy9pos" x="posX_first_crystal+2*posX_cal_crystal" y="posY_first_crystal+0*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy10pos" x="posX_first_crystal+2*posX_cal_crystal" y="posY_first_crystal+1*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy11pos" x="posX_first_crystal+2*posX_cal_crystal" y="posY_first_crystal+2*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy12pos" x="posX_first_crystal+2*posX_cal_crystal" y="posY_first_crystal+3*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy13pos" x="posX_first_crystal+3*posX_cal_crystal" y="posY_first_crystal+0*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy14pos" x="posX_first_crystal+3*posX_cal_crystal" y="posY_first_crystal+1*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy15pos" x="posX_first_crystal+3*posX_cal_crystal" y="posY_first_crystal+2*posY_cal_crystal" z="0" />
+      			</physvol>
+			<physvol name="array64crystal_physvol">
+        			<volumeref ref="array64crystal_vol"/>
+        			<position name="crystalcopy16pos" x="posX_first_crystal+3*posX_cal_crystal" y="posY_first_crystal+3*posY_cal_crystal" z="0" />
+      			</physvol>
+			<!-- Changing Copy Numbers for CrystalID-->
+			
+			<auxiliary auxtype="PlacedVolumes" auxvalue="array64crystal_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="1"/>
+			<auxiliary auxtype="CopyNo" auxvalue="5"/>
+			<auxiliary auxtype="CopyNo" auxvalue="9"/>
+			<auxiliary auxtype="CopyNo" auxvalue="13"/>
+			<auxiliary auxtype="CopyNo" auxvalue="2"/>
+			<auxiliary auxtype="CopyNo" auxvalue="6"/>
+			<auxiliary auxtype="CopyNo" auxvalue="10"/>
+			<auxiliary auxtype="CopyNo" auxvalue="14"/>
+			<auxiliary auxtype="CopyNo" auxvalue="3"/>
+			<auxiliary auxtype="CopyNo" auxvalue="7"/>
+			<auxiliary auxtype="CopyNo" auxvalue="11"/>
+			<auxiliary auxtype="CopyNo" auxvalue="15"/>
+			<auxiliary auxtype="CopyNo" auxvalue="4"/>
+			<auxiliary auxtype="CopyNo" auxvalue="8"/>
+			<auxiliary auxtype="CopyNo" auxvalue="12"/>
+			<auxiliary auxtype="CopyNo" auxvalue="16"/>
+		</volume>
+
+		<volume name="holder_partA_vol">
+      			<materialref ref="Delrin"/>
+      			<solidref ref="theHolder_partA"/>
+    		</volume>
+    		<volume name="holder_partB_vol">
+      			<materialref ref="Delrin"/>
+      			<solidref ref="theHolder_partB"/>
+    		</volume>
+    		<volume name="holder_partC_vol">
+      			<materialref ref="Delrin"/>
+      			<solidref ref="theHolder_partC"/>
+    		</volume>
+	
+	
+		<volume name="holderboxa_vol">  <!-- top and bottom-->
+      			<materialref ref="NitrogenGas"/>
+			<solidref ref="theHolderBoxA"/>
+			<paramvol ncopies="2">		
+				<volumeref ref="holder_partA_vol"/>
+				<parameterised_position_size>
+					<parameters number="1" >
+						<position name="HolderpartAcopy1pos" x="0" y="holderX/2-BorderX1/2" z="0" />
+						<box_dimensions x="holderY" y="BorderX1" z="holderZ_delrin" lunit="mm"/>
+					</parameters>
+					<parameters number="2" >
+						<position name="HolderpartAcopy2pos" x="0" y="-holderX/2+BorderX2/2" z="0" />
+						<box_dimensions x="holderY" y="BorderX2" z="holderZ_delrin" lunit="mm"/>
+					</parameters>
+				</parameterised_position_size>
+			</paramvol>
+		</volume>
+
+		<volume name="holderboxb_vol"> <!-- left and right-->
+      			<materialref ref="NitrogenGas"/>
+			<solidref ref="theHolderBoxB"/>
+			<paramvol ncopies="2">		
+				<volumeref ref="holder_partB_vol"/>
+				<parameterised_position_size>
+					<parameters number="1" >
+						<position name="HolderpartBcopy1pos" x="holderY/2-BorderY2/2" y="(BorderX2-BorderX1)/2" z="0" />
+						<box_dimensions x="BorderY2" y="holderX-BorderX1-BorderX2" z="holderZ_delrin" lunit="mm"/>
+					</parameters>
+					<parameters number="2" >
+						<position name="HolderpartBcopy2pos" x="-holderY/2+BorderY1/2" y="(BorderX2-BorderX1)/2" z="0" />
+						<box_dimensions x="BorderY1" y="holderX-BorderX1-BorderX2" z="holderZ_delrin" lunit="mm"/>
+					</parameters>
+				</parameterised_position_size>
+			</paramvol>
+		</volume>
+
+		<volume name="holderboxc_vol"> <!-- between-->
+      			<materialref ref="NitrogenGas"/>
+			<solidref ref="theHolderBoxC"/>
+			<paramvol ncopies="3">		
+				<volumeref ref="holder_partC_vol"/>
+				<parameterised_position_size>
+					<parameters number="1" >
+						<position name="HolderpartCcopy1pos" x="2*crystalgap+crystalX+crystalspacingX" y="(BorderX2-BorderX1)/2" z="0" />
+						<box_dimensions x="crystalspacingX" y="2*NumY*crystalgap+NumY*crystalY+(NumY-1)*crystalspacingY" z="holderZ_delrin" lunit="mm"/>
+					</parameters>
+					<parameters number="2" >
+						<position name="HolderpartCcopy2pos" x="0" y="(BorderX2-BorderX1)/2" z="0" />
+						<box_dimensions x="crystalspacingX" y="2*NumY*crystalgap+NumY*crystalY+(NumY-1)*crystalspacingY" z="holderZ_delrin" lunit="mm"/>
+					</parameters>
+					<parameters number="2" >
+						<position name="HolderpartCcopy3pos" x="-2*crystalgap-crystalX-crystalspacingX" y="(BorderX2-BorderX1)/2" z="0" />
+						<box_dimensions x="crystalspacingX" y="2*NumY*crystalgap+NumY*crystalY+(NumY-1)*crystalspacingY" z="holderZ_delrin" lunit="mm"/>
+					</parameters>
+				</parameterised_position_size>
+			</paramvol>
+		</volume>
+
+
+    	<volume name="holder_partD_vol">
+      		<materialref ref="Delrin"/>
+      		<solidref ref="theHolder_partD"/>
+			<auxiliary auxtype="Color" auxvalue="blue"/>
+    	</volume>
+
+		<volume name="holderpartDrow_vol"> 
+      			<materialref ref="NitrogenGas"/>
+			<solidref ref="theHolder_partDrow"/>
+			<loop for="u" to="2" step="1">	
+				<physvol name="holder_partD_physvol">
+					<volumeref ref="holder_partD_vol"/>
+					<position name="HolderpartDrowpos" x="0" y="posY_first_holderpartD+u*posY_cal_holderpartD" z="0"/>
+				</physvol>
+			</loop>
+		</volume>
+
+		<volume name="holderboxd_vol"> <!-- between-->
+      			<materialref ref="NitrogenGas"/>
+			<solidref ref="theHolderBoxD"/>
+			<loop for="v" to="3" step="1">	
+				<physvol name="holderpartDrow_physvol">
+					<volumeref ref="holderpartDrow_vol"/>
+					<position name="Holderboxdpos" x="posX_first_holderpartD+v*posX_cal_holderpartD" y="(BorderX2-BorderX1)/2" z="0"/>
+				</physvol>
+			</loop>
+		</volume>
+
+	 	<!-- all Delrin parts put together in one volume-->
+		<volume name="holderboxtot_vol">
+      			<materialref ref="NitrogenGas"/>
+			<solidref ref="theHolderBoxTot"/>
+			<physvol name="holderboxa_physvol">
+				<volumeref ref="holderboxa_vol"/>
+				<positionref ref="crystalrow_pos"/>
+			</physvol>
+			<physvol name="holderboxb_physvol">
+				<volumeref ref="holderboxb_vol"/>
+				<positionref ref="crystalrow_pos"/>
+			</physvol>
+			<physvol name="holderboxc_physvol">
+				<volumeref ref="holderboxc_vol"/>
+				<positionref ref="crystalrow_pos"/>
+			</physvol>
+			<physvol name="holderboxd_physvol">
+				<volumeref ref="holderboxd_vol"/>
+				<positionref ref="crystalrow_pos"/>
+			</physvol>
+		</volume>
+
+	 	<!-- Building first complete holder-->
+		<volume name="oneholderbox_vol">
+      			<materialref ref="NitrogenGas"/>
+      			<solidref ref="OneHolderBox"/>
+			<physvol name="crystalbox_physvol">
+				<volumeref ref="crystalbox_vol"/>
+				<positionref ref="crystalbox_pos"/>
+			</physvol>
+			<physvol name="holderboxtot_physvol">
+				<volumeref ref="holderboxtot_vol"/>
+				<positionref ref="holderbox_pos_up"/>
+			</physvol>
+			<physvol name="holderboxtot_physvol">
+				<volumeref ref="holderboxtot_vol"/>
+				<positionref ref="holderbox_pos_down"/>
+			</physvol>
+		</volume>
+
+	 	<!-- Replica of the holder for building the nest-->
+		<volume name="multiholderbox_vol">
+      			<materialref ref="NitrogenGas"/>
+      			<solidref ref="MultiHolderBox"/>
+			<physvol name="oneholderbox_physvol">
+				<volumeref ref="oneholderbox_vol"/>
+				<position name="oneholderboxpos1" x="0" y="gas_front/2" z="posZ_first_holder+0*posZ_cal_holder"/> 
+			</physvol>
+			<physvol name="oneholderbox_physvol">
+				<volumeref ref="oneholderbox_vol"/>
+				<position name="oneholderboxpos2" x="0" y="gas_front/2" z="posZ_first_holder+1*posZ_cal_holder"/> 
+			</physvol>
+			<physvol name="oneholderbox_physvol">
+				<volumeref ref="oneholderbox_vol"/>
+				<position name="oneholderboxpos3" x="0" y="gas_front/2" z="posZ_first_holder+2*posZ_cal_holder"/> 
+			</physvol>
+			<physvol name="oneholderbox_physvol">
+				<volumeref ref="oneholderbox_vol"/>
+				<position name="oneholderboxpos4" x="0" y="gas_front/2" z="posZ_first_holder+3*posZ_cal_holder"/> 
+			</physvol>
+	 		<!-- Changing Copy Numbers for HolderID-->
+	 	
+			<auxiliary auxtype="PlacedVolumes" auxvalue="oneholderbox_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="1"/>
+			<auxiliary auxtype="CopyNo" auxvalue="2"/>
+			<auxiliary auxtype="CopyNo" auxvalue="3"/>
+			<auxiliary auxtype="CopyNo" auxvalue="4"/>
+	
+		</volume>
+
+	 <!-- Start building Delrin Runner-->
+		<volume name="onedelrinrunnerbox_vol">
+      			<materialref ref="Delrin"/>
+      			<solidref ref="OneDelrinRunnerBox"/>
+		</volume>
+
+		<volume name="multidelrinrunnerbox_vol">
+      			<materialref ref="Copper"/>
+      			<solidref ref="MultiDelrinRunnerBox"/>
+			<loop for="y" to="3" step="1">	
+				<physvol name="onedelrinrunnerbox_physvol">
+					<volumeref ref="onedelrinrunnerbox_vol"/>
+					<position name="onedelrinrunnerbox" x="0" y="0" z="posZ_first_delrinrunner+y*posZ_cal_delrinrunner"/> 
+				</physvol>
+			</loop>			
+		</volume>
+
+	 <!-- Start building Copper Nest-->
+		<volume name="coppernestbox_vol">
+      			<materialref ref="Copper"/>
+      			<solidref ref="CopperNestBox"/>
+			<physvol name="multiholderbox_physvol">
+				<volumeref ref="multiholderbox_vol"/>
+				<positionref ref="center"/>
+			</physvol>
+			<physvol name="multidelrinrunnerbox_physvol_left">
+				<volumeref ref="multidelrinrunnerbox_vol"/>
+				<positionref ref="pos_delrinrunner_left"/>
+			</physvol>
+			<physvol name="multidelrinrunnerbox_physvol_right">
+				<volumeref ref="multidelrinrunnerbox_vol"/>
+				<positionref ref="pos_delrinrunner_right"/>
+			</physvol>
+		</volume>
+
+		<volume name="worldnestbox_vol">
+      			<materialref ref="NitrogenGas"/>
+      			<solidref ref="WorldNestBox"/>
+			<physvol name="coppernestbox_physvol">
+				<volumeref ref="coppernestbox_vol"/>
+				<positionref ref="center"/>
+			</physvol>
+
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Delrin DelrinColour"/>
+		</volume>
+	</structure>
+
+	<setup name="Test" version="1.0">
+    	<world ref="worldnestbox_vol"/>
+  	</setup>
+
+</gdml>

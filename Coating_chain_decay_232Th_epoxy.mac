@@ -1,6 +1,7 @@
 /venom/geom/setImplementation ./Setup_with_shielding.gdml
 /venom/geom/update
 
+# name of output root file
 /venom/io/open ./rootfiles/chain_decay_232Th_epoxy_coating
 /venom/action/setEventAction autowrite
 /venom/io/writeEvery 100000
@@ -10,10 +11,10 @@
 /grdm/allVolumes
 /chaingen/verbosity 0
 /chaingen/posgen/verbosity 0
-#/chaingen/posgen/switchOnIO 1								# additional output
+/chaingen/posgen/switchOnIO 1								# additional output
 
 
-# /chaingen/posgen/type Volume
+/chaingen/posgen/type Volume
 
 /chaingen/Th232chain 1
 

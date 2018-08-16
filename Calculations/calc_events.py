@@ -62,6 +62,7 @@ def calc_tot_mass(mass_array, tot_perc, iso_list, el_fractions, el_molmass, el_l
 	mass = []
 	counter = 0
 	M_Det = np.sum(el_fractions*el_molmass)
+	print(M_Det)
 	for isotope in iso_list:
 		temp = re.search("([a-zA-Z]+)", isotope)
 		if temp.group(0) == 'Cd':
@@ -112,7 +113,7 @@ print()
 
 
 # fractions of Cd, Zn and Te in CZT in this order:
-CdZnTe_fractions = np.array([0.45, 0.05, 0.50])
+CdZnTe_fractions = np.array([0.9, 0.1, 1.0])
 CdZnTe_molmass = np.array([112.41, 65.38, 127.6]) *1e-3 # http://www.periodensystem.info/periodensystem/
 
 

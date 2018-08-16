@@ -10,10 +10,10 @@
 /grdm/allVolumes
 /chaingen/verbosity 0
 /chaingen/posgen/verbosity 0
-#/chaingen/posgen/switchOnIO 1								# additional output
+/chaingen/posgen/switchOnIO 1								# additional output
 
 
-# /chaingen/posgen/type Volume
+/chaingen/posgen/type Volume
 
 /chaingen/U238chain 1
 

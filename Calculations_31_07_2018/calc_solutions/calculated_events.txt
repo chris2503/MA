@@ -1,0 +1,13 @@
+# Date: 18-07-26 19:05
+# List of calculated variables
+# p: total fraction of the isotope in the detector volume
+# m: total mass fraction of the isotope in the detector volume
+# a: specific activity of the isotope
+# N_scaled: REAL NUMBER of events scaled per 1kg detector mass AND 1year
+#
+# isotope	p	m / [kg]	a / [Bq/kg]	N_scaled [1/(kg*yr)]	
+114Cd	1.2928e-01	4.0112e-02	8.9390e-02	3.4821e+05
+116Cd	3.3705e-02	1.0457e-02	4.2454e-03	4.3114e+03
+70Zn	3.0000e-04	5.4136e-05	8.2301e-01	4.3269e+03
+128Te	1.5845e-01	5.5803e-02	5.1743e-08	2.8041e-01
+130Te	1.6900e-01	5.9519e-02	1.2426e-04	7.1823e+02

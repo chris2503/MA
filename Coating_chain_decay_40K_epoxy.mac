@@ -1,8 +1,6 @@
 /venom/geom/setImplementation ./Setup_with_shielding.gdml
 /venom/geom/update
 
-
-
 # name of output root file
 /venom/io/open ./rootfiles/chain_decay_40K_epoxy_coating
 /venom/action/setEventAction autowrite
@@ -13,15 +11,14 @@
 /grdm/allVolumes
 /chaingen/verbosity 0
 /chaingen/posgen/verbosity 0
-#/chaingen/posgen/switchOnIO 1								# additional output
+/chaingen/posgen/switchOnIO 1								# additional output
 
 
 # Kalium
 /chaingen/AddIso 40 19 1
 # arguements: A Z X 
 
-# /chaingen/posgen/type Volume
-
+/chaingen/posgen/type Volume
 
 /chaingen/checklist
 
@@ -30,8 +27,10 @@
 #the sim fractions are necessary because of different cable length
 /chaingen/posgen/solidSourceIntrinsic paint_physvol_epoxy
 /chaingen/posgen/confine paint_physvol_epoxy
+
 /array64data/storeEventInfo 1								# extra output enabled
 /array64data/ignoreNoEdep 1									# events without energy deposition ignored
 /run/beamOn 1000000
+
 /chaingen/clearlist
 /venom/io/write

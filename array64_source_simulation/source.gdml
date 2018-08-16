@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+       <define>
+        <rotation name="source_rotation" x="" y="pi/2" z=""/>
+        <position name="source_capsule_pos" x="0" y="0" z="0.5"/>
+        <position name="source_end_cap_pos" x="0" y="0" z="2.999"/>
+        <position name="world_end_cap_pos" x="0" y="0" z="3.000001"/>
+        <position name="source_center" x="0" y="0" z="0"/>
+        <position name="source_world_pos" x="0" y="0" z="-0.5"/>
+       </define>
+<!--        &materials; -->
+       <solids>
+            <tube name="source_world" z="6" rmax="1.000001" deltaphi="2*pi" aunit="rad" lunit="mm"/>
+        <tube name="source_tube_sol" z="6" rmax="1" deltaphi="2*pi" aunit="rad" lunit="mm"/>
+        <tube name="source_tube_core_sol" z="1" rmax="0.5" deltaphi="2*pi" aunit="rad" lunit="mm"/> 
+        <sphere name="source_end_cap_sol" rmax="1" deltaphi="2*pi" deltatheta="pi/2" aunit="rad"  lunit="mm"/>
+        <sphere name="world_end_cap_sol" rmax="1.000002" deltaphi="2*pi" deltatheta="pi/2" aunit="rad"  lunit="mm"/>
+        
+        <union name="source_sol">
+            <first ref="source_tube_sol"/>
+            <second ref="source_end_cap_sol"/>
+            <positionref ref="source_end_cap_pos"/>
+        </union>
+        
+        <union name="world_sol">
+            <first ref="source_world"/>
+            <second ref="world_end_cap_sol"/>
+            <positionref ref="world_end_cap_pos"/>
+        </union>
+       </solids>
+       
+       <structure>
+           <volume name="source_capsule_vol">
+            <materialref ref="Aluminium_Oxide"/>
+            <solidref ref="source_tube_core_sol"/>
+        </volume>
+        
+        <volume name="source">
+            <materialref ref="Medical_Steel"/>
+            <solidref ref="source_sol"/>
+            <physvol name="source_capsule">
+                <volumeref ref="source_capsule_vol"/>
+                <positionref ref="source_capsule_pos"/>
+            </physvol>
+        </volume>
+        
+        <volume name="source_world_vol">
+            <materialref ref="Medical_Steel"/>
+            <solidref ref="world_sol"/>
+            <physvol>
+                <volumeref ref="source"/>
+                <positionref ref="source_center"/>
+            </physvol>
+        </volume>
+       </structure>
+       
+       <setup name="source_world_setup" version="0.1">
+           <world ref="source_world_vol"/>
+       </setup>
+</gdml>

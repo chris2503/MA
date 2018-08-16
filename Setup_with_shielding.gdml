@@ -9,12 +9,12 @@
 
 		<!-- Center position of the whole Setup --> 
 		<position name="Setup_center_pos" x="0" y="0" z="0" unit="mm"/>
-		<!-- Center position of the old detector layer -->
+		<!-- Center position of the detector layers -->
 		<position name="DET_center_pos" x="0" y="0" z="-Setup_height/2 + 250 + 150/2" unit="mm"/>
 		<!-- Center position of the XDEM -->
 		<position name="XDEM_center_pos" x="0" y="0" z="-Setup_height/2 + 250 + 100 + 50/2" unit="mm"/>
 		<!-- Center position of the old detector layer -->
-		<position name="Old_Layer_center_pos" x="0" y="0" z="-Setup_height/2 + 250 + 100/2" unit="mm"/>
+		<position name="Demonstrator_center_pos" x="0" y="0" z="-Setup_height/2 + 250 + 100/2" unit="mm"/>
 
 		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
 		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
@@ -83,16 +83,23 @@
 				<volumeref ref="ULA_Pb_VOLUME"/>
 				<positionref ref="DET_center_pos"/>
 			</physvol>
-
+			
 			<physvol name="Cu_PHYSVOL">
 				<volumeref ref="Cu_VOLUME"/>
 				<positionref ref="DET_center_pos"/>
 			</physvol>
-
+			
+			<physvol name="Demonstrator_PHYSVOL">
+				<file name="array64_source_simulation/array64nest.gdml" volname="worldnestbox_vol"/>
+				<positionref ref="Demonstrator_center_pos"/>
+			</physvol>
+			
 			<physvol name="XDEM_PHYSVOL">
 				<file name="copperholder_with_detectorlayer.gdml" volname="Detektor_Block"/>
 				<positionref ref="XDEM_center_pos"/>
 			</physvol>
+			
+			
 			<auxiliary auxtype="PlacedVolumes" auxvalue="detector_physvol" />
 			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
 			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>

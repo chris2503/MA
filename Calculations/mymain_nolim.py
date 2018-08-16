@@ -88,15 +88,15 @@ for i in range(len(N_norm_coating)):
 ###########################
 #### CZT
 ###########################
-datafile = './calc_solutions/calculated_events_nolim.txt'
+datafile = './calc_solutions/calculated_events_nolim_2.txt'
 data = read_File(datafile)
 
 iso_list = data[:,0]							# get isotope
-N_norm_czt = convert_str2num(data[:,4])			# get norming factors, number convertion necessary
+N_norm_czt = convert_str2num(data[:,1])			# get norming factors, number convertion necessary
 N_simEv = 1e6									# 1 Mio simulated Events
 
 for i in range(len(N_norm_czt)):
-	scale_czt.append(1/36 * N_norm_czt[i] / N_simEv) # It was calculated for 9 detectors
+	scale_czt.append(1/4 * N_norm_czt[i] / N_simEv) # It was calculated for 9 detectors
 
 
 def my_main(eventfile, scale, x_range, background, returns = None):

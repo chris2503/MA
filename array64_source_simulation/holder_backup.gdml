@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+	<define>
+	<!-- 		delrin positions -->
+		<position name="holder_guidance_pos" x="0" y="0" z="-5"/>
+		<position name="det_pos" x="35-7-5" y="40-15-5" z="-5.5+1+5"/>
+		<position name="holder_det_support_union_pos" x="0" y="0" z="1+7.5"/>
+		<position name="holder_union_pos" x="0" y="0" z="0.5+1"/>
+	
+		<position name="holder_guid_cutout_pos_1" unit="mm" x="35-7-5" y="40-15-5" z="0"/>
+		<position name="holder_guid_cutout_pos_2" unit="mm" x="35-7-5" y="40-15-5-15" z="0"/>
+		<position name="holder_guid_cutout_pos_3" unit="mm" x="35-7-5" y="40-15-5-30" z="0"/>
+		<position name="holder_guid_cutout_pos_4" unit="mm" x="35-7-5" y="40-15-5-45" z="0"/>
+		
+		<position name="holder_guid_cutout_pos_5" unit="mm" x="35-7-5-15" y="40-15-5" z="0"/>
+		<position name="holder_guid_cutout_pos_6" unit="mm" x="35-7-5-15" y="40-15-5-15" z="0"/>
+		<position name="holder_guid_cutout_pos_7" unit="mm" x="35-7-5-15" y="40-15-5-30" z="0"/>
+		<position name="holder_guid_cutout_pos_8" unit="mm" x="35-7-5-15" y="40-15-5-45" z="0"/>
+		
+		<position name="holder_guid_cutout_pos_9" unit="mm" x="35-7-5-30" y="40-15-5" z="0"/>
+		<position name="holder_guid_cutout_pos_10" unit="mm" x="35-7-5-30" y="40-15-5-15" z="0"/>
+		<position name="holder_guid_cutout_pos_11" unit="mm" x="35-7-5-30" y="40-15-5-30" z="0"/>
+		<position name="holder_guid_cutout_pos_12" unit="mm" x="35-7-5-30" y="40-15-5-45" z="0"/>
+		
+		<position name="holder_guid_cutout_pos_13" unit="mm" x="35-7-5-45" y="40-15-5" z="0"/>
+		<position name="holder_guid_cutout_pos_14" unit="mm" x="35-7-5-45" y="40-15-5-15" z="0"/>
+		<position name="holder_guid_cutout_pos_15" unit="mm" x="35-7-5-45" y="40-15-5-30" z="0"/>
+		<position name="holder_guid_cutout_pos_16" unit="mm" x="35-7-5-45" y="40-15-5-45" z="0"/>
+		
+		<position name="holder_det_cutout_pos_1" unit="mm" x="35-7-5" y="40-15-5" z="5"/>
+		<position name="holder_det_cutout_pos_2" unit="mm" x="35-7-5" y="40-15-5-15" z="5"/>
+		<position name="holder_det_cutout_pos_3" unit="mm" x="35-7-5" y="40-15-5-30" z="5"/>
+		<position name="holder_det_cutout_pos_4" unit="mm" x="35-7-5" y="40-15-5-45" z="5"/>
+		
+		<position name="holder_det_cutout_pos_5" unit="mm" x="35-7-5-15" y="40-15-5" z="5"/>
+		<position name="holder_det_cutout_pos_6" unit="mm" x="35-7-5-15" y="40-15-5-15" z="5"/>
+		<position name="holder_det_cutout_pos_7" unit="mm" x="35-7-5-15" y="40-15-5-30" z="5"/>
+		<position name="holder_det_cutout_pos_8" unit="mm" x="35-7-5-15" y="40-15-5-45" z="5"/>
+		
+		<position name="holder_det_cutout_pos_9" unit="mm" x="35-7-5-30" y="40-15-5" z="5"/>
+		<position name="holder_det_cutout_pos_10" unit="mm" x="35-7-5-30" y="40-15-5-15" z="5"/>
+		<position name="holder_det_cutout_pos_11" unit="mm" x="35-7-5-30" y="40-15-5-30" z="5"/>
+		<position name="holder_det_cutout_pos_12" unit="mm" x="35-7-5-30" y="40-15-5-45" z="5"/>
+		
+		<position name="holder_det_cutout_pos_13" unit="mm" x="35-7-5-45" y="40-15-5" z="5"/>
+		<position name="holder_det_cutout_pos_14" unit="mm" x="35-7-5-45" y="40-15-5-15" z="5"/>
+		<position name="holder_det_cutout_pos_15" unit="mm" x="35-7-5-45" y="40-15-5-30" z="5"/>
+		<position name="holder_det_cutout_pos_16" unit="mm" x="35-7-5-45" y="40-15-5-45" z="5"/>
+	</define>
+	&materials;
+	<solids>
+		<box name="det_box" x="10" y="10" z="10"/>
+		
+		<box name="holder_det_cutout_box" x="11" y="11" z="130"/>
+		<box name="holder_world_box" x="100-2*15+2*2" y="80" z="11" lunit="mm"/>
+		<!-- 		delrin volumes -->
+		<box name="delrin_holder_guidance_box" x="100-2*15+2*2" y="80" z="1" lunit="mm"/>
+		<box name="delrin_holder_hv_box" x="100-2*15" y="80" z="2" lunit="mm"/>
+		<box name="delrin_holder_anode_box" x="100-2*15" y="80" z="1" lunit="mm"/>
+		<box name="delrin_holder_guid_cutout" x="5" y="5" z="2" lunit="mm"/>
+		
+		<subtraction name="delrin_holder_guidance_cut_1">
+			<first ref="delrin_holder_guidance_box"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_1"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_2">
+			<first ref="delrin_holder_guidance_cut_1"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_2"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_3">
+			<first ref="delrin_holder_guidance_cut_2"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_3"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_4">
+			<first ref="delrin_holder_guidance_cut_3"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_4"/>
+		</subtraction>
+		
+		
+		
+		<subtraction name="delrin_holder_guidance_cut_5">
+			<first ref="delrin_holder_guidance_cut_4"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_5"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_6">
+			<first ref="delrin_holder_guidance_cut_5"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_6"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_7">
+			<first ref="delrin_holder_guidance_cut_6"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_7"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_8">
+			<first ref="delrin_holder_guidance_cut_7"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_8"/>
+		</subtraction>
+		
+		
+		
+		<subtraction name="delrin_holder_guidance_cut_9">
+			<first ref="delrin_holder_guidance_cut_8"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_9"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_10">
+			<first ref="delrin_holder_guidance_cut_9"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_10"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_11">
+			<first ref="delrin_holder_guidance_cut_10"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_11"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_12">
+			<first ref="delrin_holder_guidance_cut_11"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_12"/>
+		</subtraction>
+		
+		
+		
+		<subtraction name="delrin_holder_guidance_cut_13">
+			<first ref="delrin_holder_guidance_cut_12"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_13"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_14">
+			<first ref="delrin_holder_guidance_cut_13"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_14"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_15">
+			<first ref="delrin_holder_guidance_cut_14"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_15"/>
+		</subtraction>
+		
+		<subtraction name="delrin_holder_guidance_cut_16">
+			<first ref="delrin_holder_guidance_cut_15"/>
+			<second ref ="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_guid_cutout_pos_16"/>
+		</subtraction>
+		
+		
+		
+		<union name="holder_det_support_union">
+			<first ref="delrin_holder_hv_box"/>
+			<second ref="delrin_holder_anode_box"/>
+			<positionref ref="holder_det_support_union_pos"/>
+		</union>
+		
+		
+		<subtraction name="delrin_det_support_cut_1">
+			<first ref="holder_det_support_union"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_1"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_2">
+			<first ref="delrin_det_support_cut_1"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_2"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_3">
+			<first ref="delrin_det_support_cut_2"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_3"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_4">
+			<first ref="delrin_det_support_cut_3"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_4"/>
+		</subtraction>
+		
+		
+		
+		<subtraction name="delrin_det_support_cut_5">
+			<first ref="delrin_det_support_cut_4"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_5"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_6">
+			<first ref="delrin_det_support_cut_5"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_6"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_7">
+			<first ref="delrin_det_support_cut_6"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_7"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_8">
+			<first ref="delrin_det_support_cut_7"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_8"/>
+		</subtraction>
+		
+		
+		
+		<subtraction name="delrin_det_support_cut_9">
+			<first ref="delrin_det_support_cut_8"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_9"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_10">
+			<first ref="delrin_det_support_cut_9"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_10"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_11">
+			<first ref="delrin_det_support_cut_10"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_11"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_12">
+			<first ref="delrin_det_support_cut_11"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_12"/>
+		</subtraction>
+		
+		
+		
+		<subtraction name="delrin_det_support_cut_13">
+			<first ref="delrin_det_support_cut_12"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_13"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_14">
+			<first ref="delrin_det_support_cut_13"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_14"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_15">
+			<first ref="delrin_det_support_cut_14"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_15"/>
+		</subtraction>
+		
+		<subtraction name="delrin_det_support_cut_16">
+			<first ref="delrin_det_support_cut_15"/>
+			<second ref="holder_det_cutout_box"/>
+			<positionref ref="holder_det_cutout_pos_16"/>
+		</subtraction>
+		
+		
+		<union name="holder">
+			<first ref="delrin_holder_guidance_cut_16"/>
+			<second ref="delrin_det_support_cut_16"/>
+			<positionref ref="holder_union_pos"/>
+		</union>
+	</solids>
+	
+	<structure>
+		<volume name="holder_vol">
+			<materialref ref="Polyoxymethylene"/>
+			<solidref ref ="holder"/>
+		</volume>
+		
+		<volume name="det_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="det_box"/>
+			<auxiliary auxtype="VolSensitivity" auxvalue="array64SensitiveCrystal_sd"/>
+		</volume>
+		
+		<volume name="holder_world_vol" >
+			<materialref ref="Vacuum"/>
+			<solidref ref="holder_world_box"/>
+			<physvol>
+				<volumeref ref ="det_vol"/>
+				<positionref ref="det_pos"/>
+				
+			</physvol>
+			<physvol>
+				<volumeref ref ="holder_vol"/>
+				<positionref ref="holder_guidance_pos"/>
+				
+			</physvol>
+		</volume>
+	</structure>
+	
+	
+	<setup name="holder_setup" version="0.1">
+		<world ref="holder_world_vol"/>
+	</setup>
+</gdml>

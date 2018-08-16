@@ -1,0 +1,10 @@
+# Date: 18-08-06 15:53
+# List of calculated variables
+# N_scaled: REAL NUMBER of events scaled per 1kg detector mass AND 1year
+#
+# isotope	p	m / [kg]	a / [Bq/kg]	N_scaled [1/(kg*yr)]	
+#114Cd	1.0940e+05
+116Cd	1.3783e+03
+#70Zn	3.3666e+03
+128Te	1.6380e-03
+130Te	4.2612e+00

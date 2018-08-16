@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+	
+	<define>
+		<position name="CENTER" unit="mm" x="0" y="0" z="0"/>
+		<position name="inner_nest_vol_center" unit="mm" x="0" y="1.5" z="0"/>
+<!-- 		nest positions -->
+		<position name="nest_inner_vol_pos" unit="mm" x="0" y="1.5" z="0"/>
+		<position name="nest_guidance_l1_pos" unit="mm" x="0" y="1.51" z="12-50"/>
+		<position name="nest_guidance_l2_pos" unit="mm" x="0" y="1.51" z="12-50+1*22"/>
+		<position name="nest_guidance_l3_pos" unit="mm" x="0" y="1.51" z="12-50+2*22"/>
+		<position name="nest_guidance_l4_pos" unit="mm" x="0" y="1.51" z="12-50+3*22"/>
+<!-- 		detector positions -->
+
+<!-- 		delrin positions -->
+		
+		<position name="holder_guidance_pos_1" unit="mm" x="0" y="1.5-17/2" z="0"/> 
+		
+		<!-- definition of the colours-->
+		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+		<scale name="AuColour" x="220/255" y="208/255" z="42/255"/><!-- yellow-->
+		<scale name="DelrinColour" x="128/255" y="128/255" z="128/255"/><!-- grey-->
+	</define>
+	&materials;
+	
+	<solids>
+<!-- 		nest volumes-->
+		<!--<box name="lead_world_box" x="600" y="600" z="600" lunit="mm"/>
+		<box name="copper_world_box" x="200" y="200" z="200" lunit="mm"/> -->
+		<box name="nest_world_box" x="100" y="100" z="100" lunit="mm"/>
+		<box name="nest_outer_volume" x="100" y="100" z="100" lunit="mm"/>
+		<box name="nest_inner_volume" x="100-2*15" y="100-3" z="100-2*3" lunit="mm"/>
+		<box name="nest_layer_guidance_cutout" x="100-2*15+2*2" y="100-3" z="2" lunit="mm"/>
+		<!-- 
+		<subtraction name="lead_shield_sol">
+			<first ref="lead_world_box"/>
+			<second ref="copper_world_box"/>
+			<positionref ref="CENTER"/>
+		</subtraction>
+		
+		<subtraction name="copper_shield_sol">
+			<first ref="copper_world_box"/>
+			<second ref="nest_world_box"/>
+			<positionref ref="CENTER"/>
+		</subtraction>
+		-->
+		<subtraction name="nest_box">
+			<first ref="nest_outer_volume"/>
+			<second ref="nest_inner_volume"/>
+			<positionref ref="nest_inner_vol_pos" />
+		</subtraction>
+		<subtraction name="nest_box_v1">
+			<first ref="nest_box"/>
+			<second ref="nest_layer_guidance_cutout"/>
+			<positionref ref="nest_guidance_l1_pos"/>
+		</subtraction>
+		
+		<subtraction name="nest_box_v2">
+			<first ref="nest_box_v1"/>
+			<second ref="nest_layer_guidance_cutout"/>
+			<positionref ref="nest_guidance_l2_pos"/>
+		</subtraction>
+		
+		<subtraction name="nest_box_v3">
+			<first ref="nest_box_v2"/>
+			<second ref="nest_layer_guidance_cutout"/>
+			<positionref ref="nest_guidance_l3_pos"/>
+		</subtraction>
+		
+		<subtraction name="nest_box_sol">
+			<first ref="nest_box_v3"/>
+			<second ref="nest_layer_guidance_cutout"/>
+			<positionref ref="nest_guidance_l4_pos"/>
+		</subtraction>
+		
+<!-- 		detector volumes -->
+<!-- 		<box name="det_box" x="10" y="10" z="10"/> -->
+		
+		
+	</solids>
+	
+	<structure>
+		<volume name="nest_vol">
+			<materialref ref="E-Copper"/>
+			<solidref ref="nest_box_sol"/>
+		</volume>
+		<!--
+		<volume name="copper_shield_vol">
+			<materialref ref="E-Copper"/>
+			<solidref ref="copper_shield_sol"/>
+		</volume>
+		
+		<volume name="lead_shield_vol">
+			<materialref ref="Lead"/>
+			<solidref ref="lead_shield_sol"/>
+		</volume>
+		-->
+		<volume name="world_vol" >
+			<materialref ref="Vacuum"/>
+			<solidref ref="nest_world_box"/>
+			<!-- <solidref ref="lead_world_box"/> -->
+			
+			<!--
+			<physvol name="lead_shield_physvol">
+				<volumeref ref="lead_shield_vol"/>
+				<positionref ref="CENTER"/>
+			</physvol>
+			
+			<physvol name="copper_shield_physvol">
+				<volumeref ref="copper_shield_vol"/>
+				<positionref ref="CENTER"/>
+			</physvol>
+			-->
+			<physvol name="nest_phys_vol">
+				<volumeref ref="nest_vol"/>
+				<positionref ref="CENTER"/>
+			</physvol>
+			
+			
+			<physvol name="detector">
+				<file name="./array64_source_simulation/holder.gdml"/>
+				<positionref ref="inner_nest_vol_center"/>
+				
+			</physvol>
+			
+			
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="E-Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="Delrin DelrinColour"/>
+		</volume>
+		
+	</structure>
+	
+	<setup name="nest" version="0.1">
+		<world ref="world_vol"/>
+	</setup>
+</gdml>

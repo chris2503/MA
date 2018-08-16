@@ -92,15 +92,15 @@ for i in range(len(N_norm_coating)):
 ###########################
 #### CZT
 ###########################
-datafile = './calc_solutions/calculated_events.txt'
+datafile = './calc_solutions/calculated_events_2.txt'
 data = read_File(datafile)
 
 iso_list = data[:,0]							# get isotope
-N_norm_czt = convert_str2num(data[:,4])			# get norming factors, number convertion necessary
+N_norm_czt = convert_str2num(data[:,1])			# get norming factors, number convertion necessary
 N_simEv = 1e6									# 1 Mio simulated Events
 
 for i in range(len(N_norm_czt)):
-	scale_czt.append(1/36 * N_norm_czt[i] / N_simEv) # It was calculated for 9 detectors
+	scale_czt.append(1/4 * N_norm_czt[i] / N_simEv) # It was calculated for 9 detectors
 
 
 def my_main(eventfile, scale, x_range, background, returns=None, Q_val_ret=None):
@@ -160,74 +160,76 @@ def my_main(eventfile, scale, x_range, background, returns=None, Q_val_ret=None)
 
 
 	# 2) Values
-	all_contrib_at116Cd = []
-	all_contrib_at130Te = []
+	#all_contrib_at116Cd = []
+	#all_contrib_at130Te = []
+	#for i_file in range(len(eventfile)):
+	#	thiscase = background+str(i_file)
+	#	data = read_evData(eventfile[i_file])
+#
+#	#	my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
+#	#	sum = 0
+#	#	contrib_at116Cd = unp.uarray(contrib_at116Cd, contrib_at116Cd_err)
+#	#	#print(type(contrib_at116Cd))
+#	#	for i in range(len(contrib_at116Cd)):
+#	#		for j in range(len(contrib_at116Cd[i])):
+#	#			sum = sum + contrib_at116Cd[i][j]
+#	#	all_contrib_at116Cd.append(sum)
+#	#	sum = 0
+#	#	contrib_at130Te = unp.uarray(contrib_at130Te, contrib_at130Te_err)
+#	#	for i in range(len(contrib_at130Te)):
+#	#		for j in range(len(contrib_at130Te[i])):
+#	#			sum = sum + contrib_at130Te[i][j]
+#	#	all_contrib_at130Te.append(sum)
+#	#	delete_all_sectorHists(my_secHists)
+#	#new_data = np.array([eventfile, all_contrib_at116Cd, all_contrib_at130Te])
+#	#descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
+#	#var_names = ['File', 'N_at116Cd', 'N_at130Te']
+#	#write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
+#	#if Q_val_ret:
+	#	return all_contrib_at116Cd, all_contrib_at130Te
+
+	# 3) combined plots
+	all_isohist =[]
 	for i_file in range(len(eventfile)):
 		thiscase = background+str(i_file)
 		data = read_evData(eventfile[i_file])
 
-		my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
-		sum = 0
-		contrib_at116Cd = unp.uarray(contrib_at116Cd, contrib_at116Cd_err)
-		#print(type(contrib_at116Cd))
-		for i in range(len(contrib_at116Cd)):
-			for j in range(len(contrib_at116Cd[i])):
-				sum = sum + contrib_at116Cd[i][j]
-		all_contrib_at116Cd.append(sum)
-		for i in range(len(contrib_at130Te)):
-			for j in range(len(contrib_at130Te[i])):
-				sum = sum + contrib_at130Te[i][j]
-		all_contrib_at130Te.append(sum)
-		delete_all_sectorHists(my_secHists)
-	new_data = np.array([eventfile, all_contrib_at116Cd, all_contrib_at130Te])
-	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
-	var_names = ['File', 'N_at116Cd', 'N_at130Te']
-	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
-	if Q_val_ret:
-		return all_contrib_at116Cd, all_contrib_at130Te
-	# 3) combined plots
-	#all_isohist =[]
-	#for i_file in range(len(eventfile)):
-	#	thiscase = background+str(i_file)
-	#	data = read_evData(eventfile[i_file])
+		my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
+		my_detHists = create_sumsecHist(my_secHists, hcolor=True, k=thiscase)
+		iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=thiscase)
+		iso_sumhist = create_sumdetHist(my_detHists, k=thiscase)
+		all_isohist.append(iso_sumhist)
 
-	#	my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
-	#	my_detHists = create_sumsecHist(my_secHists, hcolor=True, k=thiscase)
-	#	iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=thiscase)
-	#	iso_sumhist = create_sumdetHist(my_detHists, k=thiscase)
-	#	all_isohist.append(iso_sumhist)
-
-	#all_mat_hist = create_material_hist(all_isohist, background)
-	#sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
-	#save_material_hists(all_mat_hist, sum_all_mat_hist, background)
+	all_mat_hist = create_material_hist(all_isohist, background)
+	sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
+	save_material_hists(all_mat_hist, sum_all_mat_hist, background)
 
 
-
-
-	#if returns:
-	#	return sum_all_mat_hist
+	if returns:
+		return sum_all_mat_hist
 
 
 background = ['coating', 'czt']
 #my_main(eventfile, scale, x_range, background)
 
 
-all_contrib_at116Cd_coating, all_contrib_at130Te_coating = my_main(eventfile_coating, scale_coating, x_range_coating, background[0], Q_val_ret=True)
-my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
-sum_glyp_at116Cd = all_contrib_at116Cd_coating[0] + all_contrib_at116Cd_coating[2] + all_contrib_at116Cd_coating[4]
-sum_epox_at116Cd = all_contrib_at116Cd_coating[1] + all_contrib_at116Cd_coating[3] + all_contrib_at116Cd_coating[5]
-sum_glyp_at130Te = all_contrib_at130Te_coating[0] + all_contrib_at130Te_coating[2] + all_contrib_at130Te_coating[4]
-sum_epox_at130Te = all_contrib_at130Te_coating[1] + all_contrib_at130Te_coating[3] + all_contrib_at130Te_coating[5]
-sum_coating_at_116Cd = sum_glyp_at116Cd + sum_epox_at116Cd
-sum_coating_at_130Te= sum_glyp_at130Te + sum_epox_at130Te
-new_data = np.array([['glyptal', 'epoxy', 'sum'], [sum_epox_at116Cd, sum_glyp_at116Cd, sum_coating_at_116Cd], [sum_epox_at130Te, sum_glyp_at130Te, sum_coating_at_130Te]])
-descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
-var_names = ['Isotope', 'N_at116Cd', 'N_at130Te']
-write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_allcoating.txt' )
-#all_hists = []
-#all_hists.append(my_main(eventfile_coating, scale_coating, x_range_coating, background[0], returns=True))
-#all_hists.append(my_main(eventfile_czt, scale_czt, x_range_czt, background[1], returns=True))
+#all_contrib_at116Cd_coating, all_contrib_at130Te_coating = my_main(eventfile_coating, scale_coating, x_range_coating, background[0], Q_val_ret=True)
+#my_main(eventfile_czt, scale_czt, x_range_czt, background[1])
+#sum_glyp_at116Cd = all_contrib_at116Cd_coating[0] + all_contrib_at116Cd_coating[2] + all_contrib_at116Cd_coating[4]
+#sum_epox_at116Cd = all_contrib_at116Cd_coating[1] + all_contrib_at116Cd_coating[3] + all_contrib_at116Cd_coating[5]
+#sum_glyp_at130Te = all_contrib_at130Te_coating[0] + all_contrib_at130Te_coating[2] + all_contrib_at130Te_coating[4]
+#sum_epox_at130Te = all_contrib_at130Te_coating[1] + all_contrib_at130Te_coating[3] + all_contrib_at130Te_coating[5]
+#sum_coating_at_116Cd = sum_glyp_at116Cd + sum_epox_at116Cd
+#sum_coating_at_130Te= sum_glyp_at130Te + sum_epox_at130Te
+#new_data = np.array([['glyptal', 'epoxy', 'sum'], [sum_epox_at116Cd, sum_glyp_at116Cd, sum_coating_at_116Cd], [sum_epox_at130Te, sum_glyp_at130Te, sum_coating_at_130Te]])
+#descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
+#var_names = ['Isotope', 'N_at116Cd', 'N_at130Te']
+#write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_allcoating.txt' )
+
+all_hists = []
+all_hists.append(my_main(eventfile_coating, scale_coating, x_range_coating, background[0], returns=True))
+all_hists.append(my_main(eventfile_czt, scale_czt, x_range_czt, background[1], returns=True))
 #
-#hists = create_sumHist(all_hists, background)
-#all_sumhists = create_allsumHist(all_hists, background)
-#save_sumHist(hists, all_sumhists, background)
+hists = create_sumHist(all_hists, background)
+all_sumhists = create_allsumHist(all_hists, background)
+save_sumHist(hists, all_sumhists, background)

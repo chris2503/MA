@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml>
+
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+	<define>
+		<variable name="det_pos_var" value="1"/>
+		<constant name="nDet" value="32"/>
+		
+		<matrix name="det_pos_matrix" coldim="64"
+			values="22.5 22.5 22.5 22.5 7.5 7.5 7.5 7.5 -7.5 -7.5 -7.5 -7.5 -22.5 -22.5 -22.5 -22.5 22.5 22.5 22.5 22.5 7.5 7.5 7.5 7.5 -7.5 -7.5 -7.5 -7.5 -22.5 -22.5 -22.5 -22.5 22.5 22.5 22.5 22.5 7.5 7.5 7.5 7.5 -7.5 -7.5 -7.5 -7.5 -22.5 -22.5 -22.5 -22.5 22.5 22.5 22.5 22.5 7.5 7.5 7.5 7.5 -7.5 -7.5 -7.5 -7.5 -22.5 -22.5 -22.5 -22.5
+				20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25 20 5 -10 -25
+				-32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -32.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 -10.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 11.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5 33.5"
+		/>
+			
+		<rotation name="source_rotation" x="" y="pi/2" z=""/>
+	<!-- 		delrin positions -->
+		<position name="CENTER" unit="mm" x="0" y="0" z="0"/>
+		<position name="world_rail_pos1" x="-35" y="0" z="-50+12"/>
+		<position name="world_rail_pos2" x="-35" y="0" z="-50+12+1*22"/>
+		<position name="world_rail_pos3" x="-35" y="0" z="-50+12+2*22"/>
+		<position name="world_rail_pos4" x="-35" y="0" z="-50+12+3*22"/>
+		
+		<position name="world_rail_pos5" x="35" y="0" z="-50+12"/>
+		<position name="world_rail_pos6" x="35" y="0" z="-50+12+1*22"/>
+		<position name="world_rail_pos7" x="35" y="0" z="-50+12+2*22"/>
+		<position name="world_rail_pos8" x="35" y="0" z="-50+12+3*22"/>
+		
+		
+		<position name="source_l1" unit="mm" x="0" y="-17/2-1" z="-50+6"/>
+		<position name="source_l1_l2" unit="mm" x="0" y="-17/2-1" z="-50+6+1*22"/>
+		<position name="source_l2_l3" unit="mm" x="0" y="-17/2-1" z="-50+6+2*22"/>
+		<position name="source_l3_l4" unit="mm" x="0" y="-17/2-1" z="-50+6+3*22"/>
+		<position name="source_l4" unit="mm" x="0" y="-17/2-1" z="-50+6+4*22"/>
+		
+		<position name="nest_guidance_l1_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+0.5"/>
+		<position name="layer_2_cutout_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+1*22+0.5"/>
+		<position name="layer_3_cutout_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+2*22+0.5"/>
+		<position name="layer_4_cutout_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+3*22+0.5"/>
+		
+		<position name="holder_surface_vol_l1_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+1+0.5E-3"/>
+		<position name="holder_surface_vol_l2_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+1+0.5E-3+1*22"/>
+		<position name="holder_surface_vol_l3_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+1+0.5E-3+2*22"/>
+		<position name="holder_surface_vol_l4_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+1+0.5E-3+3*22"/>
+		
+		<position name="layer_3_copper_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+2*22-1.5"/>
+		<position name="layer_4_copper_pos" unit="mm" x="0" y="1.5-17/2" z="12-50+1+3*22-1.5"/>
+		
+		
+		<constant name="au_thickness" value="8E-5"/>
+		<constant name="pt_thickness" value="1E-4"/>
+		<constant name="passivation_thickness" value="2*10E-3"/>
+		
+		<position  name="pt_pos" x="0" y="0" z="-5-pt_thickness/2" />
+		<position name="au_pos" x="0" y="0" z="-5-pt_thickness-au_thickness/2" />
+		
+		
+		
+		
+<!-- 		first row x position 
+		second row y position 
+		long cable -> min cable-->
+		<matrix name="cable_pos_matrix" coldim="16"
+			values="-16 -14 16 14 -18 -12 18 12 -1 1 27 -27 -3 3 24 -24
+				7 7 7 7 14.5 14.5 14.5 14.5 22 22 22 22 29.5 29.5 29.5 29.5"/> 
+		<matrix name="cut_name_matrix" coldim="16"
+			values="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"/>
+			
+		<variable name="cut_out_loop" value="2" />
+		<variable name="x" value="1"/>
+		<variable name="y" value="0"/>
+		<variable name="z" value="0"/>
+		<variable name="t" value="1"/>
+		
+		
+		<constant name="full_cable_z_pos" value="12-50-1-1E-3-1.8/2"/>
+		<constant name="stripped_cable_z_pos" value="12-50-1-1E-3-0.86/2+1*22"/>
+		
+		<rotation name="cable_rotation" aunit="rad" x="pi/2" y="0" z="0" />
+		
+		
+		<position name="CENTER" x="0" y="0" z="0"/>
+		<position name="holder_det_support_union_pos" x="0" y="0" z="9"/>
+		<position name="holder_union_pos" x="0" y="0" z="-0.5-1"/>
+		<position name="holder_det_cut_union_pos" x="0" y="0" z="-6-1"/>
+		
+		<position name="holder_screw_pos1" x="-35+5" y="-40+5" z="3.5"/>
+		<position name="holder_screw_pos2" x="35-5" y="-40+5" z="3.5"/>
+		<position name="holder_screw_pos3" x="-35+5" y="40-5" z="3.5"/>
+		<position name="holder_screw_pos4" x="35-5" y="40-5" z="3.5"/>
+		
+		<position name="holder_det_cutout_pos_1" unit="mm" x="35-7-5-0.5" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_2" unit="mm" x="35-7-5-0.5" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_3" unit="mm" x="35-7-5-0.5" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_4" unit="mm" x="35-7-5-0.5" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		
+		<position name="holder_det_cutout_pos_5" unit="mm" x="35-7-5-15-0.5" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_6" unit="mm" x="35-7-5-15-0.5" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_7" unit="mm" x="35-7-5-15-0.5" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_8" unit="mm" x="35-7-5-15-0.5" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		
+		<position name="holder_det_cutout_pos_9" unit="mm" x="35-7-5-0.5-30" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_10" unit="mm" x="35-7-5-0.5-30" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_11" unit="mm" x="35-7-5-0.5-30" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_12" unit="mm" x="35-7-5-0.5-30" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		
+		<position name="holder_det_cutout_pos_13" unit="mm" x="35-7-5-0.5-45" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_14" unit="mm" x="35-7-5-0.5-45" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_15" unit="mm" x="35-7-5-0.5-45" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		<position name="holder_det_cutout_pos_16" unit="mm" x="35-7-5-0.5-45" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2"/>
+		
+		
+		
+		<position name="delrin_surface_cutout_pos_1" unit="mm" x="35-7-5-0.5" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_2" unit="mm" x="35-7-5-0.5" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_3" unit="mm" x="35-7-5-0.5" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_4" unit="mm" x="35-7-5-0.5" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		
+		<position name="delrin_surface_cutout_pos_5" unit="mm" x="35-7-5-15-0.5" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_6" unit="mm" x="35-7-5-15-0.5" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_7" unit="mm" x="35-7-5-15-0.5" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_8" unit="mm" x="35-7-5-15-0.5" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		
+		<position name="delrin_surface_cutout_pos_9" unit="mm" x="35-7-5-0.5-30" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_10" unit="mm" x="35-7-5-0.5-30" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_11" unit="mm" x="35-7-5-0.5-30" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_12" unit="mm" x="35-7-5-0.5-30" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		
+		<position name="delrin_surface_cutout_pos_13" unit="mm" x="35-7-5-0.5-45" y="40-15-5" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_14" unit="mm" x="35-7-5-0.5-45" y="40-15-5-15" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_15" unit="mm" x="35-7-5-0.5-45" y="40-15-5-30" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+		<position name="delrin_surface_cutout_pos_16" unit="mm" x="35-7-5-0.5-45" y="40-15-5-45" z="5.5-(pt_thickness+au_thickness+passivation_thickness)/2-1"/>
+	</define>
+<!-- 	&materials; -->
+<!-- 	&holder_solid; -->
+	<solids>
+		
+		
+		
+		
+		<!-- 		delrin volumes -->
+		<box name="holder_det_cutout_box" x="11" y="11" z="12" lunit="mm"/>
+		<box name="delrin_holder_guidance_box" x="100-2*15+4" y="80" z="2" lunit="mm"/>
+		<box name="delrin_holder_hv_box" x="100-2*15" y="80" z="1" lunit="mm"/>
+		<box name="delrin_holder_anode_box" x="100-2*15" y="80" z="1" lunit="mm"/>
+		<box name="delrin_holder_guid_cutout" x="5" y="5" z="4" lunit="mm"/>
+		<box name="delrin_holder_surface_box" x="100-2*15" y="80" z="1E-3" lunit="mm"/>
+		<tube name="holder_screw_sol" z="11"  rmax="1" deltaphi="2*pi" aunit="rad" lunit= "mm" />
+		
+		<tube name="calib_tube_sol" z="70"  rmax="1.5" rmin="1" deltaphi="2*pi" aunit="rad" lunit= "mm" />
+		
+		<loop for="x" from="1" to="4" step="1">
+			<tube name="cable_core[x]" z="70-x*15" rmax="0.31/2" deltaphi="2*pi" aunit="rad" lunit="mm"/>
+			<tube name="cable_insulation_sol[x]" z="70-x*15" rmax="0.86/2" deltaphi="2*pi" aunit="rad" lunit="mm"/>
+			<tube name="cable_shield_sol[x]" z="70-x*15" rmax="0.86/2+0.3/2" deltaphi="2*pi" aunit="rad" lunit="mm"/>
+			<tube name="cable_sol[x]" z="70-x*15" rmax="1.8/2" deltaphi="2*pi" aunit="rad" lunit="mm"/>
+		</loop>
+		
+		
+		<union name="holder_det_cutout_union">
+			<first ref="holder_det_cutout_box"/>
+			<second ref="delrin_holder_guid_cutout"/>
+			<positionref ref="holder_det_cut_union_pos"/>
+		</union>
+		
+		<union name="delrin_surface_union_1" >
+			<first ref="delrin_holder_surface_box"/>
+			<second ref="delrin_holder_surface_box"/>
+			<position name="del_ho_u1" x="0" y="0" z="7-1E-3" unit="mm"/>
+		</union>
+		
+		<union name="delrin_surface_union_2" >
+			<first ref="delrin_surface_union_1"/>
+			<second ref="delrin_holder_surface_box"/>
+			<position name="del_ho_u2" x="0" y="0" z="7+1+1E-3" unit="mm"/>
+		</union>
+		
+		<union name="delrin_surface_union_3" >
+			<first ref="delrin_surface_union_2"/>
+			<second ref="delrin_holder_surface_box"/>
+			<position name="del_ho_u3" x="0" y="0" z="-3-1E-3" unit="mm"/>
+		</union>
+		
+<!-- 		Definition of delrin surface volume. This 
+		is necessary because the surface is not uniform. It 
+		will not be accepted by the surface methods
+		of venom. -->
+		<subtraction name="delrin_surface_cut_1">
+			<first ref="delrin_surface_union_3"/>
+			<second ref="holder_det_cutout_union"/>
+			<positionref ref="delrin_surface_cutout_pos_1"/>
+		</subtraction>
+		
+		<loop for="cut_out_loop" from="3" to="17" step="1">
+			<subtraction name="delrin_surface_cut[cut_out_loop]">
+				<first ref="delrin_surface_cut[cut_out_loop-1]"/>
+				<second ref="holder_det_cutout_union"/>
+				<positionref ref="delrin_surface_cutout_pos[cut_out_loop]"/>
+			</subtraction>
+		</loop>
+		
+		
+		<union name="holder_det_support_union">
+			<first ref="delrin_holder_hv_box"/>
+			<second ref="delrin_holder_anode_box"/>
+			<positionref ref="holder_det_support_union_pos"/>
+		</union>
+		
+		
+		<union name="holder_before_cutout">
+			<first ref="holder_det_support_union"/>
+			<second ref="delrin_holder_guidance_box"/>
+			<positionref ref="holder_union_pos"/>
+		</union>
+		
+		<subtraction name="delrin_det_support_cut_1">
+			<first ref="holder_before_cutout"/>
+			<second ref="holder_det_cutout_union"/>
+			<positionref ref="holder_det_cutout_pos_1"/>
+		</subtraction>
+		
+		<loop for="cut_out_loop" from="3" to="17" step="1" >
+			<subtraction name="delrin_det_support_cut[cut_out_loop]">
+				<first ref="delrin_det_support_cut[(-1+cut_out_loop)]"/>
+				<second ref="holder_det_cutout_union"/>
+				<positionref ref="holder_det_cutout_pos[cut_out_loop]"/>
+			</subtraction>
+		</loop>
+		
+		
+		
+		<union name="holder_det_support_union_screw1">
+			<first ref="delrin_det_support_cut_16"/>
+			<second ref="holder_screw_sol"/>
+			<positionref ref="holder_screw_pos1"/>
+		</union>
+		
+		<union name="holder_det_support_union_screw2">
+			<first ref="holder_det_support_union_screw1"/>
+			<second ref="holder_screw_sol"/>
+			<positionref ref="holder_screw_pos2"/>
+		</union>
+		
+		<union name="holder_det_support_union_screw3">
+			<first ref="holder_det_support_union_screw2"/>
+			<second ref="holder_screw_sol"/>
+			<positionref ref="holder_screw_pos3"/>
+		</union>
+		
+		<union name="holder">
+			<first ref="holder_det_support_union_screw3"/>
+			<second ref="holder_screw_sol"/>
+			<positionref ref="holder_screw_pos4"/>
+		</union>
+		
+		
+		
+<!-- 		 detector definition-->
+		<box name="copper_layer_bulk" x="70" y="80" z="11"/>
+		<box name="copper_layer_guidance" x="70+2*2" y="80" z="1"/>
+		<union name="copper_layer_sol">
+			<first ref="copper_layer_guidance"/>
+			<second ref="copper_layer_bulk"/>
+			<position name="copper_layer_union" x="0" y="0" z="+11/2+0.5-0-0.01"/>
+		</union>
+		
+		<box name="det_box" x="10+passivation_thickness" y="10+passivation_thickness" z="10+au_thickness+pt_thickness+passivation_thickness" lunit="mm"/>
+		<box name="crystal_box" x="10" y="10" z="10" lunit="mm"/>
+		<box name="paint_box" x="10+passivation_thickness" y="10+passivation_thickness" z="10+au_thickness+pt_thickness+passivation_thickness" lunit="mm"/>
+		<box name="gold_box" x="10" y="10" z="au_thickness" lunit="mm"/>
+		<box name="platin_box" x="10" y="10" z="pt_thickness" lunit="mm"/>
+		
+		
+		<subtraction name="paint_cut">
+			<first ref="paint_box"/>
+			<second ref="crystal_box"/>
+			<position name="paint_pos" x="0" y="0" z="(au_thickness+pt_thickness)/2"/>
+		</subtraction>
+		
+		<subtraction name="paint_sol">
+			<first ref="paint_cut"/>
+			<second ref="crystal_box"/>
+			<position name="paint_pos2" x="0" y="0" z="-5"/>
+		</subtraction>
+		
+<!-- 		defintion of environment volume -->
+		<box name="layer_rail_box" x="4" y="100-3" z="2" lunit="mm"/>
+		<box name="holder_world_box" x="100-15*2" y="100-3" z="100-2*3" lunit="mm"/>
+		
+		
+		
+		<union name="world_union_1rail">
+			<first ref="holder_world_box"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos1"/>
+		</union>
+		
+		<union name="world_union_2rail">
+			<first ref="world_union_1rail"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos2"/>
+		</union>
+		
+		<union name="world_union_3rail">
+			<first ref="world_union_2rail"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos3"/>
+		</union>
+		
+		<union name="world_union_4rail">
+			<first ref="world_union_3rail"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos4"/>
+		</union>
+		
+		<union name="world_union_5rail">
+			<first ref="world_union_4rail"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos5"/>
+		</union>
+		
+		<union name="world_union_6rail">
+			<first ref="world_union_5rail"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos6"/>
+		</union>
+		
+		<union name="world_union_7rail">
+			<first ref="world_union_6rail"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos7"/>
+		</union>
+		
+		<union name="world_union_vol">
+			<first ref="world_union_7rail"/>
+			<second ref="layer_rail_box"/>
+			<positionref ref="world_rail_pos8"/>
+		</union>
+		
+		
+		
+
+	</solids>
+	
+	<structure>
+		<loop for="y" from="1" to="4" step="1">
+			<volume name="cable_core_vol[y]">
+				<materialref ref="Copper"/>
+				<solidref ref="cable_core[y]"/>
+			</volume>
+			
+			<volume name="cable_insulation_vol[y]">
+				<materialref ref="Perfluoroethylene_propylene_copolymer"/>
+				<solidref ref="cable_insulation_sol[y]"/>
+				<physvol>
+					<volumeref ref="cable_core_vol[y]"/>
+					<positionref ref="CENTER"/>
+				</physvol>
+			</volume>
+			
+			<volume name="cable_shield_vol[y]">
+				<materialref ref="Copper"/>
+				<solidref ref="cable_shield_sol[y]"/>
+				<physvol>
+					<volumeref ref="cable_insulation_vol[y]"/>
+					<positionref ref="CENTER"/>
+				</physvol>
+			</volume>
+			
+			<volume name="cable_vol[y]" >
+				<materialref ref="Perfluoroethylene_propylene_copolymer"/>
+				<solidref ref="cable_sol[y]"/>
+				<physvol>
+					<volumeref ref="cable_shield_vol[y]"/>
+					<positionref ref="CENTER"/>
+				</physvol>
+			</volume>
+		</loop>
+		
+		<volume name="holder_vol">
+			<materialref ref="Polyoxymethylene"/>
+			<solidref ref ="holder"/>
+		</volume>
+		
+		<volume name="holder_surface_vol">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref ="delrin_surface_cut_16"/>
+		</volume>
+		
+		<volume name="paint_vol">
+			<materialref ref="Polyoxymethylene"/>
+			<solidref ref="paint_sol"/>
+		</volume>
+		
+		<volume name="au_vol">
+			<materialref ref="Gold"/>
+			<solidref ref="gold_box"/>
+		</volume>
+		
+		
+		<volume name="pt_vol">
+			<materialref ref="Gold"/>
+			<solidref ref="platin_box"/>
+		</volume>
+		
+		<volume name="crystal_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="crystal_box"/>
+			<auxiliary auxtype="VolSensitivity" auxvalue="array64SensitiveCrystal_sd"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="1"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="2"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="3"/>
+		</volume>
+		
+		
+		
+		<volume name="det_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="det_box"/>
+			<physvol>
+				<volumeref ref="paint_vol"/>
+				<positionref ref="CENTER"/>
+			</physvol>
+				
+			<physvol>
+				<volumeref ref="crystal_vol"/>
+				<position name="cryst_pos" x="0" y="0" z="(pt_thickness+au_thickness)/2"/>
+			</physvol>
+			<physvol>
+				<volumeref ref="pt_vol"/>
+				<positionref ref="pt_pos"/>
+			</physvol>
+			
+			<physvol>
+				<volumeref ref="au_vol"/>
+				<positionref  ref="au_pos"/>
+			</physvol>
+			
+		</volume>
+		
+		<volume name="copper_layer_vol">
+			<materialref ref="E-Copper"/>
+			<solidref ref="copper_layer_sol"/>
+		</volume>
+		
+		<volume name="calib_tube_vol">
+			<materialref ref="Perfluoroethylene_propylene_copolymer"/>
+			<solidref ref="calib_tube_sol"/>
+		</volume>
+		
+		<volume name="holder_world_vol" >
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="world_union_vol"/>
+			
+			<physvol>
+				<volumeref ref="calib_tube_vol"/>
+				<positionref ref="source_l1"/>
+				<rotationref ref="source_rotation"/>
+			</physvol>
+			
+			<physvol>
+				<volumeref ref="calib_tube_vol"/>
+				<positionref ref="source_l1_l2"/>
+				<rotationref ref="source_rotation"/>
+			</physvol>
+			
+			<physvol>
+				<volumeref ref="calib_tube_vol"/>
+				<positionref ref="source_l2_l3"/>
+				<rotationref ref="source_rotation"/>
+			</physvol>
+			
+			<physvol>
+				<volumeref ref="calib_tube_vol"/>
+				<positionref ref="source_l3_l4"/>
+				<rotationref ref="source_rotation"/>
+			</physvol>
+			
+			<physvol>
+				<volumeref ref="calib_tube_vol"/>
+				<positionref ref="source_l4"/>
+				<rotationref ref="source_rotation"/>
+			</physvol>
+			
+			<physvol>
+				<file name="source.gdml"/>
+				<positionref ref="source_l1_l2"/>
+				<rotationref ref="source_rotation"/>
+			</physvol>
+			
+			<loop for="z" from="1" to="4" step="1">
+				<loop for="t" from="1" to="4" step="1">
+					<physvol>
+						<volumeref ref="cable_vol[z]"/>
+						<position name="xypos" x="cable_pos_matrix[1,t+(z-1)*4]" y="cable_pos_matrix[2,t+(z-1)*4]-17/2-1" z="full_cable_z_pos"/>
+						<rotationref ref="cable_rotation"/>
+					</physvol>
+				</loop>
+			</loop>
+			
+			<loop for="z" from="1" to="4" step="1">
+				<loop for="t" from="1" to="4" step="1">
+					<physvol>
+						<volumeref ref="cable_insulation_vol[z]"/>
+						<position name="xypos" x="cable_pos_matrix[1,t+(z-1)*4]" y="cable_pos_matrix[2,t+(z-1)*4]-17/2-1" z="stripped_cable_z_pos"/>
+						<rotationref ref="cable_rotation"/>
+					</physvol>
+				</loop>
+			</loop>
+			
+			
+		<!--	<physvol>
+				<volumeref ref="holder_surface_vol"/>
+				<positionref ref="holder_surface_vol_l1_pos"/>
+			</physvol>
+			
+			<physvol>
+				<volumeref ref="holder_surface_vol"/>
+				<positionref ref="holder_surface_vol_l2_pos"/>
+			</physvol>-->
+			
+			<physvol >
+				<volumeref ref ="holder_vol"/>
+				<positionref ref="nest_guidance_l1_pos"/>
+				
+			</physvol>
+			
+			<physvol >
+				<volumeref ref ="holder_vol"/>
+				<positionref ref="layer_2_cutout_pos"/>
+				
+			</physvol>
+			
+			<!--<physvol >
+				<volumeref ref ="holder_vol"/>
+				<positionref ref="layer_3_cutout_pos"/>
+				
+			</physvol>
+			
+			<physvol >
+				<volumeref ref ="holder_vol"/>
+				<positionref ref="layer_4_cutout_pos"/>
+				
+			</physvol>-->
+			
+			
+			<physvol >
+				<volumeref ref ="copper_layer_vol"/>
+				<positionref ref="layer_3_copper_pos"/>
+				
+			</physvol>
+			
+			<physvol >
+				<volumeref ref ="copper_layer_vol"/>
+				<positionref ref="layer_4_copper_pos"/>
+				
+			</physvol>
+			
+		
+			
+		
+			<loop for="det_pos_var" to="nDet" step="1">
+				<physvol name="array64crystal_physvol" >
+					<volumeref ref="det_vol"/>
+					<position name="tmp" x="det_pos_matrix[1,det_pos_var]"  y="det_pos_matrix[2,det_pos_var]-7" z="det_pos_matrix[3,det_pos_var]+0.5"/>
+				</physvol>
+			</loop>
+			<auxiliary auxtype="PlacedVolumes" auxvalue="array64crystal_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+		</volume>
+	</structure>
+	
+	<setup name="holder_setup" version="0.1">
+		<world ref="holder_world_vol"/>
+	</setup>
+</gdml>
