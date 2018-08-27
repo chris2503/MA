@@ -16,7 +16,7 @@
 		<constant name="zDET" value="15"/>
 
 		<!-- thickness for the dead CZT area -->
-		<constant name="d_guard" value="0.625"/> <!-- µm -->
+		<constant name="d_guard" value="0.625"/> <!-- mm -->
 
 		<!-- dimensions of the sensitive volume -->		
 		<constant name="xDET_sens" value="xDET-2*d_guard"/>
@@ -44,8 +44,8 @@
 	</materials>
 	-->
 	<!-- Definition of elements, compositions, etc. -->
-	&materials;
-
+	<!--&materials;
+	-->
 
 	<!-- shape and dimensions of the detectors -->
 	<solids>
@@ -84,17 +84,19 @@
 
 		<volume name="single_det_vol">
 			<materialref ref="CdZnTe" />
-			<solidref ref="single_det_solid"/>
+			<solidref ref="Worldbox_nakeddet"/>
 			<loop for="y_i" from="0" to="1" step="1">
 				<loop for="x_i" from="0" to="1" step="1">
 					<physvol name="sub_det_physvol">
 						<volumeref ref="subdet_vol"/>
-						<position name="subnaked_det_pos" x="-xDET_sens/2 + x_i*x_subdet + x_subdet/2" y="yDET_sens/2 - y_i*y_subdet - y_subdet/2" z="0"/>
+						<position name="naked_subdet_pos" x="-xDET_sens/2 + x_i*xDET_sens" y="yDET_sens/2 - y_i*yDET_sens" z="0"/>
 					</physvol>
 				</loop>
 			</loop>
-
-			
+			<physvol name="dead_czt_physvol">
+				<volumeref ref="dead_czt_vol"/>
+				<positionref ref="naked_det_pos"/>
+			</physvol>
 
 			<auxiliary auxtype="PlacedVolumes" auxvalue="sub_det_physvol" />
 			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
@@ -108,12 +110,7 @@
 				<volumeref ref="single_det_vol"/>
 				<positionref ref="naked_det_pos"/>
 			</physvol>
-			<physvol name="dead_czt_physvol">
-				<volumeref ref="dead_czt_vol"/>
-				<positionref ref="naked_det_pos"/>
-			</physvol>
-			<auxiliary auxtype="PlacedVolumes" auxvalue="quad_det_physvol" />
-			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+			
 			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
 		</volume>
 	</structure>

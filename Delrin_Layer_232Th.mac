@@ -3,7 +3,7 @@
 
 /venom/io/open ./rootfiles/chain_decay_232Th_delrin_layer
 /venom/action/setEventAction autowrite
-/venom/io/writeEvery 10000
+/venom/io/writeEvery 100000
 
 
 /venom/gun/setParticleGun chaingen
@@ -22,16 +22,12 @@
 # /chaingen/NuclDeexcitationOnly true
 
 #the sim fractions are necessary because of different cable length
-/chaingen/posgen/solidSourceIntrinsic top_physvol
-/chaingen/posgen/solidSourceIntrinsic middle_physvol
-/chaingen/posgen/solidSourceIntrinsic bottom_physvol
-/chaingen/posgen/confine top_physvol
-/chaingen/posgen/confine middle_physvol
-/chaingen/posgen/confine bottom_physvol
+/chaingen/posgen/solidSourceIntrinsic delrin_physvol
+/chaingen/posgen/confine delrin_physvol
 
 /array64data/storeEventInfo 1								# extra output enabled
 /array64data/ignoreNoEdep 1									# events without energy deposition ignored
-/run/beamOn 100000
+/run/beamOn 1000000
 
 /chaingen/clearlist
 /venom/io/write

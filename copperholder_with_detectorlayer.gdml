@@ -120,9 +120,11 @@
 		<scale name="GlyptalColour" x="255/255" y="0/255" z="0/255"/>
 	</define>
 
-	
+	&materials;
+	<!--
 	<materials>
 	</materials>
+	-->
 
 	<solids>
 		<!-- delrin layer-->
@@ -340,17 +342,18 @@
 			<solidref ref="Worldbox_copperholder"/>
 
 			<!-- Delrin Layer -->
-			<physvol name="top_physvol">
+			<!-- top plate -->
+			<physvol name="delrin_physvol">
 				<volumeref ref="plate_1_vol"/>
 				<positionref ref="top_pos"/>
 			</physvol>
-
-			<physvol name="middle_physvol">
+			<!-- middle plate which is directly above the bottom plate -->
+			<physvol name="delrin_physvol">
 				<volumeref ref="plate_1_vol"/>
 				<positionref ref="middle_pos"/>
 			</physvol>
-
-			<physvol name="bottom_physvol">
+			<!-- bottom plate (two plates implemented as one plate)-->
+			<physvol name="delrin_physvol">
 				<volumeref ref="plate_2_vol"/>
 				<positionref ref="bottom_pos"/>
 			</physvol>
@@ -364,7 +367,6 @@
 				</loop>
 			</loop>
 			
-
 			<!-- copperholder -->
 			<physvol name="left_element_physvol">
 				<file name="copperholder_leftside_element.gdml" volname="left_vol"/>

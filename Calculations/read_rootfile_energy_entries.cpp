@@ -26,9 +26,14 @@ void SaveEnergyEntries(){
                 "../rootfiles/chain_decay_232Th_glyptal_coating.root",
                 "../rootfiles/chain_decay_238U_epoxy_coating.root",
                 "../rootfiles/chain_decay_238U_glyptal_coating.root",
-                "../rootfiles/shielding_stdPb_210Pb_chain.root",
-                "../rootfiles/shielding_ULAPb_210Pb_chain.root"
+                "../rootfiles/chain_decay_232Th_delrin_layer.root",
+                "../rootfiles/chain_decay_238U_delrin_layer.root",
+                "../rootfiles/chain_decay_232Th_delrin_screws.root",
+                "../rootfiles/chain_decay_238U_delrin_screws.root",
+                //  "../rootfiles/shielding_stdPb_210Pb_chain.root",
+                //  "../rootfiles/shielding_ULAPb_210Pb_chain.root"
                 };
+
     savefile = {
                 "../rootfiles/edep_entries/entries_114Cd.txt", 
                 "../rootfiles/edep_entries/entries_116Cd.txt", 
@@ -41,8 +46,12 @@ void SaveEnergyEntries(){
                 "../rootfiles/edep_entries/entries_232Th_glyptal.txt",
                 "../rootfiles/edep_entries/entries_238U_epoxy.txt",
                 "../rootfiles/edep_entries/entries_238U_glyptal.txt",
-                "../rootfiles/edep_entries/entries_shielding_stdPb_210Pb_chain.txt",
-                "../rootfiles/edep_entries/entries_shielding_ULAPb_210Pb_chain.txt"
+                "../rootfiles/edep_entries/entries_232Th_dplate.txt",
+                "../rootfiles/edep_entries/entries_238U_dplate.txt",
+                "../rootfiles/edep_entries/entries_232Th_dscrew.txt",
+                "../rootfiles/edep_entries/entries_238U_dscrew.txt"
+                //  ,"../rootfiles/edep_entries/entries_shielding_stdPb_210Pb_chain.txt",
+                //  "../rootfiles/edep_entries/entries_shielding_ULAPb_210Pb_chain.txt"
                 };
 
     ofstream myfile;

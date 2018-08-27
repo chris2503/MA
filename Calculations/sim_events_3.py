@@ -254,7 +254,7 @@ def create_det_hists(hists, k=None):
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetStats(False)
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetLineWidth(1)
 				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetLineColor(j+2)
-				locals()['hist_%s_%i%i' %(k,i_h)].Add(locals()['hist_%s_%i%i' %(k,i_h,j_h)])
+				locals()['hist_%s_%i' %(k,i_h)].Add(locals()['hist_%s_%i%i' %(k,i_h,j_h)])
 			all_hists.append(locals()['hist_%s_%i' %(k,i_h)])
 
 	else:
@@ -451,15 +451,17 @@ def delete_iso_sumHist(hist, k=None):
 		locals()['sumdethist'].Delete()
 
 def save_sumHist(hists, sumhist, b):
-	canvas = ROOT.TCanvas('canv', 'Histogramm')
+	canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	labels=[]
 	for i_lab in range(len(b)):
 		if b[i_lab] == 'czt':
 			labels.append('CdZnTe')
 		if b[i_lab] == 'czt_nolim':
 			labels.append('CdZnTe')
-		elif b[i_lab] == 'coating':
+		if b[i_lab] == 'coating':
 			labels.append('Detector Coatings')
+		if b[i_lab] == 'plastic':
+			labels.append('Plastic Holder')
 
 
 	print('Plotting contributions of all background contributions ...')
@@ -511,13 +513,14 @@ def save_sumHist(hists, sumhist, b):
 
 	if not os.path.exists(dir):
 		os.makedirs(dir)
-	canvas.Print(dir+'whole_contributions_%s.pdf' %(b))
+	canvas.SaveAs(dir+'whole_contributions_%s.pdf' %(b))
 	canvas.Clear()
+	canvas.Close()
 	print('Plotting successful :) \n')
 
 
 def save_material_hists(hists, sumhist, b):
-	canvas = ROOT.TCanvas('canv', 'Histogramm')
+	canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	if b == 'czt':
 		labels = ['114Cd', '116Cd', '70Zn', '128Te', '130Te']
 
@@ -526,6 +529,9 @@ def save_material_hists(hists, sumhist, b):
 
 	if b == 'coating':
 		labels = ['40K_glyp', '40K_epox', '232Th_glyp', '232Th_epox', '238U_glyp', '238U_epox']
+
+	if b == 'plastic':
+		labels = ['232Th_layer', '238U_layer', '232Th_screw', '238U_screw']
 
 	print('Plotting contributions of %s ...\n' %(b))
 
@@ -576,9 +582,10 @@ def save_material_hists(hists, sumhist, b):
 
 	if not os.path.exists(dir):
 		os.makedirs(dir)
-	canvas.Print(dir+'%s.pdf' %(b))
+	canvas.SaveAs(dir+'%s.pdf' %(b))
 	canvas.Clear()
 	print('Plotting successful :) \n')
+	canvas.Close()
 
 
 # save histogram of every single sectors
@@ -595,37 +602,39 @@ def save_single_sector_hists(hists, eventfile, x_range, k=None):
 	sim = sim[0]
 
 	dir = './Plots/%s/sector/' %(sim)
-
-	canvas = ROOT.TCanvas('canv', 'Histogramm')
+	if k:
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
+	else:
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	for i in range(dets):			# for all 9 detectors
 		i_h = i+1
 		for j in range(subdets):	# for all 4 sectors
 			# hist_11, hist_12, hist_13, hist_14, hist_21, ..., hist_94
 			j_h = j+1
 			if k:
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)] = get_sectorHist(hists, i, j)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetLineColor(2)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetLineWidth(1)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)] = get_sectorHist(hists, i, j)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetLineColor(2)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetLineWidth(1)
 
 				# nice labeling
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitleSize(0.03)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitle("E in keV")
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetTickLength(0.02)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetTicks("-")
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetLabelOffset(-0.05)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitleOffset(-1.4)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitleSize(0.03)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitle("E in keV")
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetXaxis().SetTickLength(0.02)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetXaxis().SetTicks("-")
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetXaxis().SetLabelOffset(-0.05)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetXaxis().SetTitleOffset(-1.4)
 
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetYaxis().SetTitleSize(0.025)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetYaxis().SetTickLength(0.02)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetYaxis().SetTicks("+")
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetYaxis().SetLabelOffset(-0.025)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].GetYaxis().SetTitleOffset(-1.8)
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetStats(False)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetYaxis().SetTitleSize(0.025)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetYaxis().SetTickLength(0.02)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetYaxis().SetTicks("+")
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetYaxis().SetLabelOffset(-0.025)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetYaxis().SetTitleOffset(-1.8)
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetStats(False)
 
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
-				locals()['hist_%i_%i%i' %(k,i_h,j_h)].Draw()
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
+				locals()['hist_%s_%i%i' %(k,i_h,j_h)].Draw()
 
 			else:
 				locals()['hist_%i%i' %(i_h,j_h)] = get_sectorHist(hists, i, j)
@@ -654,11 +663,12 @@ def save_single_sector_hists(hists, eventfile, x_range, k=None):
 
 			canvas.SetLogy(True)
 			canvas.Update()
-
+			canvas.Draw()
 			if not os.path.exists(dir):
 				os.makedirs(dir)
-			canvas.Print('%shist_%i%i.pdf' %(dir,i_h,j_h))
+			canvas.SaveAs('%shist_%i%i.pdf' %(dir,i_h,j_h))
 			canvas.Clear()
+	canvas.Close()
 	print('Plotting successful :) \n')
 
 
@@ -675,37 +685,60 @@ def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None):
 
 	dir = './Plots/%s/single_det/' %(sim)
 
-	canvas = ROOT.TCanvas('canv', 'Histogramm')
+	
 	if k:
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
-			locals()['hist_%i_%i' %(k,i_h)] = get_detHist(hists, i)
+			locals()['hist_%s_%i' %(k,i_h)] = get_detHist(hists, i)
 
 			# nice labeling
-			locals()['sumhist_%i_%i' %(k,i_h)] = get_detHist(mysumhist, i)
-			locals()['hist_%i_%i' %(k,i_h)].Add(locals()['sumhist_%i' %(i_h)])
-			locals()['hist_%i_%i' %(k,i_h)].Draw('nostack')
-			locals()['hist_%i_%i' %(k,i_h)].SetLineColor(3)
-			locals()['hist_%i_%i' %(k,i_h)].SetLineWidth(1)
-			locals()['hist_%i_%i' %(k,i_h)].SetStats(False)
-			locals()['hist_%i_%i' %(k,i_h)].GetXaxis().SetTitleSize(0.03)
-			locals()['hist_%i_%i' %(k,i_h)].GetXaxis().SetTitle("E in keV")
-			locals()['hist_%i_%i' %(k,i_h)].GetXaxis().SetTickLength(0.02)
-			locals()['hist_%i_%i' %(k,i_h)].GetXaxis().SetTicks("-")
-			locals()['hist_%i_%i' %(k,i_h)].GetXaxis().SetLabelOffset(-0.05)
-			locals()['hist_%i_%i' %(k,i_h)].GetXaxis().SetTitleOffset(-1.4)
+			locals()['sumhist_%s_%i' %(k,i_h)] = get_detHist(mysumhist, i)
+			locals()['hist_%s_%i' %(k,i_h)].Add(locals()['sumhist_%s_%i' %(k,i_h)])
+			locals()['hist_%s_%i' %(k,i_h)].Draw('nostack')
+			locals()['hist_%s_%i' %(k,i_h)].SetLineColor(3)
+			locals()['hist_%s_%i' %(k,i_h)].SetLineWidth(1)
+			locals()['hist_%s_%i' %(k,i_h)].SetStats(False)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitleSize(0.03)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitle("E in keV")
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTickLength(0.02)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTicks("-")
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetLabelOffset(-0.05)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitleOffset(-1.4)
 
-			locals()['hist_%i_%i' %(k,i_h)].GetYaxis().SetTitleSize(0.025)
-			locals()['hist_%i_%i' %(k,i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
-			locals()['hist_%i_%i' %(k,i_h)].GetYaxis().SetTickLength(0.02)
-			locals()['hist_%i_%i' %(k,i_h)].GetYaxis().SetTicks("+")
-			locals()['hist_%i_%i' %(k,i_h)].GetYaxis().SetLabelOffset(-0.025)
-			locals()['hist_%i_%i' %(k,i_h)].GetYaxis().SetTitleOffset(-1.8)
-			locals()['hist_%i_%i' %(k,i_h)].SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
-			locals()['hist_%i_%i' %(k,i_h)].SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitleSize(0.025)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTickLength(0.02)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTicks("+")
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetLabelOffset(-0.025)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitleOffset(-1.8)
+			locals()['hist_%s_%i' %(k,i_h)].SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
+			locals()['hist_%s_%i' %(k,i_h)].SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
+
+			# Legend
+			leg = ROOT.TLegend(0.55, 0.8, 0.9, 0.9)
+			leg.SetHeader("Sector")
+			leg.SetNColumns(5)
+			leg.SetTextSize(0.025)
+
+			for j in range(subdets):	# for all 4 sectors
+				j_h = j+1
+			leg.AddEntry('hist_%s_%i%i' %(k,i_h,j_h), "%i" %(j_h), "f")
+			leg.AddEntry(locals()['sumhist_%s_%i' %(k,i_h)], "combined", "f")
+			leg.Draw()
+
+			canvas.SetLogy(True)
+			canvas.Update()
+
+			if not os.path.exists(dir):
+				os.makedirs(dir)
+			canvas.Draw()
+			canvas.SaveAs('%shist_%i.pdf' %(dir,i_h))
+			canvas.Clear()
 
 
 	else:
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
 			locals()['hist_%i' %(i_h)] = get_detHist(hists, i)
@@ -738,16 +771,10 @@ def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None):
 			leg.SetNColumns(5)
 			leg.SetTextSize(0.025)
 
-			if k:
-				for j in range(subdets):	# for all 4 sectors
-					j_h = j+1
-					leg.AddEntry('hist_%i_%i%i' %(k,i_h,j_h), "%i" %(j_h), "f")
-				leg.AddEntry(locals()['sumhist_%i_%i' %(k,i_h)], "combined", "f")
-			else:
-				for j in range(subdets):	# for all 4 sectors
-					j_h = j+1
-					leg.AddEntry('hist_%i%i' %(i_h,j_h), "%i" %(j_h), "f")
-				leg.AddEntry(locals()['sumhist_%i' %(i_h)], "combined", "f")
+			for j in range(subdets):	# for all 4 sectors
+				j_h = j+1
+				leg.AddEntry('hist_%i%i' %(i_h,j_h), "%i" %(j_h), "f")
+			leg.AddEntry(locals()['sumhist_%i' %(i_h)], "combined", "f")
 			leg.Draw()
 
 			canvas.SetLogy(True)
@@ -755,8 +782,11 @@ def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None):
 
 			if not os.path.exists(dir):
 				os.makedirs(dir)
-			canvas.Print('%shist_%i.pdf' %(dir,i_h))
+			canvas.Draw()
+			canvas.SaveAs('%shist_%i.pdf' %(dir,i_h))
 			canvas.Clear()
+	canvas.Close()
+
 
 def save_single_iso_hists(hist, sumhist, eventfile, x_range, k=None):
 	subdets = 4
@@ -771,35 +801,45 @@ def save_single_iso_hists(hist, sumhist, eventfile, x_range, k=None):
 
 	dir = './Plots/%s/' %(sim)
 
-	canvas = ROOT.TCanvas('canv', 'Histogramm')
-
 	if k:
-		locals()['hist_%i_%s' %(k,sim)] = get_isoHist(hist)
-		locals()['sumdethist_%i' %(k)] = get_isoHist(sumhist)
-		locals()['sumdethist_%i' %(k)].SetLineWidth(1)
-		locals()['hist_%i_%s' %(k,sim)].Add(locals()['sumdethist'])
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
+		locals()['hist_%s_%s' %(k,sim)] = get_isoHist(hist)
+		locals()['sumdethist_%s' %(k)] = get_isoHist(sumhist)
+		locals()['sumdethist_%s' %(k)].SetLineWidth(1)
+		locals()['hist_%s_%s' %(k,sim)].Add(locals()['sumdethist_%s' %(k)])
 		# nice labeling
-		locals()['hist_%i_%s' %(k,sim)].Draw('nostack')
-		locals()['hist_%i_%s' %(k,sim)].SetStats(False)
-		locals()['hist_%i_%s' %(k,sim)].SetLineColor(3)
-		locals()['hist_%i_%s' %(k,sim)].SetLineWidth(2)
-		locals()['hist_%i_%s' %(k,sim)].GetXaxis().SetTitleSize(0.03)
-		locals()['hist_%i_%s' %(k,sim)].GetXaxis().SetTitle("E in keV")
-		locals()['hist_%i_%s' %(k,sim)].GetXaxis().SetTickLength(0.02)
-		locals()['hist_%i_%s' %(k,sim)].GetXaxis().SetTicks("-")
-		locals()['hist_%i_%s' %(k,sim)].GetXaxis().SetLabelOffset(-0.05)
-		locals()['hist_%i_%s' %(k,sim)].GetXaxis().SetTitleOffset(-1.4)
+		locals()['hist_%s_%s' %(k,sim)].Draw('nostack')
+		locals()['hist_%s_%s' %(k,sim)].SetStats(False)
+		locals()['hist_%s_%s' %(k,sim)].SetLineColor(3)
+		locals()['hist_%s_%s' %(k,sim)].SetLineWidth(2)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTitleSize(0.03)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTitle("E in keV")
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTickLength(0.02)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTicks("-")
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetLabelOffset(-0.05)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTitleOffset(-1.4)
 
-		locals()['hist_%i_%s' %(k,sim)].GetYaxis().SetTitleSize(0.025)
-		locals()['hist_%i_%s' %(k,sim)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
-		locals()['hist_%i_%s' %(k,sim)].GetYaxis().SetTickLength(0.02)
-		locals()['hist_%i_%s' %(k,sim)].GetYaxis().SetTicks("+")
-		locals()['hist_%i_%s' %(k,sim)].GetYaxis().SetLabelOffset(-0.025)
-		locals()['hist_%i_%s' %(k,sim)].GetYaxis().SetTitleOffset(-1.8)
-		locals()['hist_%i_%s' %(k,sim)].SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
-		locals()['hist_%i_%s' %(k,sim)].SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTitleSize(0.025)
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTickLength(0.02)
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTicks("+")
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetLabelOffset(-0.025)
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTitleOffset(-1.8)
+		locals()['hist_%s_%s' %(k,sim)].SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
+		locals()['hist_%s_%s' %(k,sim)].SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
+		# Legend
+		leg = ROOT.TLegend(0.55, 0.8, 0.9, 0.9)
+		leg.SetHeader("Detector")
+		leg.SetNColumns(5)
+		leg.SetTextSize(0.025)
+		for j in range(dets):	# for all 4 sectors
+			j_h = j+1
+			leg.AddEntry('sumhist_%s_%i' %(k,j_h), "%i" %(j_h), "f")
+		leg.AddEntry('sumdethist_%s' %(k), "combined", "f")
+		leg.Draw()
 
 	else:
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
 		locals()['hist_%s' %(sim)] = get_isoHist(hist)
 		locals()['sumdethist'] = get_isoHist(sumhist)
 		locals()['sumdethist'].SetLineWidth(1)
@@ -825,37 +865,32 @@ def save_single_iso_hists(hist, sumhist, eventfile, x_range, k=None):
 		locals()['hist_%s' %(sim)].GetHistogram().SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
 		locals()['hist_%s' %(sim)].GetHistogram().SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
 
-	# Legend
-	leg = ROOT.TLegend(0.55, 0.8, 0.9, 0.9)
-	leg.SetHeader("Detector")
-	leg.SetNColumns(5)
-	leg.SetTextSize(0.025)
+		# Legend
+		leg = ROOT.TLegend(0.55, 0.8, 0.9, 0.9)
+		leg.SetHeader("Detector")
+		leg.SetNColumns(5)
+		leg.SetTextSize(0.025)
 
-	if k:
-		for j in range(dets):	# for all 4 sectors
-			j_h = j+1
-			leg.AddEntry('sumhist_%i_%i' %(k,j_h), "%i" %(j_h), "f")
-		leg.AddEntry('sumdethist_%i' %(k), "combined", "f")
-	else:
 		for j in range(dets):	# for all 4 sectors
 			j_h = j+1
 			leg.AddEntry('sumhist_%i' %(j_h), "%i" %(j_h), "f")
 		leg.AddEntry('sumdethist', "combined", "f")
-	leg.Draw()
+		leg.Draw()
 
 	canvas.SetLogy(True)
 	canvas.Update()
 
 	if not os.path.exists(dir):
 		os.makedirs(dir)
-	canvas.Print('%shist_%s.pdf' %(dir, sim))
+	canvas.SaveAs('%shist_%s.pdf' %(dir, sim))
 	canvas.Clear()
+	canvas.Close()
 
 
 
 #########################################################
 # histograms of how many events are seen by the detectors
-def create_dep_secHist(ev_data, scale):
+def create_dep_secHist(ev_data, scale, k=None):
 	bins = 4
 	E_range = 4
 
@@ -873,25 +908,40 @@ def create_dep_secHist(ev_data, scale):
 
 	subdets = 4
 	dets = 9
+	if k:
+		for i in range(dets):			# for all 9 detectors
+			i_h = i+1
+			locals()['hist_%s_%i' %(k,i_h)] =  ROOT.TH1F(('hist_%s_%i' %(k,i_h)), ('Detector %i' %(i_h)), bins, 0, E_range)
+			for i_entry in range(len(all_events)):
+				if crystal_id[i_entry] == i_h:
+					locals()['hist_%s_%i' %(k,i_h)].Fill(sector_id[i_entry]-0.5)
+			for i_bin in range(bins):
+				bin_temp = locals()['hist_%s_%i' %(k,i_h)].GetBinContent(i_bin+1)
+				locals()['hist_%s_%i' %(k,i_h)].SetBinError(i_bin+1, 1/np.sqrt(bin_temp))
+				#print(bin_temp)
+				#print(locals()['hist_%i' %(i_h)].GetBinError(i_bin+1))
+			locals()['hist_%s_%i' %(k,i_h)].Scale(scale)
+			all_hists.append(locals()['hist_%s_%i' %(k,i_h)])
 
-	for i in range(dets):			# for all 9 detectors
-		i_h = i+1
-		locals()['hist_%i' %(i_h)] =  ROOT.TH1F(('hist_%i' %(i_h)), ('Detector %i' %(i_h)), bins, 0, E_range)
-		for i_entry in range(len(all_events)):
-			if crystal_id[i_entry] == i_h:
-				locals()['hist_%i' %(i_h)].Fill(sector_id[i_entry]-0.5)
-		for i_bin in range(bins):
-			bin_temp = locals()['hist_%i' %(i_h)].GetBinContent(i_bin+1)
-			locals()['hist_%i' %(i_h)].SetBinError(i_bin+1, 1/np.sqrt(bin_temp))
-			#print(bin_temp)
-			#print(locals()['hist_%i' %(i_h)].GetBinError(i_bin+1))
-		locals()['hist_%i' %(i_h)].Scale(scale)
-		all_hists.append(locals()['hist_%i' %(i_h)])
+	else:
+		for i in range(dets):			# for all 9 detectors
+			i_h = i+1
+			locals()['hist_%i' %(i_h)] =  ROOT.TH1F(('hist_%i' %(i_h)), ('Detector %i' %(i_h)), bins, 0, E_range)
+			for i_entry in range(len(all_events)):
+				if crystal_id[i_entry] == i_h:
+					locals()['hist_%i' %(i_h)].Fill(sector_id[i_entry]-0.5)
+			for i_bin in range(bins):
+				bin_temp = locals()['hist_%i' %(i_h)].GetBinContent(i_bin+1)
+				locals()['hist_%i' %(i_h)].SetBinError(i_bin+1, 1/np.sqrt(bin_temp))
+				#print(bin_temp)
+				#print(locals()['hist_%i' %(i_h)].GetBinError(i_bin+1))
+			locals()['hist_%i' %(i_h)].Scale(scale)
+			all_hists.append(locals()['hist_%i' %(i_h)])
 	return all_hists
 
 
 # save the histograms above
-def save_dep_sec_hists(hists, eventfile):
+def save_dep_sec_hists(hists, eventfile, k=None):
 	dets = 9
 	print('\nPlotting detector histograms ...\n')
 	sim =  eventfile.split('/')
@@ -903,52 +953,98 @@ def save_dep_sec_hists(hists, eventfile):
 	y_max = 0
 
 	dir = './Plots/%s/dep/single_det/' %(sim)
-	for i in range(dets):
-		i_h = i+1
-		locals()['hist_%i' %(i_h)] = get_detHist(hists, i)
-		y_tmax = locals()['hist_%i' %(i_h)].GetMaximum()
-		if y_tmax > y_max:
-			y_max = y_tmax
-	y_max = 1.2 * y_max
+	if k:
+		for i in range(dets):
+			i_h = i+1
+			locals()['hist_%s_%i' %(k,i_h)] = get_detHist(hists, i)
+			y_tmax = locals()['hist_%s_%i' %(k,i_h)].GetMaximum()
+			if y_tmax > y_max:
+				y_max = y_tmax
+		y_max = 1.2 * y_max
 
 
-	canvas = ROOT.TCanvas('canv', 'Histogramm')
-	for i in range(dets):			# for all 9 detectors
-		i_h= i+1
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
+		for i in range(dets):			# for all 9 detectors
+			i_h= i+1
 
 		# nice labeling
-		locals()['hist_%i' %(i_h)].Draw()
-		locals()['hist_%i' %(i_h)].SetLineColor(3)
-		locals()['hist_%i' %(i_h)].SetLineWidth(1)
-		locals()['hist_%i' %(i_h)].SetStats(False)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTitleSize(0.03)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTitle("Sector")
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTickLength(0.02)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTicks("-")
-		locals()['hist_%i' %(i_h)].GetXaxis().SetLabelOffset(-0.05)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTitleOffset(-1.4)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetNdivisions(4)
-		locals()['hist_%i' %(i_h)].GetXaxis().Set(4, 0.5, 4.5)
+			locals()['hist_%s_%i' %(k,i_h)].Draw()
+			locals()['hist_%s_%i' %(k,i_h)].SetLineColor(3)
+			locals()['hist_%s_%i' %(k,i_h)].SetLineWidth(1)
+			locals()['hist_%s_%i' %(k,i_h)].SetStats(False)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitleSize(0.03)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitle("Sector")
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTickLength(0.02)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTicks("-")
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetLabelOffset(-0.05)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitleOffset(-1.4)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetNdivisions(4)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().Set(4, 0.5, 4.5)
 
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTitleSize(0.025)
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTickLength(0.02)
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTicks("+")
-		locals()['hist_%i' %(i_h)].GetYaxis().SetLabelOffset(-0.025)
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTitleOffset(-1.8)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitleSize(0.025)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTickLength(0.02)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTicks("+")
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetLabelOffset(-0.025)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitleOffset(-1.8)
 
-		locals()['hist_%i' %(i_h)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
-		canvas.SetLogy(False)
-		canvas.Update()
+			locals()['hist_%s_%i' %(k,i_h)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
+			canvas.SetLogy(False)
+			canvas.Update()
 
-		if not os.path.exists(dir):
-			os.makedirs(dir)
-		canvas.Print('%shist_%i.pdf' %(dir,i_h))
-	canvas.Clear()
-	canvas.Close()
+			if not os.path.exists(dir):
+				os.makedirs(dir)
+			canvas.SaveAs('%shist_%i.pdf' %(dir,i_h))
+			canvas.Clear()
+		canvas.Close()
+
+	else:
+		for i in range(dets):
+			i_h = i+1
+			locals()['hist_%i' %(i_h)] = get_detHist(hists, i)
+			y_tmax = locals()['hist_%i' %(i_h)].GetMaximum()
+			if y_tmax > y_max:
+				y_max = y_tmax
+		y_max = 1.2 * y_max
 
 
-def save_dep_sec_hists_2(hists, eventfile=None, background=None):
+		canvas = ROOT.TCanvas('canvas', 'Histogramm')
+		for i in range(dets):			# for all 9 detectors
+			i_h= i+1
+
+		# nice labeling
+			locals()['hist_%i' %(i_h)].Draw()
+			locals()['hist_%i' %(i_h)].SetLineColor(3)
+			locals()['hist_%i' %(i_h)].SetLineWidth(1)
+			locals()['hist_%i' %(i_h)].SetStats(False)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTitleSize(0.03)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTitle("Sector")
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTickLength(0.02)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTicks("-")
+			locals()['hist_%i' %(i_h)].GetXaxis().SetLabelOffset(-0.05)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTitleOffset(-1.4)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetNdivisions(4)
+			locals()['hist_%i' %(i_h)].GetXaxis().Set(4, 0.5, 4.5)
+
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTitleSize(0.025)
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTickLength(0.02)
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTicks("+")
+			locals()['hist_%i' %(i_h)].GetYaxis().SetLabelOffset(-0.025)
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTitleOffset(-1.8)
+
+			locals()['hist_%i' %(i_h)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
+			canvas.SetLogy(False)
+			canvas.Update()
+
+			if not os.path.exists(dir):
+				os.makedirs(dir)
+			canvas.SaveAs('%shist_%i.pdf' %(dir,i_h))
+			canvas.Clear()
+		canvas.Close()
+
+
+def save_dep_sec_hists_2(hists, eventfile=None, k=None, background=None):
 	dets = 9
 	print('\nPlotting detector histograms ...\n')
 	if eventfile:
@@ -962,58 +1058,106 @@ def save_dep_sec_hists_2(hists, eventfile=None, background=None):
 	else:
 		dir = './Plots/all_dep/'
 
-	canvas = ROOT.TCanvas('canv', 'Histogramm', 500, 500)
-	canvas.Divide(3, 3)
-	y_max = 0
-	for i in range(dets):
-		i_h = i+1
+	if k:
+		canvas = ROOT.TCanvas('canvas', 'Histogramm', 500, 500)
+		canvas.Divide(3, 3)
+		y_max = 0
+		for i in range(dets):
+			i_h = i+1
 
-		locals()['hist_%i' %(i_h)] = get_detHist(hists, i)
-		y_tmax = locals()['hist_%i' %(i_h)].GetMaximum()
-		if y_tmax > y_max:
-			y_max = y_tmax
-	y_max = 1.2 * y_max
+			locals()['hist_%s_%i' %(k,i_h)] = get_detHist(hists, i)
+			y_tmax = locals()['hist_%s_%i' %(k,i_h)].GetMaximum()
+			if y_tmax > y_max:
+				y_max = y_tmax
+		y_max = 1.2 * y_max
 
-	for i in range(dets):			# for all 9 detectors
-		i_h = i+1
+		for i in range(dets):			# for all 9 detectors
+			i_h = i+1
 
-		canvas.cd(i_h)
+			canvas.cd(i_h)
 
-		# nice labeling
-		locals()['hist_%i' %(i_h)].Draw()
-		locals()['hist_%i' %(i_h)].SetLineColor(3)
-		locals()['hist_%i' %(i_h)].SetLineWidth(1)
-		locals()['hist_%i' %(i_h)].SetStats(False)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTitleSize(0.03)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTitle("Sector")
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTickLength(0.02)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTicks("-")
-		locals()['hist_%i' %(i_h)].GetXaxis().SetLabelOffset(-0.05)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetTitleOffset(-1.4)
-		locals()['hist_%i' %(i_h)].GetXaxis().SetNdivisions(4)
-		locals()['hist_%i' %(i_h)].GetXaxis().Set(4, 0.5,4.5)
+			# nice labeling
+			locals()['hist_%s_%i' %(k,i_h)].Draw()
+			locals()['hist_%s_%i' %(k,i_h)].SetLineColor(3)
+			locals()['hist_%s_%i' %(k,i_h)].SetLineWidth(1)
+			locals()['hist_%s_%i' %(k,i_h)].SetStats(False)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitleSize(0.03)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitle("Sector")
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTickLength(0.02)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTicks("-")
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetLabelOffset(-0.05)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetTitleOffset(-1.4)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().SetNdivisions(4)
+			locals()['hist_%s_%i' %(k,i_h)].GetXaxis().Set(4, 0.5,4.5)
 
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTitleSize(0.025)
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTickLength(0.02)
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTicks("+")
-		locals()['hist_%i' %(i_h)].GetYaxis().SetLabelOffset(-0.025)
-		locals()['hist_%i' %(i_h)].GetYaxis().SetTitleOffset(-2.0)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitleSize(0.025)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTickLength(0.02)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTicks("+")
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetLabelOffset(-0.025)
+			locals()['hist_%s_%i' %(k,i_h)].GetYaxis().SetTitleOffset(-2.0)
 
 
-	for i in range(dets):
-		i_h = i+1
-		locals()['hist_%i' %(i_h)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
-		canvas.cd(i_h)
-		canvas.SetLogy(True)
-		canvas.Update()
+		for i in range(dets):
+			i_h = i+1
+			locals()['hist_%s_%i' %(k,i_h)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
+			canvas.cd(i_h)
+			canvas.SetLogy(True)
+			canvas.Update()
+
+	else:	
+		canvas = ROOT.TCanvas('canvas', 'Histogramm', 500, 500)
+		canvas.Divide(3, 3)
+		y_max = 0
+		for i in range(dets):
+			i_h = i+1
+
+			locals()['hist_%i' %(i_h)] = get_detHist(hists, i)
+			y_tmax = locals()['hist_%i' %(i_h)].GetMaximum()
+			if y_tmax > y_max:
+				y_max = y_tmax
+		y_max = 1.2 * y_max
+
+		for i in range(dets):			# for all 9 detectors
+			i_h = i+1
+
+			canvas.cd(i_h)
+
+			# nice labeling
+			locals()['hist_%i' %(i_h)].Draw()
+			locals()['hist_%i' %(i_h)].SetLineColor(3)
+			locals()['hist_%i' %(i_h)].SetLineWidth(1)
+			locals()['hist_%i' %(i_h)].SetStats(False)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTitleSize(0.03)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTitle("Sector")
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTickLength(0.02)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTicks("-")
+			locals()['hist_%i' %(i_h)].GetXaxis().SetLabelOffset(-0.05)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetTitleOffset(-1.4)
+			locals()['hist_%i' %(i_h)].GetXaxis().SetNdivisions(4)
+			locals()['hist_%i' %(i_h)].GetXaxis().Set(4, 0.5,4.5)
+
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTitleSize(0.025)
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTickLength(0.02)
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTicks("+")
+			locals()['hist_%i' %(i_h)].GetYaxis().SetLabelOffset(-0.025)
+			locals()['hist_%i' %(i_h)].GetYaxis().SetTitleOffset(-2.0)
+
+
+		for i in range(dets):
+			i_h = i+1
+			locals()['hist_%i' %(i_h)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
+			canvas.cd(i_h)
+			canvas.SetLogy(True)
+			canvas.Update()
 
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	if eventfile:
-		canvas.Print('%shist_allSects_%s.pdf' %(dir, sim))
+		canvas.SaveAs('%shist_allSects_%s.pdf' %(dir, sim))
 	elif background:
-		canvas.Print('%shist_allSects_%s_%s.pdf' %(dir, sim, background))
+		canvas.SaveAs('%shist_allSects_%s_%s.pdf' %(dir, sim, background))
 	else:
 		print('This case has not been implemented yet!')
 	canvas.Clear()
@@ -1021,7 +1165,7 @@ def save_dep_sec_hists_2(hists, eventfile=None, background=None):
 
 
 # histograms of how many events are seen by the detectors
-def create_dep_detHist(ev_data, eventfile, scale):
+def create_dep_detHist(ev_data, eventfile, scale, k=None):
 	# entries at Qvalues:
 	#Q_116Cd = 2813
 	#Q_130Te = 2527
@@ -1044,19 +1188,30 @@ def create_dep_detHist(ev_data, eventfile, scale):
 	bins = 9
 	E_range = 9
 
-	locals()['hist_%s' %(sim)] = ROOT.TH1F("hist_%s" %(sim), "", bins, 0, E_range)
-	for i_entry in range(len(all_events)):
-		locals()['hist_%s' %(sim)].Fill(crystal_id[i_entry]-1)
-	for i_bin in range(bins):
-		bin_temp = locals()['hist_%s' %(sim)].GetBinContent(i_bin+1)
-		locals()['hist_%s' %(sim)].SetBinError(i_bin+1, 1/np.sqrt(bin_temp))
-	locals()['hist_%s' %(sim)].Scale(scale)
-	hist.append(locals()['hist_%s' %(sim)])
+	if k:
+		locals()['hist_%s_%s' %(k,sim)] = ROOT.TH1F("hist_%s_%s" %(k,sim), "", bins, 0, E_range)
+		for i_entry in range(len(all_events)):
+			locals()['hist_%s_%s' %(k,sim)].Fill(crystal_id[i_entry]-1)
+		for i_bin in range(bins):
+			bin_temp = locals()['hist_%s_%s' %(k,sim)].GetBinContent(i_bin+1)
+			locals()['hist_%s_%s' %(k,sim)].SetBinError(i_bin+1, 1/np.sqrt(bin_temp))
+		locals()['hist_%s_%s' %(k,sim)].Scale(scale)
+		hist.append(locals()['hist_%s_%s' %(k,sim)])
+
+	else:
+		locals()['hist_%s' %(sim)] = ROOT.TH1F("hist_%s" %(sim), "", bins, 0, E_range)
+		for i_entry in range(len(all_events)):
+			locals()['hist_%s' %(sim)].Fill(crystal_id[i_entry]-1)
+		for i_bin in range(bins):
+			bin_temp = locals()['hist_%s' %(sim)].GetBinContent(i_bin+1)
+			locals()['hist_%s' %(sim)].SetBinError(i_bin+1, 1/np.sqrt(bin_temp))
+		locals()['hist_%s' %(sim)].Scale(scale)
+		hist.append(locals()['hist_%s' %(sim)])
 	return hist
 
 
 # save the histograms above
-def save_dep_det_hists(hist, eventfile):
+def save_dep_det_hists(hist, eventfile, k=None):
 	print('\nPlotting detector histograms ...\n')
 	sim =  eventfile.split('/')
 	sim = sim[len(sim)-1]
@@ -1067,41 +1222,78 @@ def save_dep_det_hists(hist, eventfile):
 
 	dir = './Plots/%s/dep/single_det/' %(sim)
 
-	canvas = ROOT.TCanvas('canv', 'Histogramm')
-	locals()['hist_%s' %(sim)] = get_isoHist(hist)
+	canvas = ROOT.TCanvas('canvas', 'Histogramm')
+	if k:
+		locals()['hist_%s_%s' %(k,sim)] = get_isoHist(hist)
 
-	# nice labeling
-	locals()['hist_%s' %(sim)].Draw()
-	locals()['hist_%s' %(sim)].SetLineColor(7)
-	locals()['hist_%s' %(sim)].SetLineWidth(1)
-	locals()['hist_%s' %(sim)].SetStats(False)
-	locals()['hist_%s' %(sim)].GetXaxis().SetTitleSize(0.03)
-	locals()['hist_%s' %(sim)].GetXaxis().SetTitle("Detector")
-	locals()['hist_%s' %(sim)].GetXaxis().SetTickLength(0.02)
-	locals()['hist_%s' %(sim)].GetXaxis().SetTicks("-")
-	locals()['hist_%s' %(sim)].GetXaxis().SetLabelOffset(-0.05)
-	locals()['hist_%s' %(sim)].GetXaxis().SetTitleOffset(-1.4)
-	locals()['hist_%s' %(sim)].GetXaxis().SetNdivisions(9)
-	locals()['hist_%s' %(sim)].GetXaxis().Set(9, 0.5,9.5)
-	locals()['hist_%s' %(sim)].GetYaxis().SetTitleSize(0.025)
-	locals()['hist_%s' %(sim)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
-	locals()['hist_%s' %(sim)].GetYaxis().SetTickLength(0.02)
-	locals()['hist_%s' %(sim)].GetYaxis().SetTicks("+")
-	locals()['hist_%s' %(sim)].GetYaxis().SetLabelOffset(-0.025)
-	locals()['hist_%s' %(sim)].GetYaxis().SetTitleOffset(-1.8)
+		# nice labeling
+		locals()['hist_%s_%s' %(k,sim)].Draw()
+		locals()['hist_%s_%s' %(k,sim)].SetLineColor(7)
+		locals()['hist_%s_%s' %(k,sim)].SetLineWidth(1)
+		locals()['hist_%s_%s' %(k,sim)].SetStats(False)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTitleSize(0.03)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTitle("Detector")
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTickLength(0.02)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTicks("-")
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetLabelOffset(-0.05)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetTitleOffset(-1.4)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().SetNdivisions(9)
+		locals()['hist_%s_%s' %(k,sim)].GetXaxis().Set(9, 0.5,9.5)
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTitleSize(0.025)
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTickLength(0.02)
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTicks("+")
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetLabelOffset(-0.025)
+		locals()['hist_%s_%s' %(k,sim)].GetYaxis().SetTitleOffset(-1.8)
 
-	y_max = locals()['hist_%s' %(sim)].GetMaximum()
-	y_max = 1.2 * y_max
-	locals()['hist_%s' %(sim)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
+		y_max = locals()['hist_%s_%s' %(k,sim)].GetMaximum()
+		y_max = 1.2 * y_max
+		locals()['hist_%s_%s' %(k,sim)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
 
-	canvas.SetLogy(False)
-	canvas.Update()
+		canvas.SetLogy(False)
+		canvas.Update()
 
-	if not os.path.exists(dir):
-		os.makedirs(dir)
-	canvas.Print('%shist_%s.pdf' %(dir, sim))
-	canvas.Clear()
-	canvas.Close()
+		if not os.path.exists(dir):
+			os.makedirs(dir)
+		canvas.SaveAs('%shist_%s.pdf' %(dir, sim))
+		canvas.Clear()
+		canvas.Close()
+
+	else:
+		locals()['hist_%s' %(sim)] = get_isoHist(hist)
+
+		# nice labeling
+		locals()['hist_%s' %(sim)].Draw()
+		locals()['hist_%s' %(sim)].SetLineColor(7)
+		locals()['hist_%s' %(sim)].SetLineWidth(1)
+		locals()['hist_%s' %(sim)].SetStats(False)
+		locals()['hist_%s' %(sim)].GetXaxis().SetTitleSize(0.03)
+		locals()['hist_%s' %(sim)].GetXaxis().SetTitle("Detector")
+		locals()['hist_%s' %(sim)].GetXaxis().SetTickLength(0.02)
+		locals()['hist_%s' %(sim)].GetXaxis().SetTicks("-")
+		locals()['hist_%s' %(sim)].GetXaxis().SetLabelOffset(-0.05)
+		locals()['hist_%s' %(sim)].GetXaxis().SetTitleOffset(-1.4)
+		locals()['hist_%s' %(sim)].GetXaxis().SetNdivisions(9)
+		locals()['hist_%s' %(sim)].GetXaxis().Set(9, 0.5,9.5)
+		locals()['hist_%s' %(sim)].GetYaxis().SetTitleSize(0.025)
+		locals()['hist_%s' %(sim)].GetYaxis().SetTitle('N in #frac{counts}{kg yr}')
+		locals()['hist_%s' %(sim)].GetYaxis().SetTickLength(0.02)
+		locals()['hist_%s' %(sim)].GetYaxis().SetTicks("+")
+		locals()['hist_%s' %(sim)].GetYaxis().SetLabelOffset(-0.025)
+		locals()['hist_%s' %(sim)].GetYaxis().SetTitleOffset(-1.8)
+
+		y_max = locals()['hist_%s' %(sim)].GetMaximum()
+		y_max = 1.2 * y_max
+		locals()['hist_%s' %(sim)].SetAxisRange(0, y_max, "Y")			# Set range of y-axis
+
+		canvas.SetLogy(False)
+		canvas.Update()
+
+		if not os.path.exists(dir):
+			os.makedirs(dir)
+		canvas.SaveAs('%shist_%s.pdf' %(dir, sim))
+		canvas.Clear()
+		canvas.Close()
 
 
 def save_dep_heatmap(hists, eventfile=None, background=None):

@@ -90,7 +90,7 @@
 			<materialref ref="Nitrogengas"/>
 			<solidref ref="Worldbox_det"/>
 			<physvol name="Det_PHYSVOL">
-				<file name="naked_det_pseudoguard.gdml" volname="naked_detector_vol"/>
+				<file name="naked_det_pseudoguard_zcut.gdml" volname="naked_detector_vol"/>
 				<positionref ref="det_pos"/>
 			</physvol>
 			
@@ -102,10 +102,10 @@
 				<volumeref ref="plate"/>
 				<positionref ref="plate_det_pos"/>
 			</physvol>
-
+			<!--
 			<auxiliary auxtype="PlacedVolumes" auxvalue="Det_PHYSVOL" />
 			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
-
+			-->
 			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
 			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
 			<auxiliary auxtype="MaterialColour" auxvalue="Glyptal GlyptalColour"/>

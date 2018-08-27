@@ -1,0 +1,4 @@
+# Date: 17.08.2018
+# decay chain	a1 / [Bq/kg] (plates)	a2 / [Bq/kg] (screws)
+232Th	0.12e-3	0.17e-3
+238U	2.3e-3	0.34e-3

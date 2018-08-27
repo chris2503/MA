@@ -1,0 +1,6 @@
+# Last update: 21.08.2018 by Christian Herrmann, source: cobra-wiki -> materials assaying -> Conversion from concentration to activity
+# Conversion of ppb -> mBq/kg respectively mBq/kg -> ppb
+# Decay chain	ppb to mBq/kg	mBq/kg to ppb
+40K		0.031	32.3
+232Th	4.06	0.246
+238U	12.3	0.081

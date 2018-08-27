@@ -1,8 +1,8 @@
-Added object 0xc7eca0 with key default
-Added object 0xd04560 with key bkggen
-Added object 0x1f14440 with key chaingen
-Added object 0x1f14220 with key dbgen
-Added object 0x1f12d60 with key decay0
+Added object 0x24ffca0 with key default
+Added object 0x2585560 with key bkggen
+Added object 0x3793f20 with key chaingen
+Added object 0x3794090 with key dbgen
+Added object 0x37a68c0 with key decay0
 
 *************************************************************
  Geant4 version Name: geant4-10-00    (6-December-2013)
@@ -14,52 +14,52 @@ Added object 0x1f12d60 with key decay0
  Register : dmphysicslist
 VXPhysicsFactory* VXPhysicsFactory::getInstance() is called
 VXPhysicsFactory::VXPhysicsFactory() is called
-Added object 0x1f13080 with key dmphysicslist
-Added object 0x1fea1c0 with key Germaniumcrystal
-Added object 0x1fea370 with key Germaniumsensitivecrystal
-Added object 0x1feb7d0 with key Snsetup
-Added object 0x1fecbb0 with key SnsetupMark1
-Added object 0x1fedfb0 with key SnsetupMark2
-Added object 0x1fef3b0 with key SnsetupMark3
-Added object 0x1ff07b0 with key SnsetupMark4
-Added object 0x1ff1bb0 with key GeDetsetup
-Added object 0x1ff2f50 with key GeDetHalfShield
-Added object 0x1ff42f0 with key autowrite
-Added object 0x1ff4470 with key liscGeometry
-Added object 0x1ff4500 with key muongen
-Added object 0x1ff4600 with key neutrongungen
-Added object 0x1ff9d50 with key NeutronHall
+Added object 0x37a6be0 with key dmphysicslist
+Added object 0x386b220 with key Germaniumcrystal
+Added object 0x386b3d0 with key Germaniumsensitivecrystal
+Added object 0x386c830 with key Snsetup
+Added object 0x386dc10 with key SnsetupMark1
+Added object 0x386f010 with key SnsetupMark2
+Added object 0x3870410 with key SnsetupMark3
+Added object 0x3871810 with key SnsetupMark4
+Added object 0x3872c10 with key GeDetsetup
+Added object 0x3873fb0 with key GeDetHalfShield
+Added object 0x3875350 with key autowrite
+Added object 0x38754d0 with key liscGeometry
+Added object 0x3875560 with key muongen
+Added object 0x3875660 with key neutrongungen
+Added object 0x2853e80 with key NeutronHall
  VXNeutronTracking::VXNeutronTracking 
-Added object 0x1ffda80 with key neutrontracking
-Added object 0x1ffdbe0 with key rdxcrystal
-Added object 0x1ffd590 with key rdxholder
-Added object 0x1ff7f90 with key rdxshield
-Added object 0x1ffecf0 with key rdxsensitivecrystal
-Added object 0x2187e70 with key rockneutrongen
+Added object 0x28d3e30 with key neutrontracking
+Added object 0x3a01720 with key rdxcrystal
+Added object 0x387e180 with key rdxholder
+Added object 0x387aa60 with key rdxshield
+Added object 0x39e85d0 with key rdxsensitivecrystal
+Added object 0x2b07750 with key rockneutrongen
  VXSimpTrackAct::VXSimpTrackAct 
-Added object 0x2187fb0 with key simptrackact
-Added object 0x1ffb720 with key weird
+Added object 0x2b07890 with key simptrackact
+Added object 0x3a00770 with key weird
  Register : dmphysicslist
 VXPhysicsFactory* VXPhysicsFactory::getInstance() is called
-Added object 0x1ffa120 with key dmphysicslist
+Added object 0x39f5770 with key dmphysicslist
  VXSimpTrackAct::VXSimpTrackAct 
-Added object 0x21c8e50 with key simptrackact
+Added object 0x3a47ab0 with key simptrackact
  VXNeutronTracking::VXNeutronTracking 
-Added object 0x21c8f40 with key neutrontracking
-Added object 0x21c8dc0 with key autowrite
-Added object 0x21c9020 with key rdxsensitivecrystal
-Added object 0x21c9080 with key liscGeometry
-Added object 0x21c90e0 with key rdxcrystal
-Added object 0x21c9170 with key rdxholder
-Added object 0x21c8df0 with key rdxshield
-Added object 0x21c9460 with key dbgen
-Added object 0x21c9580 with key decay0
-Added object 0x21c9830 with key weird
-Added object 0x21c9b00 with key chaingen
-Added object 0x21c9c30 with key bkggen
-Added object 0x21c9d10 with key default
-Added object 0x21c9d30 with key rockneutrongen
-Added object 0x21c9e00 with key muongen
+Added object 0x3a47ba0 with key neutrontracking
+Added object 0x3a47a20 with key autowrite
+Added object 0x3a47c80 with key rdxsensitivecrystal
+Added object 0x3a47ce0 with key liscGeometry
+Added object 0x3a47d40 with key rdxcrystal
+Added object 0x3a47dd0 with key rdxholder
+Added object 0x3a47a50 with key rdxshield
+Added object 0x3a480c0 with key dbgen
+Added object 0x3a481e0 with key decay0
+Added object 0x3a48490 with key weird
+Added object 0x3a48760 with key chaingen
+Added object 0x3a48890 with key bkggen
+Added object 0x3a48970 with key default
+Added object 0x3a48990 with key rockneutrongen
+Added object 0x3a48a60 with key muongen
 <<< Geant4 Physics List simulation engine: Shielding 2.1
 
 Visualization Manager instantiating with verbosity "warnings (3)"...
@@ -118,7 +118,7 @@ Available colours:
 
 --------- Ranecu engine status ---------
  Initial seed (index) = 0
- Current couple of seeds = 2095721534, 536101511
+ Current couple of seeds = 1167423075, 120010426
 ----------------------------------------
  VXUserTrackingAction::VXVUserTrackingAction()  
 Constructing geometry
@@ -155,8 +155,43 @@ G4GDML: Reading structure...
 Checking overlaps for volume Standard_Pb_VOLUME_PV ... OK! 
 Checking overlaps for volume ULA_Pb_VOLUME_PV ... OK! 
 Checking overlaps for volume Cu_VOLUME_PV ... OK! 
+G4GDML: Reading module 'array64_source_simulation/array64nest.gdml'...
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 164
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 168
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 172
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 176
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 180
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 184
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 188
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 192
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 196
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 200
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 204
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 208
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 212
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 216
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'array64crystal_physvol' is not unique . at line: 220
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'holderboxtot_physvol' is not unique . at line: 380
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'oneholderbox_physvol' is not unique . at line: 394
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'oneholderbox_physvol' is not unique . at line: 398
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'oneholderbox_physvol' is not unique . at line: 402
+G4GDML: VALIDATION ERROR! ID attribute 'holderX-BorderX1-BorderX2' was referenced but never declared at line: 470
+G4GDML: VALIDATION ERROR! ID attribute 'NitrogenGas' was referenced but never declared at line: 470
+G4GDML: VALIDATION ERROR! ID attribute 'Delrin' was referenced but never declared at line: 470
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 470
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 470
+G4GDML: VALIDATION ERROR! ID attribute 'Copper' was referenced but never declared at line: 470
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'array64_source_simulation/array64nest.gdml' done!
+Checking overlaps for volume worldnestbox_vol_PV ... OK! 
 G4GDML: Reading module 'copperholder_with_detectorlayer.gdml'...
-G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 360
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'delrin_physvol' is not unique . at line: 351
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'delrin_physvol' is not unique . at line: 356
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 361
 G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 400
 G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:Value '-1' must be greater than or equal to MinInclusive '0' . at line: 407
 G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'screw_physvol' is not unique . at line: 408
@@ -173,12 +208,28 @@ G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Me
 G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 466
 G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'detector_physvol' is not unique . at line: 471
 G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 485
-G4GDML: VALIDATION ERROR! ID attribute 'PA_6.6' was referenced but never declared at line: 492
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 492
-G4GDML: VALIDATION ERROR! ID attribute 'Polyoxymethylene' was referenced but never declared at line: 492
-G4GDML: VALIDATION ERROR! ID attribute 'Polytetraflourethylene' was referenced but never declared at line: 492
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
+G4Material WARNING: doublicate name of the new material Vacuum
+G4Material WARNING: doublicate name of the new material Air
+G4Material WARNING: doublicate name of the new material Nitrogengas
+G4Material WARNING: doublicate name of the new material E-Copper
+G4Material WARNING: doublicate name of the new material Brass
+G4Material WARNING: doublicate name of the new material Aluminium
+G4Material WARNING: doublicate name of the new material St_Steel
+G4Material WARNING: doublicate name of the new material Steel
+G4Material WARNING: doublicate name of the new material Lead
+G4Material WARNING: doublicate name of the new material Lead39
+G4Material WARNING: doublicate name of the new material Lead03
+G4Material WARNING: doublicate name of the new material Gold
+G4Material WARNING: doublicate name of the new material Palladium
+G4Material WARNING: doublicate name of the new material Silver
+G4Material WARNING: doublicate name of the new material CdZnTe
+G4Material WARNING: doublicate name of the new material Polyoxymethylene
+G4Material WARNING: doublicate name of the new material Polytetraflourethylene
+G4Material WARNING: doublicate name of the new material PA_6.6
+G4Material WARNING: doublicate name of the new material Epoxy
+G4Material WARNING: doublicate name of the new material Glyptal
 G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading module 'copperholder_leftside_element.gdml'...
@@ -235,35 +286,18 @@ G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
 G4GDML: Reading definitions...
-G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
-G4GDML: Reading setup...
-G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
-G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
-G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
-G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
-G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
-G4GDML: Reading definitions...
-G4GDML: Reading materials...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
-G4GDML: Reading definitions...
-G4GDML: Reading materials...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
 G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
@@ -275,35 +309,18 @@ G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
 G4GDML: Reading definitions...
-G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
-G4GDML: Reading setup...
-G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
-G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
-G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
-G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
-G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
-G4GDML: Reading definitions...
-G4GDML: Reading materials...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
-G4GDML: Reading definitions...
-G4GDML: Reading materials...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
 G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
@@ -315,95 +332,156 @@ G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
+G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
+G4GDML: Reading setup...
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
+G4GDML: Reading module 'single_detector_epoxyPaint.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 73
+G4GDML: VALIDATION ERROR! ID attribute 'Epoxy' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading module 'single_detector_epoxyPaint.gdml' done!
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
-G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
-G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
-G4GDML: Reading definitions...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 119
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
-G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
-G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
-G4GDML: Reading definitions...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 119
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
-G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
-G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
-G4GDML: Reading definitions...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 119
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml'...
-G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 70
-G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 117
-G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 117
-G4GDML: Reading definitions...
-G4GDML: Reading solids...
-G4GDML: Reading structure...
-G4GDML: Reading module 'naked_det.gdml'...
-G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 99
-G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 99
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! ID attribute 'Gold' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 119
+G4GDML: VALIDATION ERROR! ID attribute 'Glyptal' was referenced but never declared at line: 119
 G4GDML: Reading definitions...
 G4GDML: Reading materials...
 G4GDML: Reading solids...
 G4GDML: Reading structure...
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml'...
+G4GDML: VALIDATION ERROR! Required attribute 'name' was not provided at line: 72
+G4GDML: VALIDATION ERROR! Datatype error: Type:InvalidDatatypeValueException, Message:ID 'z_cut_top_physvol' is not unique . at line: 129
+G4GDML: VALIDATION ERROR! Element 'physvol' is not valid for content model: '((materialref,solidref,((physvol|divisionvol|replicavol)|paramvol),loop),auxiliary)' at line: 141
+G4GDML: VALIDATION ERROR! Element 'solids' is not valid for content model: '((define,materials,solids,structure,userinfo),setup)' at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'CdZnTe' was referenced but never declared at line: 160
+G4GDML: VALIDATION ERROR! ID attribute 'Nitrogengas' was referenced but never declared at line: 160
+G4GDML: Reading definitions...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
 G4GDML: Reading setup...
-G4GDML: Reading module 'naked_det.gdml' done!
+G4GDML: Reading module 'naked_det_pseudoguard_zcut.gdml' done!
 G4GDML: Reading setup...
 G4GDML: Reading module 'single_detector_glyptalPaint.gdml' done!
 G4GDML: Reading setup...
@@ -413,8 +491,60 @@ G4GDML: Reading setup...
 G4GDML: Reading './Setup_with_shielding.gdml' done!
 Stripping off GDML names of materials, solids and volumes ...
 KingCOBRA_sd is not found in /
-Have Set 9 Isotopes in the table
-Setting lepton mode to TwoBetaMinus
+Intensity Table
+---------------
+           1 232 90 0
+           1 228 88 0
+           1 228 89 0
+           1 228 90 0
+           1 224 88 0
+           1 220 86 0
+           1 216 84 0
+           1 212 82 0
+           1 212 83 0
+      0.3594 208 81 0
+      0.6406 212 84 0
+Probability Table
+-----------------
+         0.1 232 90 0
+         0.2 228 88 0
+         0.3 228 89 0
+         0.4 228 90 0
+         0.5 224 88 0
+         0.6 220 86 0
+         0.7 216 84 0
+         0.8 212 82 0
+         0.9 212 83 0
+     0.93594 208 81 0
+           1 212 84 0
+
+Intensity Table
+---------------
+           1 232 90 0
+           1 228 88 0
+           1 228 89 0
+           1 228 90 0
+           1 224 88 0
+           1 220 86 0
+           1 216 84 0
+           1 212 82 0
+           1 212 83 0
+      0.3594 208 81 0
+      0.6406 212 84 0
+Probability Table
+-----------------
+         0.1 232 90 0
+         0.2 228 88 0
+         0.3 228 89 0
+         0.4 228 90 0
+         0.5 224 88 0
+         0.6 220 86 0
+         0.7 216 84 0
+         0.8 212 82 0
+         0.9 212 83 0
+     0.93594 208 81 0
+           1 212 84 0
+
 
 phot:   for  gamma    SubType= 12
       LambdaPrime table from 200 keV to 10 TeV in 54 bins 
@@ -723,6 +853,18 @@ NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use
 NeutronHP: /Capture file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/82_208_Lead
 NeutronHP: /Elastic file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/82_208_Lead
 NeutronHP: /Inelastic file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/82_208_Lead
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/8_17_Oxygen
+NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/8_17_Oxygen
+NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/8_17_Oxygen
+NeutronHP: /Capture file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Capture/CrossSection/82_208_Lead
+NeutronHP: /Elastic file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Elastic/CrossSection/82_208_Lead
+NeutronHP: /Inelastic file for Z = 82, A = 210 is not found and NeutronHP will use /afs/.e4.physik.uni-dortmund.de/sw/geant4-data/G4NDL4.4/Inelastic/CrossSection/82_208_Lead
 
 msc:   for pi+    SubType= 10
       RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
@@ -979,6 +1121,11 @@ hPairProd:   for  pi-    SubType= 4
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
 ================================================================
+G4Fragment::CalculateExcitationEnergy(): WARNING 
+Fragment: A =   5, Z =   3, U = -1.343e+00 MeV  IsStable= 1
+          P = (0.000e+00,0.000e+00,3.824e+01) MeV   E = 4.666e+03 MeV
+          #Particles= 1, #Charged= 1, #Holes= 0, #ChargedHoles= 0
+
 LOG: Wrote at Event 100000
 LOG: Wrote at Event 200000
 LOG: Wrote at Event 300000
@@ -992,7 +1139,7 @@ LOG: Wrote at Event 1000000
 
 --------- Ranecu engine status ---------
  Initial seed (index) = 0
- Current couple of seeds = 379185847, 1161967705
+ Current couple of seeds = 351985519, 1585402597
 ----------------------------------------
 rmdir
 notify
@@ -1006,30 +1153,57 @@ rmdir
 notify
 Cleaning GeometryFactory...
 Calling destructor on Factory... contains 16 keys.
-Deleting pointer 0x1ff2f50 keyed to GeDetHalfShield
-Deleting pointer 0x1ff1bb0 keyed to GeDetsetup
-Deleting pointer 0x1fea1c0 keyed to Germaniumcrystal
-Deleting pointer 0x1fea370 keyed to Germaniumsensitivecrystal
-Deleting pointer 0x1ff9d50 keyed to NeutronHall
-Deleting pointer 0x1feb7d0 keyed to Snsetup
-Deleting pointer 0x1fecbb0 keyed to SnsetupMark1
-Deleting pointer 0x1fedfb0 keyed to SnsetupMark2
-Deleting pointer 0x1fef3b0 keyed to SnsetupMark3
-Deleting pointer 0x1ff07b0 keyed to SnsetupMark4
-Deleting pointer 0xc7eca0 keyed to default
-Deleting pointer 0x1ff4470 keyed to liscGeometry
-Deleting pointer 0x1ffdbe0 keyed to rdxcrystal
-Deleting pointer 0x1ffd590 keyed to rdxholder
-Deleting pointer 0x1ffecf0 keyed to rdxsensitivecrystal
-Deleting pointer 0x1ff7f90 keyed to rdxshield
+Deleting pointer 0x3873fb0 keyed to GeDetHalfShield
+Deleting pointer 0x3872c10 keyed to GeDetsetup
+Deleting pointer 0x386b220 keyed to Germaniumcrystal
+Deleting pointer 0x386b3d0 keyed to Germaniumsensitivecrystal
+Deleting pointer 0x2853e80 keyed to NeutronHall
+Deleting pointer 0x386c830 keyed to Snsetup
+Deleting pointer 0x386dc10 keyed to SnsetupMark1
+Deleting pointer 0x386f010 keyed to SnsetupMark2
+Deleting pointer 0x3870410 keyed to SnsetupMark3
+Deleting pointer 0x3871810 keyed to SnsetupMark4
+Deleting pointer 0x24ffca0 keyed to default
+Deleting pointer 0x38754d0 keyed to liscGeometry
+Deleting pointer 0x3a01720 keyed to rdxcrystal
+Deleting pointer 0x387e180 keyed to rdxholder
+Deleting pointer 0x39e85d0 keyed to rdxsensitivecrystal
+Deleting pointer 0x387aa60 keyed to rdxshield
 Clearing registry...
 Registry cleared...
 Cleaning GunFactory...
 Calling destructor on Factory... contains 8 keys.
-Deleting pointer 0xd04560 keyed to bkggen
-Deleting pointer 0x1f14440 keyed to chaingen
-Deleting pointer 0x1f14220 keyed to dbgen
-Deleting pointer 0x1f12d60 keyed to decay0
-Deleting pointer 0x1ff4500 keyed to muongen
-Deleting pointer 0x1ff4600 keyed to neutrongungen
-Deleting pointer 0x2187e70 keyed to rockneutrongen
+Deleting pointer 0x2585560 keyed to bkggen
+Deleting pointer 0x3793f20 keyed to chaingen
+Deleting pointer 0x3794090 keyed to dbgen
+Deleting pointer 0x37a68c0 keyed to decay0
+Deleting pointer 0x3875560 keyed to muongen
+Deleting pointer 0x3875660 keyed to neutrongungen
+Deleting pointer 0x2b07750 keyed to rockneutrongen
+Deleting pointer 0x3a00770 keyed to weird
+Clearing registry...
+Registry cleared...
+Cleaning ActionFactory...
+Calling destructor on Factory... contains 0 keys.
+Clearing registry...
+Registry cleared...
+Calling destructor on Factory... contains 0 keys.
+Clearing registry...
+Registry cleared...
+Calling destructor on Factory... contains 2 keys.
+Deleting pointer 0x28d3e30 keyed to neutrontracking
+calling destructor ~VXNeutronTracking()
+	 deleting theMessenger
+	 deleting dataStore
+	 done.
+Deleting pointer 0x2b07890 keyed to simptrackact
+Clearing registry...
+Registry cleared...
+Calling destructor on Factory... contains 1 keys.
+Deleting pointer 0x3875350 keyed to autowrite
+Clearing registry...
+Registry cleared...
+Calling destructor on Factory... contains 0 keys.
+Clearing registry...
+Registry cleared...
+End of Venom...

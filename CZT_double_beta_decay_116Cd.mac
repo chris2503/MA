@@ -22,6 +22,7 @@
 #the sim fractions are necessary because of different cable length
 /dbgen/DBisotope 116Cd
 /dbgen/posgen/solidSourceIntrinsic naked_det_physvol
+/dbgen/posgen/confine naked_det_physvol
 
 
 /dbgen/leptonMode TwoBetaMinus    # X=TwoBetaPlus, BetaPlusEC, TwoEC, TwoBetaMinus
