@@ -113,7 +113,6 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 				contrib_at116Cd_err.append(t_d_contrib_at116Cd_err)
 				contrib_at130Te_err.append(t_d_contrib_at130Te_err)
 
-
 	else:
 		for i in range(dets):			# for all 9 detectors
 			i_h = i+1
@@ -1219,13 +1218,11 @@ def save_dep_det_hists(hist, eventfile, k=None):
 	sim = sim[len(sim)-1]
 	sim = sim.split('.')
 	sim = sim[0]
-
 	dir = './Plots/%s/dep/single_det/' %(sim)
 
 	canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	if k:
 		locals()['hist_%s_%s' %(k,sim)] = get_isoHist(hist)
-
 		# nice labeling
 		locals()['hist_%s_%s' %(k,sim)].Draw()
 		locals()['hist_%s_%s' %(k,sim)].SetLineColor(7)
@@ -1261,7 +1258,6 @@ def save_dep_det_hists(hist, eventfile, k=None):
 
 	else:
 		locals()['hist_%s' %(sim)] = get_isoHist(hist)
-
 		# nice labeling
 		locals()['hist_%s' %(sim)].Draw()
 		locals()['hist_%s' %(sim)].SetLineColor(7)
@@ -1324,14 +1320,12 @@ def save_dep_heatmap(hists, eventfile=None, background=None):
 		x.append(entries)
 		entries=[]
 
-
 	x_transf = np.zeros((9, 2, 2))
 	for i in range(9):
 		x_transf[i][0][0] = x[i][0]
 		x_transf[i][0][1] = x[i][1]
 		x_transf[i][1][0] = x[i][2]
 		x_transf[i][1][1] = x[i][3]
-
 
 	sns.set()
 	asp = x_transf.shape[0]/float(x_transf.shape[1])
@@ -1371,3 +1365,92 @@ def save_dep_heatmap(hists, eventfile=None, background=None):
 		plt.savefig('%sheatmap_%s.pdf' %(dir, sim))
 	else:
 		print('This case has not been implemented yet!')
+
+#Diffplots
+def make_the_difference(hists_1, hists_2, k_1, k_2, sim, returns=None):
+	E_range = 10000
+	bins = 1000
+	
+	diff_1 = []
+	diff_2 = []
+
+	for j in range(len(hists_1)):
+		j_h=j+1
+
+		locals()['histdiff_1_%s_%i' %(sim,j_h)] = ROOT.THStack('histdiff_1_%s_%i' %(sim,j_h), '')
+		locals()['histdiff_2_%s_%i' %(sim,j_h)] = ROOT.TH1F('histdiff_2_%s_%i' %(sim,j_h), '', bins, 0, E_range)
+	
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].Add(get_detHist(hists_1, j))
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetHists().First().SetLineColor(3)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].Add(get_detHist(hists_2, j))
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetHists().At(1).SetLineColor(4)
+		diff_1.append(locals()['histdiff_1_%s_%i' %(sim,j_h)])
+		
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].Add(get_detHist(hists_2, j))
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].Add(get_detHist(hists_1, j), -1)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].SetStats(False)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].SetLineColor(2)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].SetLineWidth(2)
+		diff_2.append(locals()['histdiff_2_%s_%i' %(sim,j_h)])
+	save_diff_plots(diff_1, diff_2, sim)
+	
+	if returns:
+		return diff_1, diff_2
+
+def save_diff_plots(diff_1, diff_2, sim):
+	dir = './Plots/'
+	for j in range(len(diff_1)):
+		canvas = ROOT.TCanvas('canvas', 'Histogramm', 500, 500)
+		canvas.Divide(1, 2)
+		canvas.cd(1)
+		j_h = j+1
+
+		locals()['histdiff_1_%s_%i' %(sim,j_h)] = get_detHist(diff_1, j)
+		# nice labeling
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].Draw('nostack')
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetTitleSize(0.03)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetTickLength(0.02)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetTicks("-")
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetLabelOffset(-0.05)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetTitleOffset(-1.4)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTitleSize(0.025)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTickLength(0.02)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTicks("+")
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetLabelOffset(-0.025)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTitleOffset(-1.8)
+		leg_1 = ROOT.TLegend(0.55, 0.8, 0.9, 0.9)
+		leg_1.SetHeader("VENOM Versions")
+		leg_1.SetNColumns(5)
+		leg_1.SetTextSize(0.025)
+		leg_1.AddEntry(locals()['histdiff_1_%s_%i' %(sim,j_h)].GetHists().First(), "Geant 4.10.0", "f")
+		leg_1.AddEntry(locals()['histdiff_1_%s_%i' %(sim,j_h)].GetHists().At(1), "Geant 4.10.4", "f")
+		leg_1.Draw()
+		canvas.SetLogy(True)
+		canvas.Update()
+
+		canvas.cd(2)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)] = get_detHist(diff_2, j)
+		# nice labeling
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].Draw()
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTitleSize(0.03)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTitle("Difference")
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTickLength(0.02)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTicks("-")
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetLabelOffset(-0.05)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTitleOffset(-1.4)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTitleSize(0.025)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTickLength(0.02)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTicks("+")
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetLabelOffset(-0.025)
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTitleOffset(-1.8)
+		canvas.SetLogy(False)
+		canvas.Update()
+
+		canvas.SaveAs('%sdiffplot_%s.pdf' %(dir, sim))
+		canvas.Clear()
+		canvas.Close()
+
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].Delete()
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].Delete()

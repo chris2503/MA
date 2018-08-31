@@ -23,5 +23,5 @@ for pyfiles in "${BACKGROUND[@]}"; do
     fi
   python $SKRIPT_NAME
 done
-
+python "./main_3.py"
 source deactivate cobra

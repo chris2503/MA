@@ -29,5 +29,5 @@
 /dbgen/zeroNeutrinos false	# X=true for 0nü, or X=false for 2nü 
 /run/beamOn 1000000
 
-/dggen/clearlist
+/dbgen/clearlist
 /venom/io/write

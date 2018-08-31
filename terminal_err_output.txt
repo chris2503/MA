@@ -1,0 +1,77 @@
+venom CZT_double_beta_decay_114Cd.mac>log.txt
+Warning in <TFile::Init>: no StreamerInfo found in /afs/.e4.physik.uni-dortmund.de/sw/venom/linux-ubuntu-14.04-x86_64/geant4.10.4/lib/libvenom_rdict.pcm therefore preventing schema evolution when reading this file.
+Deleting current geometry implementation...
+Deleting fGeoImpl.
+done.
+Setting implementation to ./Setup_with_shielding.gdml
+Setting up KingCOBRA_sd
+Will not write data of events without energy deposition.
+Enabeling storing of PartID, Time and TrackID.
+Switching on data output of PosGen generated primary vertex.
+
+Found 9 volumes with name naked_det_physvol
+naked_detector_vol
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+#0  0x00007f9ee50c695c in __libc_waitpid (pid=30712, stat_loc=stat_loc
+entry=0x7ffca4afe640, options=options
+entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:31
+#1  0x00007f9ee5048232 in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:148
+#2  0x00007f9ee5c19446 in TUnixSystem::StackTrace (this=0x90e960) at /local/scratch/user/rtemming/root/core/unix/src/TUnixSystem.cxx:2413
+#3  0x00007f9ee5c1b0ec in TUnixSystem::DispatchSignals (this=0x90e960, sig=kSigSegmentationViolation) at /local/scratch/user/rtemming/root/core/unix/src/TUnixSystem.cxx:3644
+#4  <signal handler called>
+#5  0x00007f9ee1230f82 in G4TouchableHistory::GetReplicaNumber(int) const () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4geometry.so
+#6  0x00007f9ee7278dbb in KingCOBRASDzpos::ProcessHits (this=0x65e6660, currentStep=0x15ce050) at KingCOBRASDzpos.cc:88
+#7  0x00007f9ee3673b5c in G4SteppingManager::Stepping() () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4tracking.so
+#8  0x00007f9ee367d99d in G4TrackingManager::ProcessOneTrack(G4Track*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4tracking.so
+#9  0x00007f9ee38b3f51 in G4EventManager::DoProcessing(G4Event*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4event.so
+#10 0x00007f9ee66efe87 in G4RunManager::ProcessOneEvent(int) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#11 0x00007f9ee66e90f3 in G4RunManager::DoEventLoop(int, char const*, int) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#12 0x00007f9ee66e8ebe in G4RunManager::BeamOn(int, char const*, int) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#13 0x00007f9ee6703018 in G4RunMessenger::SetNewValue(G4UIcommand*, G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#14 0x00007f9ee64776af in G4UIcommand::DoIt(G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#15 0x00007f9ee6494773 in G4UImanager::ApplyCommand(char const*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#16 0x00007f9ee6464af7 in G4UIbatch::ExecCommand(G4String const&) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#17 0x00007f9ee64661bb in G4UIbatch::SessionStart() () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#18 0x00007f9ee648bc03 in G4UImanager::ExecuteMacroFile(char const*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#19 0x00007f9ee647ff95 in G4UIcontrolMessenger::SetNewValue(G4UIcommand*, G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#20 0x00007f9ee64776af in G4UIcommand::DoIt(G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#21 0x00007f9ee6494773 in G4UImanager::ApplyCommand(char const*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#22 0x0000000000405a5d in main (argc=<optimized out>, argv=0x7ffca4b027b8) at venom.cc:203
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum http://root.cern.ch/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at http://root.cern.ch/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#5  0x00007f9ee1230f82 in G4TouchableHistory::GetReplicaNumber(int) const () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4geometry.so
+#6  0x00007f9ee7278dbb in KingCOBRASDzpos::ProcessHits (this=0x65e6660, currentStep=0x15ce050) at KingCOBRASDzpos.cc:88
+#7  0x00007f9ee3673b5c in G4SteppingManager::Stepping() () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4tracking.so
+#8  0x00007f9ee367d99d in G4TrackingManager::ProcessOneTrack(G4Track*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4tracking.so
+#9  0x00007f9ee38b3f51 in G4EventManager::DoProcessing(G4Event*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4event.so
+#10 0x00007f9ee66efe87 in G4RunManager::ProcessOneEvent(int) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#11 0x00007f9ee66e90f3 in G4RunManager::DoEventLoop(int, char const*, int) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#12 0x00007f9ee66e8ebe in G4RunManager::BeamOn(int, char const*, int) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#13 0x00007f9ee6703018 in G4RunMessenger::SetNewValue(G4UIcommand*, G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4run.so
+#14 0x00007f9ee64776af in G4UIcommand::DoIt(G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#15 0x00007f9ee6494773 in G4UImanager::ApplyCommand(char const*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#16 0x00007f9ee6464af7 in G4UIbatch::ExecCommand(G4String const&) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#17 0x00007f9ee64661bb in G4UIbatch::SessionStart() () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#18 0x00007f9ee648bc03 in G4UImanager::ExecuteMacroFile(char const*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#19 0x00007f9ee647ff95 in G4UIcontrolMessenger::SetNewValue(G4UIcommand*, G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#20 0x00007f9ee64776af in G4UIcommand::DoIt(G4String) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#21 0x00007f9ee6494773 in G4UImanager::ApplyCommand(char const*) () from /afs/.e4.physik.uni-dortmund.de/sw/geant4/linux-ubuntu-14.04-x86_64/10.04/lib/libG4intercoms.so
+#22 0x0000000000405a5d in main (argc=<optimized out>, argv=0x7ffca4b027b8) at venom.cc:203
+===========================================================
+
