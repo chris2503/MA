@@ -11,18 +11,18 @@
 
 	<define>
 		<!-- dimensions of the detector cube -->
-		<constant name="x" value="20.4"/>
-		<constant name="y" value="20.4"/>
-		<constant name="z" value="15"/>
+		<constant name="x_det2" value="20.4"/>
+		<constant name="y_det2" value="20.4"/>
+		<constant name="z_det2" value="15"/>
 
 		<!-- dimensions of subdetectors -->
-		<constant name="x_subdet" value="x/2" />
-		<constant name="y_subdet" value="y/2" />
-		<constant name="z_subdet" value="z" />
+		<constant name="x_subdet" value="x_det2/2" />
+		<constant name="y_subdet" value="y_det2/2" />
+		<constant name="z_subdet" value="z_det2" />
 		
 		<!-- dimensions of the bottom detector plate (assuming to be the coplanar grid -> assumed to be a thin gold plate) -->
-		<constant name="x_plate_det" value="x"/>
-		<constant name="y_plate_det" value="y"/>
+		<constant name="x_plate_det" value="x_det2"/>
+		<constant name="y_plate_det" value="y_det2"/>
 		<constant name="z_plate_det" value="0.000090"/>
 		<constant name="paint_thickness" value="0.060" />	<!-- ticknesss of paint, varnish -->
 
@@ -34,7 +34,7 @@
 		<position name="det_pos" x="0" y="0" z="0" unit="mm"/>
 		
 		<position name="paint_pos" x="0" y="0" z="0" unit="mm"/>
-		<position name="plate_det_pos" x="0" y="0" z="-z/2-z_plate_det/2" unit="mm"/>
+		<position name="plate_det_pos" x="0" y="0" z="-z_det2/2-z_plate_det/2" unit="mm"/>
 
 		<!-- definitions of colours -->
 		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
@@ -53,23 +53,23 @@
 	<!-- shape and dimensions of the detectors -->
 	<solids>
 		<!-- Dimension of the whole detector -->
-		<box name="single_det_solid" x="x" y="y" z="z" lunit="mm" />
-		<box name="single_det_subtractionsolid" x="x" y="y" z="z+1" lunit="mm" />
+		<box name="single_det_solid" x="x_det2" y="y_det2" z="z_det2" lunit="mm" />
+		<box name="single_det_subtractionsolid" x="x_det2" y="y_det2" z="z_det2+1" lunit="mm" />
 		<!-- Subdetectors -->
 		<box name="subdet_solid" x="x_subdet" y="y_subdet" z="z_subdet" lunit="mm"/>
 		
 		<!-- for paint -->
-		<box name="paintbox" x="x+2*paint_thickness" y="y+2*paint_thickness" z="z+paint_thickness" lunit="mm"/>
+		<box name="paintbox" x="x_det2+2*paint_thickness" y="y_det2+2*paint_thickness" z="z_det2+paint_thickness" lunit="mm"/>
 		<!-- plates -->
 		<box name="plate_solid_1" x="x_plate_det" y="y_plate_det" z="z_plate_det" lunit="mm"/>
 		<!-- for world creation -->
-		<box name="Worldbox_det" x="x+2*paint_thickness" y="y+2*paint_thickness" z="z+paint_thickness" />
+		<box name="Worldbox_det" x="x_det2+2*paint_thickness" y="y_det2+2*paint_thickness" z="z_det2+paint_thickness" />
 
 		<!-- only paint coating-->
 		<subtraction name="paint_solid">
 			<first ref="paintbox"/>
 			<second ref="single_det_subtractionsolid"/>
-			<position x="0" y="0" z="-1/2" unit="mm"/>
+			<position x="0" y="0" z="-paint_thickness-1/2" unit="mm"/>
 		</subtraction>
 	</solids>
 

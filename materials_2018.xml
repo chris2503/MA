@@ -1,0 +1,355 @@
+<!-- Date: 02.02.2018 -->
+
+<!-- this is a file defining materials -->
+<!-- it is _not_ a standalone GDML file -->
+<materials>		
+		<!-- ========= ISOTOPES ========= -->
+		<!-- source for isotope data: atom.kaeri.re.kr/nuchart/
+			last access: 02.02.2018 -->
+		<isotope name="Cu63" Z="29" N="63">
+			<atom value="62.929597723" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cu65" Z="29" N="65">
+			<atom value="64.927789704" unit="g/mole"/>
+		</isotope>
+		<!-- neutron data missing, therefore we need to define Zn64 as element!
+		     If G4NDL version > 4.4 then check the neutron data again! -->
+		<element name="Zn64" formula="Zn" Z="30" N="34">
+			<atom value="63.929142013" unit="g/mole"/>
+		</element>
+		<isotope name="Zn66" Z="30" N="36">
+			<atom value="65.926033809" unit="g/mole"/>
+		</isotope>
+		<isotope name="Zn67" Z="30" N="37">
+			<atom value="66.927127746" unit="g/mole"/>
+		</isotope>
+		<isotope name="Zn68" Z="30" N="38">
+			<atom value="67.924844554" unit="g/mole"/>
+		</isotope>
+		<isotope name="Zn70" Z="30" N="40">
+			<atom value="69.925319208" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd106" Z="48" N="58">
+			<atom value="105.906459928" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd108" Z="48" N="60">
+			<atom value="107.90418344" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd110" Z="48" N="62">
+			<atom value="109.903006606" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd111" Z="48" N="63">
+			<atom value="110.904182872" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd112" Z="48" N="64">
+			<atom value="111.902762868" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd113" Z="48" N="65">
+			<atom value="112.904408133" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd114" Z="48" N="66">
+			<atom value="113.903365086" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd116" Z="48" N="68">
+			<atom value="115.904763148" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te122" Z="52" N="70">
+			<atom value="121.903043455" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te123" Z="52" N="71">
+			<atom value="122.904269769" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te124" Z="52" N="72">
+			<atom value="123.902817085" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te125" Z="52" N="73">
+			<atom value="124.90442992" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te126" Z="52" N="74">
+			<atom value="125.903310886" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te128" Z="52" N="76">
+			<atom value="127.904461279" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te130" Z="52" N="78">
+			<atom value="129.906222748" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb204" Z="82" N="204">
+			<atom value="203.973043981" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb206" Z="82" N="206">
+			<atom value="205.974465683" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb207" Z="82" N="207">
+			<atom value="206.9758972927" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb208" Z="82" N="208">
+			<atom value="207.976652481" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb210" Z="82" N="210">
+			<atom value="209.984188861" unit="g/mole"/>
+		</isotope>
+		
+		<!-- ========= ELEMENTS =========
+		definition of fraction inside of element definition:
+		GDML: elements by isotope abundances -->
+		<!-- source for elements "without isotopes from above": www.periodensystem.info/periodensystem
+			last access: 02.02.2018 -->
+		<!-- source for elements "with isotopes from above": atom.kaeri.re.kr/nuchart/
+			last access: 02.02.2018 -->
+
+		<element name="Hydrogen" formula="H" Z="1">
+			<atom value="1.00794" unit="g/mole"/>
+  		</element>
+  		<element name="Lithium" formula="Li" Z="3">
+			<atom value="6.941" unit="g/mole"/>
+		</element>
+  		<element name="Boron" formula="B" Z="5">
+			<atom value="10.811" unit="g/mole"/>
+		</element>
+		<element name="Carbon" formula="C" Z="6">
+			<atom value="12.0107" unit="g/mole"/>
+		</element>
+		<element name="Nitrogen" formula="N" Z="7">
+			<atom value="14.00674" unit="g/mole"/>
+		</element>
+		<element name="Oxygen" formula="O" Z="8">
+			<atom value="15.9994" unit="g/mole"/>
+		</element>
+		<element name="Fluorine" formula="F" Z="9">
+			<atom value="18.9984032" unit="g/mole"/>
+		</element>
+		<element name="Magnesium" formula="Mg" Z="12">
+			<atom value="24.305" unit="g/mole"/>
+		</element>
+		<element name="Silicon" formula="Si" Z="14">
+			<atom value="28.0855" unit="g/mole"/>
+		</element>
+		<element name="Chlorine" formula="Cl" Z="17">
+			<atom value="35.4527" unit="g/mole"/>
+		</element>
+		<element name="Potassium" formula="K" Z="19">
+			<atom value="39.0983" unit="g/mole"/>
+		</element>
+		<element name="Calcium" formula="Ca" Z="20">
+			<atom value="40.078" unit="g/mole"/>
+		</element>
+		<element name="Chromium" formula="Cr" Z="24">
+			<atom value="51.9961" unit="g/mole"/>
+		</element>
+		<element name="Manganese" formula="Mn" Z="25" N="30">
+			<atom value="54.938045" unit="g/mole"/>
+		</element>
+		<element name="Iron" formula="Fe" Z="26">
+			<atom value="55.845" unit="g/mole"/>
+		</element>
+
+		<element name="Copper" formula="Cu" Z="29">
+			<fraction ref="Cu63" n="0.6915" />
+			<fraction ref="Cu65" n="0.3085" />
+		</element>
+		<element name="Zn_standard" formula="Zn" Z="30">
+			<fraction ref="Zn64" n="0.4917"/>
+			<fraction ref="Zn66" n="0.2773"/>
+			<fraction ref="Zn67" n="0.0404"/>
+			<fraction ref="Zn68" n="0.1845"/>
+			<fraction ref="Zn70" n="0.0061"/>
+		</element>
+
+		<element name="Molybdenum" formula="Mo" Z="42">
+			<atom value="95.94" unit="g/mole"/>
+		</element>
+
+		<element name="Te_standard" formula="Te" Z="52" >
+			<fraction ref="Te122" n="0.0255"/>
+			<fraction ref="Te123" n="0.0089"/>
+			<fraction ref="Te124" n="0.0474"/>
+			<fraction ref="Te125" n="0.0707"/>
+			<fraction ref="Te126" n="0.1884"/>
+			<fraction ref="Te128" n="0.3174"/>
+			<fraction ref="Te130" n="0.3408"/>
+		</element>
+		<element name="Cd_standard" formula="Cd" Z="48" >
+			<fraction ref="Cd106" n="0.0125" />
+			<fraction ref="Cd108" n="0.0089" />
+			<fraction ref="Cd110" n="0.1249" />
+			<fraction ref="Cd111" n="0.1280" />
+			<fraction ref="Cd112" n="0.2413" />
+			<fraction ref="Cd113" n="0.1222" />
+			<fraction ref="Cd114" n="0.2872" />
+			<fraction ref="Cd116" n="0.0749" />
+		</element>
+		<element name="Lead_standard" formula="Pb" Z="82">
+			<fraction ref="Pb208" n="0.524" />
+			<fraction ref="Pb207" n="0.221" />
+			<fraction ref="Pb206" n="0.241" />
+			<fraction ref="Pb204" n="0.014" />
+		</element>
+		<element name="Lead_active" formula="Pb" Z="82">
+			<fraction ref="Pb210" n="1.0" />
+		</element>
+		
+		<!-- ========= Materials ========= -->
+		<!--
+		definition of fraction inside of material definition:
+		GDML: materials by fraction of mass
+		-->
+		
+		<!-- Gases -->
+		<material name="Vacuum" state="gas">
+			<D value="1e-25" unit="g/cm3"/>
+			<fraction n="0.77" ref="Nitrogen" />
+			<fraction n="0.23" ref="Oxygen" />
+		</material>
+		<!-- source needed -->
+		<material name="Air" state="gas">
+			<D value="1.29" unit="mg/cm3"/>
+			<fraction n="0.77" ref="Nitrogen" />
+			<fraction n="0.23" ref="Oxygen" />
+		</material>
+		<material name="Nitrogengas" state="gas">
+			<D value="1.25" unit="mg/cm3"/>
+			<fraction n="1" ref="Nitrogen" />
+		</material>
+		
+		
+		<!-- Metals -->
+		<!-- source needed -->
+		<material name="E-Copper" state="solid">
+			<D value="8.92" unit="g/cm3"/>
+			<fraction ref="Copper" n="1" />
+		</material>
+		<material name="Brass" state="solid">
+			<D value="8.47" unit="g/cm3"/>
+			<fraction ref="Copper" n="0.58" />
+			<fraction ref="Zn_standard" n="0.39" />
+			<fraction ref="Lead_standard" n="0.03" />
+		</material>
+
+		<!-- source: www.periodensystem.info/periodensystem
+			last access: 02.02.2018 -->
+		<material name="Aluminium" Z="13" state="solid">
+			<D value="2.698" unit="g/cm3"/>
+			<atom value="26.9815386" />
+		</material>
+
+		<!-- source needed -->
+		<material name="St_Steel" state="solid">
+			<D value="7.8" unit="g/cm3"/>
+			<fraction n="0.88" ref="Iron" />
+			<fraction n="0.02" ref="Carbon" />
+			<fraction n="0.1" ref="Chromium" />
+		</material>
+		<material name="Steel" state="solid">
+			<D value="7.8" unit="g/cm3" />
+			<fraction n="0.98" ref="Iron" />
+			<fraction n="0.02" ref="Carbon" />
+		</material>
+		<material name="Lead" state="solid">
+			<D value="11.34" unit="g/cm3"/>
+			<fraction n="0.999999999999767" ref="Lead_standard"/>
+			<fraction n="0.000000000000233" ref="Lead_active"/>
+		</material>
+		<material name="Lead39" Z="82" state="solid">
+			<D value="11.34" unit="g/cm3"/>
+			<fraction n="0.9999999999999823" ref="Lead_standard"/>
+			<fraction n="0.0000000000000177" ref="Lead_active"/>
+		</material>
+		<material name="Lead03" Z="82" state="solid">
+			<D value="11.34" unit="g/cm3"/>
+			<fraction n="0.99999999999999646" ref="Lead_standard"/>
+			<fraction n="0.00000000000000354" ref="Lead_active"/>
+		</material>
+
+		<!-- source: www.periodensystem.info/periodensystem
+			last access: 02.02.2018 -->
+		<material name="Gold" Z="79" state="solid">
+			<D value="19.282" unit="g/cm3"/>
+			<atom value="196.966569" unit="g/mole"/>
+		</material>
+
+		<!-- source: www.periodensystem.info/periodensystem
+			last access: 02.02.2018 -->
+		<material name="Palladium" Z="46" state="solid">
+			<D value="10.501" unit="g/cm3"/>
+			<atom value="106.8682" unit="g/mole"/>
+		</material>
+
+		<!-- source: www.periodensystem.info/periodensystem
+			last access: 02.02.2018 -->
+		<material name="Silver" Z="47" state="solid">
+			<D value="10.49" unit="g/cm3"/>
+			<atom value="107.87" unit="g/mole"/>
+		</material>
+
+
+		<!-- Semiconductors -->
+		<!-- source needed??? -->
+		<material name="CdZnTe" state="solid">
+			<D value="5.78" unit="g/cm3"/>
+			<fraction n="0.5" ref="Te_standard" />
+			<fraction n="0.05" ref="Zn_standard" />
+			<fraction n="0.45" ref="Cd_standard" />
+		</material>
+		
+		<!-- Plastics -->
+		<!-- source: "Reichelt Chemietechnik GmbH + Co."
+			https://www.rct-online.de/de/HmswGlossar/detail/id/17 
+			abgerufen am: 02.02.2018 -->
+		<material name="Polyoxymethylene" state="solid">
+			<D value="1.43" unit="g/cm3"/>
+			<composite n="1" ref="Carbon" />
+			<composite n="2" ref="Hydrogen" />
+			<composite n="1" ref="Oxygen" />
+		</material>
+		
+		<!-- source: "Reichelt Chemietechnik GmbH + Co."
+			https://www.rct-online.de/de/HmswGlossar/detail/id/20
+			abgerufen am: 02.02.2018 -->
+		<material name="Polytetraflourethylene" state="solid">
+			<D value="2.16" unit="g/cm3"/>
+			<composite n="2" ref="Carbon"/>
+			<composite n="4" ref="Fluorine"/>
+		</material>
+
+		<!-- source: "Reichelt Chemietechnik GmbH + Co."
+			https://www.rct-online.de/de/HmswGlossar/detail/id/7 
+			abgerufen am: 02.02.2018 -->
+		<material name="PA_6.6" state="solid">
+			<D value="1.14" unit="g/cm3"/>
+			<composite n="12" ref="Carbon"/>
+			<composite n="22" ref="Hydrogen"/>
+			<composite n="2" ref="Oxygen"/>
+			<composite n="2" ref="Nitrogen"/>
+		</material>
+
+		<!-- sources:
+			1)
+			https://www.swiss-composite.ch/pdf/t-Epoxydharz-L1100.pdf
+			2)
+			https://www.google.de/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&ved=0ahUKEwixx9XCpKrZAhXL2KQKHUu_COYQFghCMAM&url=https%3A%2F%2Fwww.epoxies.com%2F_resources%2Fcommon%2Fuserfiles%2Ffile%2F20-3001NC.pdf&usg=AOvVaw2UKPhVUDbO2-M9trv9BrR-
+			abgerufen am: 09.02.2018 
+			-->
+
+		<material name="Epoxy" state="solid">
+			<D value="1.2" unit="g/cm3"/>
+			<composite n="5" ref="Carbon" />
+			<composite n="8" ref="Hydrogen" />
+			<composite n="2" ref="Oxygen" />
+		</material>
+
+		<!-- sources:
+			1)
+			https://www.britannica.com/science/alkyd-resin#ref1051289
+			2)
+			https://www.google.de/url?sa=t&rct=j&q=&esrc=s&source=web&cd=14&cad=rja&uact=8&ved=0ahUKEwiOk5_V0JjZAhVD3CwKHbHxCdcQFgh6MA0&url=http%3A%2F%2Fwww.physics.purdue.edu%2Fprimelab%2Fsafety%2FMSDS%2FSDS%2FGlyptal%2520Red%2520Enamel%2520%2520%25201201B.pdf&usg=AOvVaw3nt2VaNcfzXSXojTkyDa-h
+			abgerufen am: 09.02.2018 
+			-->
+		<material name="Glyptal" state="solid">
+			<D value="1.441" unit="g/cm3"/>
+			<composite n="19" ref="Carbon" />
+			<composite n="13" ref="Hydrogen" />
+			<composite n="7" ref="Oxygen" />
+		</material>
+
+</materials>

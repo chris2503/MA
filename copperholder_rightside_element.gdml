@@ -58,7 +58,7 @@
 		<position name="hole_pos_right" x="0" y="-(y_element_right/2 - 46)" z="-z_element_right/2 + 3" unit="mm"/>
 		
 
-		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="E-CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
 
 	</define>
 		
@@ -137,7 +137,7 @@
 	
 	<structure>
 		<volume name="right_vol">
-			<materialref ref="Copper"/>
+			<materialref ref="E-Copper"/>
 			<solidref ref="element_1_solid_right"/>
 		</volume>
 
@@ -150,7 +150,7 @@
 				<positionref ref="element_0_pos_right"/>
 			</physvol>
 
-			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="E-Copper E-CopperColour"/>
 		</volume>	
 	</structure>
 

@@ -63,7 +63,7 @@
 		<position name="subtraction_top_bottom_5_pos" x="-x_plate_top_bottom/2 + 5" y="y_plate_top_bottom/2 - 4" z="0" unit="mm"/>
 		<position name="subtraction_top_bottom_6_pos" x="x_plate_top_bottom/2 - 5" y="y_plate_top_bottom/2 - 4" z="0" unit="mm"/>
 
-		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="E-CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
 	</define>
 		
 	
@@ -133,11 +133,11 @@
 	
 	<structure>
 		<volume name="top_vol">
-			<materialref ref="Copper"/>
+			<materialref ref="E-Copper"/>
 			<solidref ref="top_solid"/>
 		</volume>
 		<volume name="bottom_vol">
-			<materialref ref="Copper"/>
+			<materialref ref="E-Copper"/>
 			<solidref ref="bottom_solid"/>
 		</volume>
 		<volume name="top_bottom_vol_world">
@@ -153,7 +153,7 @@
 				<positionref ref="plate_bottom_pos"/>
 			</physvol>
 
-			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="E-Copper E-CopperColour"/>
 		</volume>
 
 	</structure>

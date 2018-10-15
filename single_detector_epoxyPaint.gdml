@@ -43,21 +43,21 @@
 		<scale name="EpoxyColour" x="70/255" y="255/255" z="255/255"/>
 	</define>
 	
+	<!--
 	<materials>
-
 	</materials>
-
+	-->
 	<!-- Definition of elements, compositions, etc. -->
-	<!-- &materials; -->
-
-
+	<!--
+	&materials; 
+	-->
 	<!-- shape and dimensions of the detectors -->
 	<solids>
 		<!-- Dimension of the whole detector -->
 		<box name="single_det_solid" x="x_det" y="y_det" z="z_det" lunit="mm" />
 		<!-- Subdetectors -->
 		<box name="subdet_solid" x="x_subdet" y="y_subdet" z="z_subdet" lunit="mm"/>
-		<box name="single_det_subtractionsolid" x="x_det" y="y_det" z="z_det+1" lunit="mm" />
+		<box name="single_det_subtractionsolid_2" x="x_det" y="y_det" z="z_det+1" lunit="mm" />
 		
 		<!-- Für Lackierung-->
 		<box name="paintbox" x="x_det+2*paint_thickness_2" y="y_det+2*paint_thickness_2" z="z_det+paint_thickness_2" lunit="mm"/>
@@ -69,8 +69,8 @@
 		<!-- only paint coating-->
 		<subtraction name="paint_solid">
 			<first ref="paintbox"/>
-			<second ref="single_det_subtractionsolid"/>
-			<position x="0" y="0" z="-1/2" unit="mm"/>
+			<second ref="single_det_subtractionsolid_2"/>
+			<position x="0" y="0" z="-paint_thickness_2/2-1/2" unit="mm"/>
 		</subtraction>
 	</solids>
 

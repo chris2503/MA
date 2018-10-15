@@ -28,9 +28,9 @@
 		<constant name="zDET_sens" value="zDET- z_cut_top - z_cut_bottom"/>
 
 		<!-- dimensions of subdetectors -->
-		<constant name="x_subdet" value="xDET_sens/2" />
-		<constant name="y_subdet" value="yDET_sens/2" />
-		<constant name="z_subdet" value="zDET_sens" />
+		<constant name="x_subdet_small" value="xDET_sens/2" />
+		<constant name="y_subdet_small" value="yDET_sens/2" />
+		<constant name="z_subdet_small" value="zDET_sens" />
 
 
 		<!-- Counter variables -->
@@ -42,7 +42,7 @@
 
 		<!-- position of the z-cut plates -->
 		<position name="z_cut_top_pos" x="0" y="0" z="zDET_sens/2 + z_cut_top/2" unit="mm"/>
-		<position name="z_cut_bottom_pos" x="0" y="0" z="zDET_sens/2 + z_cut_bottom/2" unit="mm"/>
+		<position name="z_cut_bottom_pos" x="0" y="0" z="-zDET_sens/2 - z_cut_bottom/2" unit="mm"/>
 
 
 		<!-- definitions of colours -->
@@ -53,22 +53,23 @@
 	</materials>
 	-->
 	<!-- Definition of elements, compositions, etc. -->
-	<!--&materials;
+	<!--
+	&materials;
 	-->
 
 	<!-- shape and dimensions of the detectors -->
 	<solids>
 		<!-- Dimension of the whole detector -->
-		<box name="single_det_solid" x="xDET_sens" y="yDET_sens" z="zDET_sens" lunit="mm" />
+		<box name="single_det_solid_small" x="xDET_sens" y="yDET_sens" z="zDET_sens" lunit="mm" />
 		<!-- Subdetectors -->
-		<box name="subdet_solid" x="x_subdet" y="y_subdet" z="z_subdet" lunit="mm"/>
+		<box name="subdet_solid_small" x="x_subdet_small" y="y_subdet_small" z="z_subdet_small" lunit="mm"/>
 		
 		<box name="Worldbox_nakeddet" x="xDET" y="yDET" z="zDET" />
 
 		<!-- pseudo guard ring -> dead czt layer -->
 		<subtraction name="dead_czt">
 			<first ref="Worldbox_nakeddet"/>
-			<second ref="single_det_solid"/>
+			<second ref="single_det_solid_small"/>
 			<position x="0" y="0" z="0" unit="mm"/>
 		</subtraction>
 
@@ -80,14 +81,11 @@
 	<structure>
 		<volume name="subdet_vol">
 			<materialref ref="CdZnTe"/>
-			<solidref ref="subdet_solid"/>
+			<solidref ref="subdet_solid_small"/>
 			
-			<auxiliary auxtype="VolSensitivity" auxvalue="KingCOBRA_sd"/>
+			<auxiliary auxtype="VolSensitivity" auxvalue="XDEM_sd"/>
 			<auxiliary auxtype="CopyLevels" auxvalue="0"/>
 			<auxiliary auxtype="CopyLevels" auxvalue="3"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="5"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="7"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="8"/>
 		</volume>
 
 		<volume name="dead_czt_vol">
@@ -112,18 +110,13 @@
 				<loop for="x_i" from="0" to="1" step="1">
 					<physvol name="sub_det_physvol">
 						<volumeref ref="subdet_vol"/>
-						<position name="naked_subdet_pos" x="-xDET_sens/2 + x_i*xDET_sens" y="yDET_sens/2 - y_i*yDET_sens" z="0"/>
+						<position name="subnaked_det_pos" x="-xDET_sens/2 + x_i*x_subdet_small + x_subdet_small/2" y="yDET_sens/2 - y_i*y_subdet_small - y_subdet_small/2" z="0"/>
 					</physvol>
 				</loop>
 			</loop>
 			<physvol name="dead_czt_physvol">
 				<volumeref ref="dead_czt_vol"/>
 				<positionref ref="naked_det_pos"/>
-			</physvol>
-
-			<physvol name="z_cut_top_physvol">
-				<volumeref ref="z_cut_top_vol"/>
-				<positionref ref="z_cut_top_pos"/>
 			</physvol>
 
 			<physvol name="z_cut_top_physvol">

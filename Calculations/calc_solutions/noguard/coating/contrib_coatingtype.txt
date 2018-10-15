@@ -1,0 +1,7 @@
+# Date: 18-09-18 12:14 
+# Contributions at Qvalues 
+# N in 1/kg/yr  
+#
+# Coating 	# N_116Cd 	# N_130Te 	
+glyptal 	0.054+/-0.007 	0.0631+/-0.0027
+epoxy 	0.054+/-0.008 	0.065+/-0.009

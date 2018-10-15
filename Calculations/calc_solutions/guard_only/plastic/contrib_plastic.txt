@@ -1,0 +1,10 @@
+# Date: 18-09-18 12:17 
+# Contributions at Qvalues 
+# N in 1/kg/yr  
+#
+# Isotope 	# N_116Cd 	# N_130Te 	
+232Th_dplate 	0.001+/-0.026 	0.012+/-0.018
+238U_dplate 	0.0+/-0.5 	0.1+/-0.8
+232Th_dscrew 	(0+/-8)e-06 	(1+/-4)e-05
+238U_dscrew 	0.0+/-0 	(0+/-6)e-05
+sum 	0.0+/-0.5 	0.1+/-0.8

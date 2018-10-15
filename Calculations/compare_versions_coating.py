@@ -43,14 +43,14 @@ background_2=background
 for i in range(len(background_2)):
 	background_2[i]=background_2[i]+"_2"
 
-scale_czt = scale[0]
-x_range_czt = x_range[0]
+scale_czt = scale[2]
+x_range_czt = x_range[2]
 
 scale_coating = scale[1]
 x_range_coating = x_range[1]
 
-scale_plastic = scale[2]
-x_range_plastic = x_range[2]
+scale_plastic = scale[0]
+x_range_plastic = x_range[0]
 
 background_plastic = background[0]
 background_coating = background[1]

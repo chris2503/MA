@@ -57,12 +57,12 @@ def write_txtfile(data, dir, dataname):
 		for j in range(0, array_len):
 			if(j == array_len-1):
 				try:
-					save_data.write(str(format(float(data[i][j]), '.4e')) + "\n")
+					save_data.write(str(format(float(data[i][j]), '.4e')) + " \n")
 				except:
 					save_data.write(str(data[i][j]) + "\n")
 			else:
 				try:
-					save_data.write(str(format(float(data[i][j]), '.4e')) + "\t")
+					save_data.write(str(format(float(data[i][j]), '.4e')) + " \t")
 				except:
 					save_data.write(str(data[i][j]) + "\t")
 	save_data.close()
@@ -73,20 +73,22 @@ def write_txtfile(data, dir, dataname):
 # e.g.: var = ['name', 't / [s]']
 # description should contain what the list it is and which function the variables have#
 # e.g: desctiption = ['List of sth.', 't: time']
-def write_detailed_txtfile(data, var_names, description, dir, dataname):
+def write_detailed_txtfile(data, dir, dataname, var_names=None, description=None):
 	print('\nSaving data to "%s"' %(dir+dataname))
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	data_size = data.shape[0]
 	save_data = open((dir + dataname),'w')
 	# write information
-	save_data.write(str("# Date: " + datetime.datetime.now().strftime("%y-%m-%d %H:%M") + "\n"))
-	for i in range(0, len(description)):
-		save_data.write(str("# ") + description[i] + "\n")
-	save_data.write("#\n# ")
-	for i in range(0, len(var_names)):
-		save_data.write(var_names[i] + "\t")
-	save_data.write("\n")
+	save_data.write(str("# Date: " + datetime.datetime.now().strftime("%y-%m-%d %H:%M") + " \n"))
+	if description:
+		for i in range(0, len(description)):
+			save_data.write(str("# ") + description[i] + " \n")
+		save_data.write("#\n")
+	if var_names:
+		for i in range(0, len(var_names)):
+			save_data.write(str("# ") + var_names[i] + " \t")
+		save_data.write("\n")
 
 	# write data
 	for i in range(0, data_size):
@@ -94,14 +96,14 @@ def write_detailed_txtfile(data, var_names, description, dir, dataname):
 		for j in range(0, array_len):
 			if(j == array_len-1):
 				try:
-					save_data.write(str(format(float(data[i][j]), '.4e')) + "\n")
+					save_data.write(str(format(float(data[i][j]))) + " \n")
 				except:
 					save_data.write(str(data[i][j]) + "\n")
 			else:
 				try:
-					save_data.write(str(format(float(data[i][j]), '.4e')) + "\t")
+					save_data.write(str(format(float(data[i][j]))) + " \t")
 				except:
-					save_data.write(str(data[i][j]) + "\t")
+					save_data.write(str(data[i][j]) + " \t")
 	save_data.close()
 
 # transforms data to latex_table if its length is 1 page or shorter
@@ -109,30 +111,36 @@ def transform2latex_tab(data, dir, dataname):
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	size = len(data)
-	save_data = open((dir + 'latex_' + dataname),'w')
+	save_data = open((dir + dataname),'w')
 	print('\nSaving data to "%s"' %(dir+dataname))
 	for i in range (0, size):
 		array_len = np.size(data[i])
 		for j in range(0, array_len):
 			if(j == array_len-1):
-				save_data.write("\\num{" + str(data[i][j]) + "}\t \\\\ \n")
+				save_data.write("\\num{" + str(data[i][j]) + "} \t \\\\ \n")
 			else:
-				save_data.write("\\num{" + str(data[i][j]) + "}\t	&	\t")
+				save_data.write("\\num{" + str(data[i][j]) + "} \t	&	\t")
 	save_data.close()
 
 def transform2latex_tab_2(data, dir, dataname):
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	size = len(data)
-	save_data = open((dir + 'latex_' + dataname),'w')
+	save_data = open((dir + dataname),'w')
 	print('\nSaving data to "%s"' %(dir+dataname))
 	for i in range (0, size):
 		array_len = len(data[i])
 		for j in range(0, array_len):
 			if(j == array_len-1):
-				save_data.write("\\num{" + str(noms(data[i][j])) + " \\pm " + str(stds(data[i][j])) + "}\t \\\\ \n")
+				try:
+					save_data.write("\\num{" + str(noms(data[i][j])) + " \\pm " + str(stds(data[i][j])) + "}\t \\\\ \n")
+				except:
+					save_data.write(str(data[i][j]) + " \t \\\\ \n")
 			else:
-				save_data.write("\\num{" + str(noms(data[i][j])) + " \\pm " + str(stds(data[i][j])) + "}\t	&	\t")
+				try:
+					save_data.write("\\num{" + str(noms(data[i][j])) + " \\pm " + str(stds(data[i][j])) + "} \t	&	\t")
+				except:
+					save_data.write(str(data[i][j]) + " \t	&	\t")
 	save_data.close()
 
 
@@ -141,7 +149,7 @@ def transform2latex_tab_long(data, division, dir, dataname):
 	if not os.path.exists(dir):
 		os.makedirs(dir)
 	size = data.shape[0]
-	save_data = open((dir + 'latex_' + dataname),'w')
+	save_data = open((dir + dataname),'w')
 	print('\nSaving data to "%s"' %(dir+dataname))
 	temp = int(groesse/einteilung) + 1 
 	for i in range (0, temp):

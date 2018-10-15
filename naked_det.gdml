@@ -32,13 +32,12 @@
 		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
 	</define>
 	
-	<materials>
 
-	</materials>
 
 	<!-- Definition of elements, compositions, etc. -->
-	<!-- &materials; -->
-
+	<!--
+	&materials;
+	-->
 
 	<!-- shape and dimensions of the detectors -->
 	<solids>
@@ -55,12 +54,9 @@
 			<materialref ref="CdZnTe"/>
 			<solidref ref="subdet_solid"/>
 			
-			<auxiliary auxtype="VolSensitivity" auxvalue="KingCOBRA_sd"/>
+			<auxiliary auxtype="VolSensitivity" auxvalue="XDEM_sd"/>
 			<auxiliary auxtype="CopyLevels" auxvalue="0"/>
 			<auxiliary auxtype="CopyLevels" auxvalue="3"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="5"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="7"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="8"/>
 		</volume>
 
 		<volume name="single_det_vol">

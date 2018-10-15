@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials_2018.xml">
+]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">	
+<!-- author: Christian Herrmann, date: 05.02.2018 -->
+	<!-- 
+	Description of single detectors
+	The detector is parted to four ,,Subdetectors" (2x2) because of the quad co-planar grids
+	-->
+
+	<define>
+		<!-- dimensions of the detector cube -->		
+		<constant name="xDET" value="20.4"/>
+		<constant name="yDET" value="20.4"/>
+		<constant name="zDET" value="15"/>
+
+		<!-- z-Cut parameters -->
+		<constant name="z_cut_top" value="1"/> <!-- mm -->
+		<constant name="z_cut_bottom" value="1"/> <!-- mm -->
+
+		<!-- dimensions of the sensitive volume -->		
+		<constant name="xDET_sens" value="xDET"/>
+		<constant name="yDET_sens" value="yDET"/>
+		<constant name="zDET_sens" value="zDET - z_cut_top - z_cut_bottom"/>
+
+		<!-- dimensions of subdetectors -->
+		<constant name="x_subdet_small" value="xDET_sens/2" />
+		<constant name="y_subdet_small" value="yDET_sens/2" />
+		<constant name="z_subdet_small" value="zDET_sens" />
+
+
+		<!-- Counter variables -->
+		<variable name="x_i" value="-1" />
+		<variable name="y_i" value="-1" />
+
+		<!-- position (0,0,0) is the center -->
+		<position name="naked_det_pos" x="0" y="0" z="0" unit="mm"/>
+
+		<!-- position of the z-cut plates -->
+		<position name="z_cut_top_pos" x="0" y="0" z="zDET_sens/2 + z_cut_top/2" unit="mm"/>
+		<position name="z_cut_bottom_pos" x="0" y="0" z="-zDET_sens/2 - z_cut_bottom/2" unit="mm"/>
+
+
+		<!-- definitions of colours -->
+		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
+	</define>
+	<!--
+	<materials>
+	</materials>
+	-->
+	<!-- Definition of elements, compositions, etc. -->
+	<!--
+	&materials;
+	-->
+
+	<!-- shape and dimensions of the detectors -->
+	<solids>
+		<!-- Dimension of the whole detector -->
+		<box name="single_det_solid_small" x="xDET_sens" y="yDET_sens" z="zDET_sens" lunit="mm" />
+		<!-- Subdetectors -->
+		<box name="subdet_solid_small" x="x_subdet_small" y="y_subdet_small" z="z_subdet_small" lunit="mm"/>
+		
+		<box name="Worldbox_nakeddet" x="xDET" y="yDET" z="zDET" />
+
+		<!-- z-cut solid -->
+		<box name="z_cut_top_solid" x="xDET_sens" y="yDET_sens" z="z_cut_top" lunit="mm" />
+		<box name="z_cut_bottom_solid" x="xDET_sens" y="yDET_sens" z="z_cut_bottom" lunit="mm" />
+	</solids>
+
+	<structure>
+		<volume name="subdet_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="subdet_solid_small"/>
+			
+			<auxiliary auxtype="VolSensitivity" auxvalue="XDEM_sd"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="0"/>
+			<auxiliary auxtype="CopyLevels" auxvalue="3"/>
+		</volume>
+
+
+		<volume name="z_cut_top_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="z_cut_top_solid"/>
+		</volume>
+
+		<volume name="z_cut_bottom_vol">
+			<materialref ref="CdZnTe"/>
+			<solidref ref="z_cut_bottom_solid"/>
+		</volume>		
+
+		<volume name="single_det_vol">
+			<materialref ref="CdZnTe" />
+			<solidref ref="Worldbox_nakeddet"/>
+			<loop for="y_i" from="0" to="1" step="1">
+				<loop for="x_i" from="0" to="1" step="1">
+					<physvol name="sub_det_physvol">
+						<volumeref ref="subdet_vol"/>
+						<position name="subnaked_det_pos" x="-xDET_sens/2 + x_i*x_subdet_small + x_subdet_small/2" y="yDET_sens/2 - y_i*y_subdet_small - y_subdet_small/2" z="0"/>
+					</physvol>
+				</loop>
+			</loop>
+
+			<physvol name="z_cut_top_physvol">
+				<volumeref ref="z_cut_top_vol"/>
+				<positionref ref="z_cut_top_pos"/>
+			</physvol>
+
+			<physvol name="z_cut_bottom_physvol">
+				<volumeref ref="z_cut_bottom_vol"/>
+				<positionref ref="z_cut_bottom_pos"/>
+			</physvol>
+
+			<auxiliary auxtype="PlacedVolumes" auxvalue="sub_det_physvol" />
+			<auxiliary auxtype="CopyNo" auxvalue="auto"/>
+		</volume>
+
+		<!-- realizing detector -->
+		<volume name="naked_detector_vol">
+			<materialref ref="Nitrogengas"/>
+			<solidref ref="Worldbox_nakeddet"/>
+			<physvol name="naked_det_physvol">
+				<volumeref ref="single_det_vol"/>
+				<positionref ref="naked_det_pos"/>
+			</physvol>
+			
+			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
+		</volume>
+	</structure>
+
+
+	<setup name="Test" version="1.0">
+		<world ref="naked_detector_vol"/>	
+	</setup>
+</gdml>

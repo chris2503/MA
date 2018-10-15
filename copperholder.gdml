@@ -35,11 +35,10 @@
 		<rotation name="x_rot_180" x="180" unit="deg" />
 		<rotation name="xz_rot_180" x="180" z="180" unit="deg" />
 
-		<scale name="CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
+		<scale name="E-CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
 		<scale name="CdZnTeColour" x="142/255" y="182/255" z="220/255"/><!-- light blue-->
 		<scale name="DelrinColour" x="1/255" y="50/255" z="200/255"/>
 		<scale name="AuColour" x="220/255" y="208/255" z="42/255"/><!-- yellow-->
-		<scale name="E-CopperColour" x="220/255" y="127/255" z="56/255"/><!-- orange-->
 		<scale name="BrassColour" x="100/255" y="100/255" z="100/255"/><!-- orange-->
 	</define>
 
@@ -58,7 +57,7 @@
 			<solidref ref="screw_8mm"/>
 		</volume>
 
-		<volume name="Copperholder">
+		<volume name="E-Copperholder">
 			<materialref ref="Nitrogengas"/>
 			<solidref ref="Worldbox_copperholder"/>
 			<physvol name="left_element_physvol">
@@ -116,13 +115,13 @@
 			<auxiliary auxtype="MaterialColour" auxvalue="CdZnTe CdZnTeColour"/>
 			<auxiliary auxtype="MaterialColour" auxvalue="Delrin DelrinColour"/>
 			<auxiliary auxtype="MaterialColour" auxvalue="Gold AuColour"/>
-			<auxiliary auxtype="MaterialColour" auxvalue="Copper CopperColour"/>
+			<auxiliary auxtype="MaterialColour" auxvalue="E-Copper E-CopperColour"/>
 			<auxiliary auxtype="MaterialColour" auxvalue="Brass BrassColour"/>
 		</volume>
 	</structure>
 
 	<setup name="Test" version="1.0">
-		<world ref="Copperholder"/>	
+		<world ref="E-Copperholder"/>	
 	</setup>
 
 </gdml>

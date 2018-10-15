@@ -4,7 +4,7 @@
 # choose viewer
 /vis/open VRML2FILE
 # choose geometry
-/venom/geom/setImplementation naked_det_pseudoguard.gdml
+/venom/geom/setImplementation single_detector_epoxyPaint.gdml
 # specify only one layer of array in place
 #/array64/nest/sfalayers 1
 # update the geometry

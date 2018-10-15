@@ -1,0 +1,109 @@
+Activate: ROOT has been sourced. Environment settings are ready. 
+ROOTSYS=/afs/e4.physik.uni-dortmund.de/user/cherrman/anaconda3/envs/cobra
+creating script main_1_plastic.py
+creating file main_1_plastic
+
+Reading file "./Lists/activities_plastic.txt" ...
+
+Reading file "./Lists/activities_detpaint.txt" ...
+
+Reading file "./calc_solutions/calculated_events_2.txt" ...
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_232Th_dplate.txt" 
+
+Plotting sector histograms ...
+Plotting successful :) 
+
+Plotting detector histograms ...
+Plotting detector histograms ...
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_238U_dplate.txt" 
+
+Plotting sector histograms ...
+Plotting successful :) 
+
+Plotting detector histograms ...
+Plotting detector histograms ...
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_232Th_dscrew.txt" 
+
+Plotting sector histograms ...
+Plotting successful :) 
+
+Plotting detector histograms ...
+Plotting detector histograms ...
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_238U_dscrew.txt" 
+
+Plotting sector histograms ...
+Plotting successful :) 
+
+Plotting detector histograms ...
+Plotting detector histograms ...
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_232Th_dplate.txt" 
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_238U_dplate.txt" 
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_232Th_dscrew.txt" 
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_238U_dscrew.txt" 
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Plotting detector histograms ...
+
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_232Th_dplate.txt" 
+
+
+Plotting heat map ...
+
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_238U_dplate.txt" 
+
+
+Plotting heat map ...
+
+
+Reading file: 	"../rootfiles_noguard_06_09_2018/edep_entries/entries_232Th_dscrew.txt" 
+
+creating script main_1_coating.py
+creating file main_1_coating
+creating script main_1_czt.py
+creating file main_1_czt

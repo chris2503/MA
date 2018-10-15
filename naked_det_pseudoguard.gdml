@@ -69,12 +69,9 @@
 			<materialref ref="CdZnTe"/>
 			<solidref ref="subdet_solid"/>
 			
-			<auxiliary auxtype="VolSensitivity" auxvalue="KingCOBRA_sd"/>
+			<auxiliary auxtype="VolSensitivity" auxvalue="XDEM_sd"/>
 			<auxiliary auxtype="CopyLevels" auxvalue="0"/>
 			<auxiliary auxtype="CopyLevels" auxvalue="3"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="5"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="7"/>
-			<auxiliary auxtype="CopyLevels" auxvalue="8"/>
 		</volume>
 
 		<volume name="dead_czt_vol">
@@ -89,7 +86,7 @@
 				<loop for="x_i" from="0" to="1" step="1">
 					<physvol name="sub_det_physvol">
 						<volumeref ref="subdet_vol"/>
-						<position name="naked_subdet_pos" x="-xDET_sens/2 + x_i*xDET_sens" y="yDET_sens/2 - y_i*yDET_sens" z="0"/>
+						<position name="subnaked_det_pos" x="-xDET_sens/2 + x_i*x_subdet + x_subdet/2" y="yDET_sens/2 - y_i*y_subdet - y_subdet/2" z="0"/>
 					</physvol>
 				</loop>
 			</loop>

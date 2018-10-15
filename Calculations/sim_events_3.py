@@ -11,12 +11,19 @@ import seaborn as sns
 import matplotlib
 import matplotlib.pyplot as plt
 
-from ROOT import kOrange
+from ROOT import kOrange, kRed, kGreen, kBlue, kMagenta
 import ROOT
 
 sys.path.append(os.path.abspath('./Methods/'))
 #print (sys.path)
 from Methods.my_methods import get_varname, read_File, convert_str2num, transform2latex_tab_2
+
+Q_val_114Cd = 534	#keV
+Q_val_116Cd = 2805	#keV
+Q_val_70Zn = 1001	#keV
+Q_val_128Te = 867	#keV
+Q_val_130Te = 2529	#keV
+
 
 def pause():
 	print()
@@ -37,25 +44,28 @@ def read_evData(file):
 	return data
 
 # the optional parameter k is optional if you would like to view the whole contributions e.g. for czt background
-def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
+def create_sector_hists(ev_data, scale, these_bins=None, k=None, Q_val_returns=None):
 	################################
 	# creates a histogram for every single sector of all nine detectors
 	################################
-	bins = 1000
+	if these_bins:
+		bins = these_bins
+	else:
+		bins = 1000
 	E_range = 10000
 
 	# entries at Qvalues:
 	if Q_val_returns:
-		Q_116Cd = 2813
-		Q_130Te = 2527
+		Q_116Cd = 2805					# old Q_value
+		Q_130Te = 2529					# old Q_value
 		contrib_at116Cd = []
 		contrib_at116Cd_err = []
 		contrib_at130Te = []
 		contrib_at130Te_err = []
 
 
-		atQ_116Cd = np.int(np.around(Q_116Cd*bins/E_range, decimals=0))
-		atQ_130Te = np.int(np.around(Q_130Te*bins/E_range, decimals=0))
+		#atQ_116Cd = np.int(np.around(Q_116Cd*bins/E_range, decimals=0))
+		#atQ_130Te = np.int(np.around(Q_130Te*bins/E_range, decimals=0))
 
 	all_hists = []
 	# reading all eventdata and: MeV -> keV
@@ -85,8 +95,11 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 					if crystal_id[i_entry] == i_h and sector_id[i_entry] == j_h:
 						locals()['hist_%s_%i%i' %(k,i_h,j_h)].Fill(all_events[i_entry])
 				if Q_val_returns:
-					temp_contrib_at116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(atQ_116Cd)
-					temp_contrib_at130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].GetBinContent(atQ_130Te)
+					bin_atQ_116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].FindBin(Q_116Cd)
+					bin_atQ_130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].FindBin(Q_130Te)
+
+					temp_contrib_at116Cd = locals()['hist_%s_%i%i' %(k,i_h,j_h)].Integral(bin_atQ_116Cd-10, bin_atQ_116Cd+10)/21
+					temp_contrib_at130Te = locals()['hist_%s_%i%i' %(k,i_h,j_h)].Integral(bin_atQ_130Te-10, bin_atQ_130Te+10)/21
 					if temp_contrib_at116Cd == 0.0:
 						temp_contrib_at116Cd_err = 0.0
 					else:
@@ -96,6 +109,7 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 						temp_contrib_at130Te_err = 0.0
 					else:
 						temp_contrib_at130Te_err = scale * 1/np.sqrt(temp_contrib_at130Te)
+					# Scaling
 					temp_contrib_at116Cd = temp_contrib_at116Cd * scale
 					temp_contrib_at130Te = temp_contrib_at130Te * scale
 
@@ -139,10 +153,13 @@ def create_sector_hists(ev_data, scale, k=None, Q_val_returns=None):
 		return all_hists
 
 
-def create_sumsecHist(hists, hcolor=None, k=None):
+def create_sumsecHist(hists, these_bins=None, hcolor=None, k=None):
 	dets = 9
 	subdets = 4
-	bins = 1000
+	if these_bins:
+		bins = these_bins
+	else:
+		bins = 1000
 	E_range = 10000
 	all_sumhists = []
 
@@ -190,10 +207,13 @@ def create_sumsecHist(hists, hcolor=None, k=None):
 	return all_sumhists
 
 
-def create_sumdetHist(hists, hcolor=None, k=None):
+def create_sumdetHist(hists, hcolor=None, k=None, these_bins=None):
 	dets = 9
 	subdets = 4
-	bins = 1000
+	if these_bins:
+		bins = these_bins
+	else:
+		bins = 1000
 	E_range = 10000
 	all_sumhists = []
 
@@ -231,14 +251,17 @@ def create_sumdetHist(hists, hcolor=None, k=None):
 	return all_sumhists
 
 
-def create_det_hists(hists, k=None):
+def create_det_hists(hists, these_bins=None, k=None):
 	################################
 	# creates a histogram for all nine detectors
 	################################
 	all_hists = []
 	subdets = 4
 	dets = 9
-	bins = 1000
+	if these_bins:
+		bins = these_bins
+	else:
+		bins = 1000
 	E_range = 10000
 
 	if k:
@@ -273,7 +296,7 @@ def create_det_hists(hists, k=None):
 	return all_hists
 
 
-def create_iso_hist(hists, eventfile, k=None):
+def create_iso_hist(hists, eventfile, these_bins=None, k=None):
 	dets = 9
 	################################
 	# creates a histogram for all nine detectors
@@ -285,7 +308,10 @@ def create_iso_hist(hists, eventfile, k=None):
 	sim = sim.split('.')
 	sim = sim[0]
 
-	bins = 1000
+	if these_bins:
+		bins = these_bins
+	else:
+		bins = 1000
 	E_range = 10000
 	hist = []
 
@@ -318,13 +344,8 @@ def create_iso_hist(hists, eventfile, k=None):
 			hist.append(locals()['hist_%s' %(sim)])
 	return hist
 
+
 def create_material_hist(hist, b):
-#	sim = eventfile.split('/')
-#	sim = sim[len(sim)-1]
-#	sim = sim.split('entries_')
-#	sim = sim[len(sim)-1]
-#	sim = sim.split('.')
-#	sim = sim[0]
 	mathist= []
 	locals()['summathist_%s' %(b)] = ROOT.THStack("summathist_%s" %(b), "")
 	for i in range(len(hist)):
@@ -335,8 +356,12 @@ def create_material_hist(hist, b):
 	mathist.append(locals()['summathist_%s' %(b)])
 	return mathist
 
-def create_summaterial_hist(hist, b):
-	bins = 1000
+
+def create_summaterial_hist(hist, b, these_bins=None):
+	if these_bins:
+		bins = these_bins
+	else:
+		bins = 1000
 	E_range = 10000
 
 	summathist= []
@@ -347,6 +372,7 @@ def create_summaterial_hist(hist, b):
 		locals()['allmathist_%s' %(b)].Add(locals()['sumdethist_%i_%s' %(i,b)])
 	summathist.append(locals()['allmathist_%s' %(b)])
 	return summathist
+
 
 def create_sumHist(hists, b):
 	allhist=[]
@@ -359,18 +385,21 @@ def create_sumHist(hists, b):
 	allhist.append(locals()['all_hists'])
 	return allhist
 
-def create_allsumHist(hists, b):
-	bins = 1000
+def create_allsumHist(hists, b, these_bins=None):
+	if these_bins:
+		bins = these_bins
+	else:
+		bins = 1000
 	E_range = 10000
 
 	sumhist= []
-	locals()['all_sumhists'] = ROOT.TH1F("all_sumhists", "", bins, 0, E_range)
+	locals()['all_sumhists_%s' %(b)] = ROOT.TH1F("all_sumhists_%s" %(b), "", bins, 0, E_range)
 	for i in range(len(hists)):
 		locals()['summathist_%s' %(b)] = get_isoHist(hists[i])
 		locals()['summathist_%s' %(b)].SetLineWidth(1)
 		locals()['summathist_%s' %(b)].SetLineWidth(1)
-		locals()['all_sumhists'].Add(locals()['summathist_%s' %(b)])
-	sumhist.append(locals()['all_sumhists'])
+		locals()['all_sumhists_%s' %(b)].Add(locals()['summathist_%s' %(b)])
+	sumhist.append(locals()['all_sumhists_%s' %(b)])
 	return sumhist
 
 
@@ -449,7 +478,8 @@ def delete_iso_sumHist(hist, k=None):
 		locals()['sumdethist'] = get_isoHist(hist)
 		locals()['sumdethist'].Delete()
 
-def save_sumHist(hists, sumhist, b):
+
+def save_sumHist(hists, sumhist, b, save_dir=None):
 	canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	labels=[]
 	for i_lab in range(len(b)):
@@ -465,7 +495,10 @@ def save_sumHist(hists, sumhist, b):
 
 	print('Plotting contributions of all background contributions ...')
 
-	dir = './Plots/'
+	if save_dir:
+		dir = './Plots/%s/' %(save_dir)
+	else:
+		dir = './Plots/'
 
 	locals()['all_hists'] = get_isoHist(hists)
 	locals()['all_sumhists'] = get_isoHist(sumhist)
@@ -512,13 +545,13 @@ def save_sumHist(hists, sumhist, b):
 
 	if not os.path.exists(dir):
 		os.makedirs(dir)
-	canvas.SaveAs(dir+'whole_contributions_%s.pdf' %(b))
+	canvas.SaveAs(dir+'whole_contributions.pdf')
 	canvas.Clear()
 	canvas.Close()
 	print('Plotting successful :) \n')
 
 
-def save_material_hists(hists, sumhist, b):
+def save_material_hists(hists, sumhist, b, save_dir=None):
 	canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	if b == 'czt':
 		labels = ['114Cd', '116Cd', '70Zn', '128Te', '130Te']
@@ -534,7 +567,10 @@ def save_material_hists(hists, sumhist, b):
 
 	print('Plotting contributions of %s ...\n' %(b))
 
-	dir = './Plots/'
+	if save_dir:
+		dir = './Plots/%s/' %(save_dir)
+	else:
+		dir = './Plots/'
 
 	locals()['summathist_%s' %(b)] = get_isoHist(hists)
 	locals()['allmathist_%s' %(b)] = get_isoHist(sumhist)
@@ -557,7 +593,13 @@ def save_material_hists(hists, sumhist, b):
 	locals()['summathist_%s' %(b)].GetYaxis().SetTitleOffset(-1.8)
 
 	locals()['summathist_%s' %(b)].GetHistogram().SetStats(False)
-	locals()['summathist_%s' %(b)].GetHistogram().SetAxisRange(0., 10000, "X")	# Set maximum of x-axis
+
+	if b == 'czt' or b == 'czt_nolim':
+		x_range = 3000
+	else:
+		x_range = 10000
+
+	locals()['summathist_%s' %(b)].GetHistogram().SetAxisRange(0., x_range, "X")	# Set maximum of x-axis
 	locals()['summathist_%s' %(b)].GetHistogram().SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
 
 	# Legend
@@ -588,7 +630,7 @@ def save_material_hists(hists, sumhist, b):
 
 
 # save histogram of every single sectors
-def save_single_sector_hists(hists, eventfile, x_range, k=None):
+def save_single_sector_hists(hists, eventfile, x_range, k=None, save_dir=None):
 	subdets = 4
 	dets = 9
 	print('Plotting sector histograms ...')
@@ -600,7 +642,10 @@ def save_single_sector_hists(hists, eventfile, x_range, k=None):
 	sim = sim.split('.')
 	sim = sim[0]
 
-	dir = './Plots/%s/sector/' %(sim)
+	if save_dir:
+		dir = './Plots/%s/%s/sector/' %(save_dir, sim)
+	else:
+		dir = './Plots/%s/sector/' %(sim)
 	if k:
 		canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	else:
@@ -671,7 +716,7 @@ def save_single_sector_hists(hists, eventfile, x_range, k=None):
 	print('Plotting successful :) \n')
 
 
-def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None):
+def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None, save_dir=None):
 	dets = 9
 	subdets = 4
 	print('Plotting detector histograms ...')
@@ -682,7 +727,24 @@ def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None):
 	sim = sim.split('.')
 	sim = sim[0]
 
-	dir = './Plots/%s/single_det/' %(sim)
+	if save_dir:
+		dir = './Plots/%s/%s/single_det/' %(save_dir, sim)
+	else:
+		dir = './Plots/%s/single_det/' %(sim)
+	if sim == '114Cd':
+		x_range = 750
+
+	elif sim == '116Cd':
+		x_range = 3000	#keV
+
+	elif sim == '70Zn':
+		x_range = 1250
+
+	elif sim == '128Te':
+		x_range = 1000
+
+	elif sim == '130Te':
+		x_range = 3000
 
 	
 	if k:
@@ -787,7 +849,7 @@ def save_single_det_hists(hists, mysumhist, eventfile, x_range, k=None):
 	canvas.Close()
 
 
-def save_single_iso_hists(hist, sumhist, eventfile, x_range, k=None):
+def save_single_iso_hists(hist, sumhist, eventfile, x_range, k=None, save_dir=None):
 	subdets = 4
 	dets = 9
 	print('Plotting detector histograms ...')
@@ -798,7 +860,25 @@ def save_single_iso_hists(hist, sumhist, eventfile, x_range, k=None):
 	sim = sim.split('.')
 	sim = sim[0]
 
-	dir = './Plots/%s/' %(sim)
+	if save_dir:
+		dir = './Plots/%s/%s/' %(save_dir,sim)
+	else:
+		dir = './Plots/%s/' %(sim)
+
+	if sim == '114Cd':
+		x_range = 750
+
+	elif sim == '116Cd':
+		x_range = 3000	#keV
+
+	elif sim == '70Zn':
+		x_range = 1250
+
+	elif sim == '128Te':
+		x_range = 1000
+
+	elif sim == '130Te':
+		x_range = 3000
 
 	if k:
 		canvas = ROOT.TCanvas('canvas', 'Histogramm')
@@ -940,7 +1020,7 @@ def create_dep_secHist(ev_data, scale, k=None):
 
 
 # save the histograms above
-def save_dep_sec_hists(hists, eventfile, k=None):
+def save_dep_sec_hists(hists, eventfile, k=None, save_dir=None):
 	dets = 9
 	print('\nPlotting detector histograms ...\n')
 	sim =  eventfile.split('/')
@@ -951,7 +1031,10 @@ def save_dep_sec_hists(hists, eventfile, k=None):
 	sim = sim[0]
 	y_max = 0
 
-	dir = './Plots/%s/dep/single_det/' %(sim)
+	if save_dir:
+		dir = './Plots/%s/%s/dep/single_det/' %(save_dir,sim)
+	else:
+		dir = './Plots/%s/dep/single_det/' %(sim)
 	if k:
 		for i in range(dets):
 			i_h = i+1
@@ -1043,7 +1126,7 @@ def save_dep_sec_hists(hists, eventfile, k=None):
 		canvas.Close()
 
 
-def save_dep_sec_hists_2(hists, eventfile=None, k=None, background=None):
+def save_dep_sec_hists_2(hists, eventfile=None, k=None, background=None, save_dir=None):
 	dets = 9
 	print('\nPlotting detector histograms ...\n')
 	if eventfile:
@@ -1053,9 +1136,15 @@ def save_dep_sec_hists_2(hists, eventfile=None, k=None, background=None):
 		sim = sim[len(sim)-1]
 		sim = sim.split('.')
 		sim = sim[0]
-		dir = './Plots/%s/dep/single_det/' %(sim)
+		if save_dir:
+			dir = './Plots/%s/%s/dep/single_det/' %(save_dir,sim)
+		else:
+			dir = './Plots/%s/dep/single_det/' %(sim)
 	else:
-		dir = './Plots/all_dep/'
+		if save_dir:
+			dir = './Plots/%s/all_dep/' %(save_dir)
+		else:
+			dir = './Plots/all_dep/'
 
 	if k:
 		canvas = ROOT.TCanvas('canvas', 'Histogramm', 500, 500)
@@ -1210,7 +1299,7 @@ def create_dep_detHist(ev_data, eventfile, scale, k=None):
 
 
 # save the histograms above
-def save_dep_det_hists(hist, eventfile, k=None):
+def save_dep_det_hists(hist, eventfile, k=None, save_dir=None):
 	print('\nPlotting detector histograms ...\n')
 	sim =  eventfile.split('/')
 	sim = sim[len(sim)-1]
@@ -1218,7 +1307,11 @@ def save_dep_det_hists(hist, eventfile, k=None):
 	sim = sim[len(sim)-1]
 	sim = sim.split('.')
 	sim = sim[0]
-	dir = './Plots/%s/dep/single_det/' %(sim)
+
+	if save_dir:
+		dir = './Plots/%s/%s/dep/single_det/' %(save_dir, sim)
+	else:
+		dir = './Plots/%s/dep/single_det/' %(sim)
 
 	canvas = ROOT.TCanvas('canvas', 'Histogramm')
 	if k:
@@ -1292,7 +1385,7 @@ def save_dep_det_hists(hist, eventfile, k=None):
 		canvas.Close()
 
 
-def save_dep_heatmap(hists, eventfile=None, background=None):
+def save_dep_heatmap(hists, eventfile=None, background=None, save_dir=None):
 	dets = 9
 	subdets = 4
 	if eventfile:
@@ -1303,9 +1396,15 @@ def save_dep_heatmap(hists, eventfile=None, background=None):
 		sim = sim[len(sim)-1]
 		sim = sim.split('.')
 		sim = sim[0]
-		dir = './Plots/%s/' %(sim)
+		if save_dir:
+			dir = './Plots/%s/%s/' %(save_dir,sim)
+		else:
+			dir = './Plots/%s/' %(sim)
 	else:
-		dir = './Plots/'
+		if save_dir:
+			dir = './Plots/%s' %(save_dir)
+		else:
+			dir = './Plots/'
 
 	y_min = 0
 	entries = []
@@ -1366,7 +1465,10 @@ def save_dep_heatmap(hists, eventfile=None, background=None):
 	else:
 		print('This case has not been implemented yet!')
 
-#Diffplots
+
+#################################
+# Diffplots
+#################################
 def make_the_difference(hists_1, hists_2, k_1, k_2, sim, returns=None):
 	E_range = 10000
 	bins = 1000
@@ -1386,8 +1488,16 @@ def make_the_difference(hists_1, hists_2, k_1, k_2, sim, returns=None):
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetHists().At(1).SetLineColor(4)
 		diff_1.append(locals()['histdiff_1_%s_%i' %(sim,j_h)])
 		
-		locals()['histdiff_2_%s_%i' %(sim,j_h)].Add(get_detHist(hists_2, j))
-		locals()['histdiff_2_%s_%i' %(sim,j_h)].Add(get_detHist(hists_1, j), -1)
+		for i in range(bins):
+			val_1 = get_detHist(hists_1, j).GetBinContent(i)
+			val_2 = get_detHist(hists_2, j).GetBinContent(i)
+			if val_1==0 and val_2==0:
+				dev = 0			
+			elif val_2 == 0:
+				dev = 100
+			else:
+				dev = 100 * (val_2-val_1)/val_2 									# relative deviation [%]
+			locals()['histdiff_2_%s_%i' %(sim,j_h)].SetBinContent(i, dev)
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].SetStats(False)
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].SetLineColor(2)
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].SetLineWidth(2)
@@ -1397,8 +1507,11 @@ def make_the_difference(hists_1, hists_2, k_1, k_2, sim, returns=None):
 	if returns:
 		return diff_1, diff_2
 
-def save_diff_plots(diff_1, diff_2, sim):
-	dir = './Plots/'
+def save_diff_plots(diff_1, diff_2, sim, save_dir=None):
+	if save_dir:
+		dir = './Plots/%s' %(save_dir)
+	else:
+		dir = './Plots/'
 	for j in range(len(diff_1)):
 		canvas = ROOT.TCanvas('canvas', 'Histogramm', 500, 500)
 		canvas.Divide(1, 2)
@@ -1413,6 +1526,7 @@ def save_diff_plots(diff_1, diff_2, sim):
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetTicks("-")
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetLabelOffset(-0.05)
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetTitleOffset(-1.4)
+		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetXaxis().SetTitle("Energy / keV")
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTitleSize(0.025)
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].GetYaxis().SetTickLength(0.02)
@@ -1434,13 +1548,13 @@ def save_diff_plots(diff_1, diff_2, sim):
 		# nice labeling
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].Draw()
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTitleSize(0.03)
-		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTitle("Difference")
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTitle("Energy / keV")
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTickLength(0.02)
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTicks("-")
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetLabelOffset(-0.05)
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetXaxis().SetTitleOffset(-1.4)
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTitleSize(0.025)
-		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
+		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTitle('relative deviation / %')
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTickLength(0.02)
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetTicks("+")
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].GetYaxis().SetLabelOffset(-0.025)
@@ -1454,3 +1568,65 @@ def save_diff_plots(diff_1, diff_2, sim):
 
 		locals()['histdiff_1_%s_%i' %(sim,j_h)].Delete()
 		locals()['histdiff_2_%s_%i' %(sim,j_h)].Delete()
+
+#####################################################################################################################
+# Comparison of guard ring and z-cut influences (only background: plastic layer, plastic screws, detector coatings) #
+#####################################################################################################################
+def create_comp_plots(hist_list):
+	canvas = ROOT.TCanvas('canvas', 'Histogramm')
+
+	combined_hist = ROOT.THStack('combined_hist', '')
+	for i_list in range(len(hist_list)):
+		combined_hist.Add(hist_list[i_list][0])
+	combined_hist.GetHists().First().SetLineColor(kRed)		
+	combined_hist.GetHists().At(1).SetLineColor(kBlue)
+	combined_hist.GetHists().At(2).SetLineColor(kGreen)
+	combined_hist.GetHists().At(3).SetLineColor(kMagenta)
+	combined_hist.GetHists().First().SetLineWidth(3)
+	combined_hist.GetHists().At(1).SetLineWidth(3)
+	combined_hist.GetHists().At(2).SetLineWidth(3)
+	combined_hist.GetHists().At(3).SetLineWidth(3)
+	
+	combined_hist.Draw('nostack')
+	combined_hist.GetXaxis().SetTitleSize(0.03)
+	combined_hist.GetXaxis().SetTitle("Energy in keV")
+	combined_hist.GetXaxis().SetTickLength(0.02)
+	combined_hist.GetXaxis().SetTicks("-")
+	combined_hist.GetXaxis().SetLabelOffset(-0.05)
+	combined_hist.GetXaxis().SetTitleOffset(-1.4)
+	combined_hist.GetYaxis().SetTitleSize(0.025)
+	combined_hist.GetYaxis().SetTitle('N in #frac{counts}{kg keV yr}')
+	combined_hist.GetYaxis().SetTickLength(0.02)
+	combined_hist.GetYaxis().SetTicks("+")
+	combined_hist.GetYaxis().SetLabelOffset(-0.025)
+	combined_hist.GetYaxis().SetTitleOffset(-1.8)
+	combined_hist.GetHistogram().SetAxisRange(0., 10000, "X")	# Set maximum of x-axis
+	for i in range(combined_hist.GetNhists()):
+		if i==0:
+			combined_hist.GetHists().First().SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
+		else:
+			combined_hist.GetHists().At(i).SetAxisRange(1e-4, 1e3, "Y")	# Set range of y-axis
+
+	leg_1 = ROOT.TLegend(0.65, 0.75, 0.9, 0.9)
+	leg_1.SetNColumns(1)
+	leg_1.SetTextSize(0.025)
+	leg_1.AddEntry(combined_hist.GetHists().First(), "no guard ring, no z-cut", "l")
+	leg_1.AddEntry(combined_hist.GetHists().At(2), "no guard ring, with z-cut", "l")
+	leg_1.AddEntry(combined_hist.GetHists().At(1), "with guard ring, no z-cut", "l")
+	leg_1.AddEntry(combined_hist.GetHists().At(3), "with guard ring, with z-cut", "l")
+	leg_1.Draw()
+	canvas.SetLogy(True)
+	canvas.Update()
+
+	canvas.SaveAs('Plots/background_comparisons_old.pdf')
+	canvas.SaveAs('Plots/background_comparisons.root')
+	canvas.Clear()
+	canvas.Close()
+
+
+
+
+
+
+
+

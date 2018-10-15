@@ -8,26 +8,45 @@ from uncertainties.unumpy import(nominal_values as noms, std_devs as stds)
 ##############################################
 # main
 ##############################################
-def preparation():
+def preparation(thisdir=None):
 	kprint=None
-	
-	eventfile_coating = ['../rootfiles/edep_entries/entries_40K_glyptal.txt',
-							'../rootfiles/edep_entries/entries_40K_epoxy.txt',
-							'../rootfiles/edep_entries/entries_232Th_glyptal.txt',
-							'../rootfiles/edep_entries/entries_232Th_epoxy.txt',
-							'../rootfiles/edep_entries/entries_238U_glyptal.txt',
-							'../rootfiles/edep_entries/entries_238U_epoxy.txt']
-	
-	eventfile_czt = ['../rootfiles/edep_entries/entries_114Cd.txt',
-						'../rootfiles/edep_entries/entries_116Cd.txt',
-						'../rootfiles/edep_entries/entries_70Zn.txt',
-						'../rootfiles/edep_entries/entries_128Te.txt',
-						'../rootfiles/edep_entries/entries_130Te.txt']
-	
-	eventfile_plastic = ['../rootfiles/edep_entries/entries_232Th_dplate.txt',
-									'../rootfiles/edep_entries/entries_238U_dplate.txt',
-									'../rootfiles/edep_entries/entries_232Th_dscrew.txt',
-									'../rootfiles/edep_entries/entries_238U_dscrew.txt']
+	if thisdir:
+		eventfile_coating = ['../%s/edep_entries/entries_40K_glyptal.txt' %(thisdir),
+							 '../%s/edep_entries/entries_40K_epoxy.txt' %(thisdir),
+							 '../%s/edep_entries/entries_232Th_glyptal.txt' %(thisdir),
+							 '../%s/edep_entries/entries_232Th_epoxy.txt' %(thisdir),
+							 '../%s/edep_entries/entries_238U_glyptal.txt' %(thisdir),
+							 '../%s/edep_entries/entries_238U_epoxy.txt' %(thisdir)]
+		
+		eventfile_czt = ['../%s/edep_entries/entries_114Cd.txt' %(thisdir),
+						 '../%s/edep_entries/entries_116Cd.txt' %(thisdir),
+						 '../%s/edep_entries/entries_70Zn.txt' %(thisdir),
+						 '../%s/edep_entries/entries_128Te.txt' %(thisdir),
+						 '../%s/edep_entries/entries_130Te.txt' %(thisdir)]
+		
+		eventfile_plastic = ['../%s/edep_entries/entries_232Th_dplate.txt' %(thisdir),
+							 '../%s/edep_entries/entries_238U_dplate.txt' %(thisdir),
+							 '../%s/edep_entries/entries_232Th_dscrew.txt' %(thisdir),
+							 '../%s/edep_entries/entries_238U_dscrew.txt' %(thisdir)]
+
+	else:
+		eventfile_coating = ['../rootfiles/edep_entries/entries_40K_glyptal.txt',
+							 '../rootfiles/edep_entries/entries_40K_epoxy.txt',
+							 '../rootfiles/edep_entries/entries_232Th_glyptal.txt',
+							 '../rootfiles/edep_entries/entries_232Th_epoxy.txt',
+							 '../rootfiles/edep_entries/entries_238U_glyptal.txt',
+							 '../rootfiles/edep_entries/entries_238U_epoxy.txt']
+		
+		eventfile_czt = ['../rootfiles/edep_entries/entries_114Cd.txt',
+						 '../rootfiles/edep_entries/entries_116Cd.txt',
+						 '../rootfiles/edep_entries/entries_70Zn.txt',
+						 '../rootfiles/edep_entries/entries_128Te.txt',
+						 '../rootfiles/edep_entries/entries_130Te.txt']
+		
+		eventfile_plastic = ['../rootfiles/edep_entries/entries_232Th_dplate.txt',
+							 '../rootfiles/edep_entries/entries_238U_dplate.txt',
+							 '../rootfiles/edep_entries/entries_232Th_dscrew.txt',
+							 '../rootfiles/edep_entries/entries_238U_dscrew.txt']
 	
 	
 	x_range_coating = 1e4
@@ -152,25 +171,30 @@ def preparation():
 
 #########################################
 #########################################
-def my_main_1(eventfile, scale, x_range, background=None):
+def my_main_1(eventfile, scale, x_range, background=None, savedir=None):
 	# creating plots
 	# 1) single plots
-	#print('\n Checkpoint 0 \n')
-
+	bins = 250
 	if background:
 		for i_file in range(len(eventfile)):
 			data = read_evData(eventfile[i_file])
 			my_secHists = create_sector_hists(data, scale[i_file], k=background)
 
-			my_detHists = create_det_hists(my_secHists, k=background)
-			my_sumhists = create_sumsecHist(my_secHists, k=background)
+			my_detHists = create_det_hists(my_secHists, these_bins=bins, k=background)
+			my_sumhists = create_sumsecHist(my_secHists, these_bins=bins, k=background)
 			
-			iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=background)
-			iso_sumhist = create_sumdetHist(my_detHists, k=background)
+			iso_hist = create_iso_hist(my_detHists, eventfile[i_file], these_bins=bins, k=background)
+			iso_sumhist = create_sumdetHist(my_detHists, these_bins=bins, k=background)
 
-			save_single_sector_hists(my_secHists, eventfile[i_file], x_range, k=background)
-			save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range, k=background)
-			save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range, k=background)
+			if savedir:
+				save_single_sector_hists(my_secHists, eventfile[i_file], x_range, k=background, save_dir=savedir)
+				save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range, k=background, save_dir=savedir)
+				save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range, k=background, save_dir=savedir)
+
+			else:
+				save_single_sector_hists(my_secHists, eventfile[i_file], x_range, k=background)
+				save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range, k=background)
+				save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range, k=background)
 
 			delete_iso_sumHist(iso_sumhist, k=background)
 			delete_all_sumdetHists(my_sumhists, k=background)
@@ -180,29 +204,44 @@ def my_main_1(eventfile, scale, x_range, background=None):
 		 	
 		for i_file in range(len(eventfile)):
 			data = read_evData(eventfile[i_file])
-			my_depHists = create_dep_secHist(data, scale[i_file], k=background)
-			save_dep_sec_hists(my_depHists, eventfile[i_file], k=background)
+			my_depHists = create_dep_secHist(data, scale[i_file], these_bins=bins, k=background)
+			if savedir:
+				save_dep_sec_hists(my_depHists, eventfile[i_file], k=background, save_dir=savedir)
+			else:
+				save_dep_sec_hists(my_depHists, eventfile[i_file], k=background)
 			delete_all_detHists(my_depHists, k=background)
 
 			my_depHist = create_dep_detHist(data, eventfile[i_file], scale[i_file], k=background)
-			save_dep_det_hists(my_depHist, eventfile[i_file], k=background)
+			if savedir:
+				save_dep_det_hists(my_depHist, eventfile[i_file], k=background, save_dir=savedir)
+			else:
+				save_dep_det_hists(my_depHist, eventfile[i_file], k=background)
 			delete_iso_Hist(my_depHist, eventfile[i_file], k=background)
 
 			my_depHists_2 = create_dep_secHist(data, scale[i_file], k=background)
-			save_dep_sec_hists_2(my_depHists_2, eventfile[i_file], k=background)
+			if savedir:
+				save_dep_sec_hists_2(my_depHists_2, eventfile[i_file], k=background, save_dir=savedir)
+			else:
+				save_dep_sec_hists_2(my_depHists_2, eventfile[i_file], k=background)
 			delete_all_detHists(my_depHists_2, k=background)
 
 	else:
 		for i_file in range(len(eventfile)):
 			data = read_evData(eventfile[i_file])
 			my_secHists = create_sector_hists(data, scale[i_file])
-			save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
+			if savedir:
+				save_single_sector_hists(my_secHists, eventfile[i_file], x_range, save_dir=savedir)
+			else:
+				save_single_sector_hists(my_secHists, eventfile[i_file], x_range)
 			delete_all_sectorHists(my_secHists)
 
 			my_secHists = create_sector_hists(data, scale[i_file])
 			my_detHists = create_det_hists(my_secHists)
 			my_sumhists = create_sumsecHist(my_secHists)
-			save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range)
+			if savedir:
+				save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range, save_dir=savedir)
+			else:
+				save_single_det_hists(my_detHists, my_sumhists, eventfile[i_file], x_range)
 			delete_all_sumdetHists(my_sumhists)
 			delete_all_detHists(my_detHists)
 			delete_all_sectorHists(my_secHists)
@@ -211,7 +250,10 @@ def my_main_1(eventfile, scale, x_range, background=None):
 			my_detHists = create_sumsecHist(my_secHists, hcolor=True)
 			iso_hist = create_iso_hist(my_detHists, eventfile[i_file])
 			iso_sumhist = create_sumdetHist(my_detHists)
-			save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range)
+			if savedir:
+				save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range, save_dir=savedir)
+			else:
+				save_single_iso_hists(iso_hist, iso_sumhist, eventfile[i_file], x_range, save_dir=savedir)
 			delete_iso_Hist(iso_hist, eventfile[i_file])
 			delete_all_detHists(my_detHists)
 			delete_all_sectorHists(my_secHists)
@@ -220,84 +262,141 @@ def my_main_1(eventfile, scale, x_range, background=None):
 		for i_file in range(len(eventfile)):
 			data = read_evData(eventfile[i_file])
 			my_depHists = create_dep_secHist(data, scale[i_file], k=background)
-			save_dep_sec_hists(my_depHists, eventfile[i_file], k=background)
+			if savedir:
+				save_dep_sec_hists(my_depHists, eventfile[i_file], k=background, save_dir=savedir)
+			else:
+				save_dep_sec_hists(my_depHists, eventfile[i_file], k=background)
 			delete_all_detHists(my_depHists)
 
 			my_depHist = create_dep_detHist(data, eventfile[i_file], scale[i_file], k=background)
-			save_dep_det_hists(my_depHist, eventfile[i_file], k=background)
+			if savedir:
+				save_dep_det_hists(my_depHist, eventfile[i_file], k=background, save_dir=savedir)
+			else:
+				save_dep_det_hists(my_depHist, eventfile[i_file], k=background, save_dir=savedir)
 			delete_iso_Hist(my_depHist, eventfile[i_file])
 
 			my_depHists_2 = create_dep_secHist(data, scale[i_file], k=background)
-			save_dep_sec_hists_2(my_depHists_2, eventfile=eventfile[i_file], k=background)
+			if savedir:
+				save_dep_sec_hists_2(my_depHists_2, eventfile=eventfile[i_file], k=background, save_dir=savedir)
+			else:
+				save_dep_sec_hists_2(my_depHists_2, eventfile=eventfile[i_file], k=background)
 			delete_all_detHists(my_depHists_2)
-
-		#print('\n Checkpoint 3 \n')
 
 	# Heatmaps
 	for i_file in range(len(eventfile)):
 		data = read_evData(eventfile[i_file])
 		my_depHists_heat = create_dep_secHist(data, scale[i_file])
-		save_dep_heatmap(my_depHists_heat, eventfile[i_file])
+		if savedir:
+			save_dep_heatmap(my_depHists_heat, eventfile[i_file], save_dir=savedir)
+		else:
+			save_dep_heatmap(my_depHists_heat, eventfile[i_file])
 		delete_all_detHists(my_depHists_heat)
 
-def my_main_2(eventfile, scale, x_range, background, Q_val_ret=None):
+
+def my_main_2(eventfile, scale, x_range, background, Q_val_ret=None, Q_val_ret_2=None, savedir=None):
 	# 2) Values
-	print('\n Checkpoint 4 \n')
 	all_contrib_at116Cd = []
 	all_contrib_at130Te = []
-	for i_file in range(len(eventfile)):
-		thiscase = background+str(i_file)
-		data = read_evData(eventfile[i_file])
 
-		my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
-		sum = 0
-		contrib_at116Cd = unp.uarray(contrib_at116Cd, contrib_at116Cd_err)
-		#print(type(contrib_at116Cd))
-		for i in range(len(contrib_at116Cd)):
-			for j in range(len(contrib_at116Cd[i])):
-				sum = sum + contrib_at116Cd[i][j]
-		all_contrib_at116Cd.append(sum)
-		sum = 0
-		contrib_at130Te = unp.uarray(contrib_at130Te, contrib_at130Te_err)
-		for i in range(len(contrib_at130Te)):
-			for j in range(len(contrib_at130Te[i])):
-				sum = sum + contrib_at130Te[i][j]
-		all_contrib_at130Te.append(sum)
-		delete_all_sectorHists(my_secHists)
+	if not Q_val_ret_2 and not Q_val_ret:
+		for i_file in range(len(eventfile)):
+			thiscase = background+str(i_file)
+			data = read_evData(eventfile[i_file])
 
-	new_data = np.array([eventfile, all_contrib_at116Cd, all_contrib_at130Te])
-	descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
-	var_names = ['File', 'N_at116Cd', 'N_at130Te']
-	write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
+			my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
+			sum = 0
+			contrib_at116Cd = unp.uarray(contrib_at116Cd, contrib_at116Cd_err)
+			#print(type(contrib_at116Cd))
+			#print('116Cd Beiträge \n', contrib_at116Cd)
+			for i in range(len(contrib_at116Cd)):
+				for j in range(len(contrib_at116Cd[i])):
+					sum = sum + contrib_at116Cd[i][j]
+			all_contrib_at116Cd.append(sum)
+			sum = 0
+			contrib_at130Te = unp.uarray(contrib_at130Te, contrib_at130Te_err)
+			#print('130Te Beiträge \n', contrib_at130Te)
+			for i in range(len(contrib_at130Te)):
+				for j in range(len(contrib_at130Te[i])):
+					sum = sum + contrib_at130Te[i][j]
+			all_contrib_at130Te.append(sum)
+			delete_all_sectorHists(my_secHists)
 
-	if Q_val_ret:
+		new_data = np.array([eventfile, all_contrib_at116Cd, all_contrib_at130Te])
+		descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
+		var_names = ['File', 'N_at116Cd', 'N_at130Te']
+		if savedir:
+			write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/%s/' %(savedir), 'events_at_Qvalues_%s.txt' %(background))
+		else:
+			write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_%s.txt' %(background))
+
+	elif Q_val_ret:
+		for i_file in range(len(eventfile)):
+			thiscase = background+str(i_file)
+			data = read_evData(eventfile[i_file])
+
+			my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
+			sum = 0
+			contrib_at116Cd = unp.uarray(contrib_at116Cd, contrib_at116Cd_err)
+			all_contrib_at116Cd.append(contrib_at116Cd)
+
+			contrib_at130Te = unp.uarray(contrib_at130Te, contrib_at130Te_err)
+			all_contrib_at130Te.append(contrib_at130Te)
+			delete_all_sectorHists(my_secHists)
 		return all_contrib_at116Cd, all_contrib_at130Te
 
+	elif Q_val_ret_2:
+		for i_file in range(len(eventfile)):
+			thiscase = background+str(i_file)
+			data = read_evData(eventfile[i_file])
 
-def my_main_3(eventfile, scale, x_range, background, returns=None):
+			my_secHists , contrib_at116Cd, contrib_at116Cd_err, contrib_at130Te, contrib_at130Te_err = create_sector_hists(data, scale[i_file], k=thiscase, Q_val_returns=True)
+			sum = 0
+			contrib_at116Cd = unp.uarray(contrib_at116Cd, contrib_at116Cd_err)
+			#print(type(contrib_at116Cd))
+			#print('116Cd Beiträge \n', contrib_at116Cd)
+			for i in range(len(contrib_at116Cd)):
+				for j in range(len(contrib_at116Cd[i])):
+					sum = sum + contrib_at116Cd[i][j]
+			all_contrib_at116Cd.append(sum)
+			sum = 0
+			contrib_at130Te = unp.uarray(contrib_at130Te, contrib_at130Te_err)
+			#print('130Te Beiträge \n', contrib_at130Te)
+			for i in range(len(contrib_at130Te)):
+				for j in range(len(contrib_at130Te[i])):
+					sum = sum + contrib_at130Te[i][j]
+			all_contrib_at130Te.append(sum)
+			delete_all_sectorHists(my_secHists)
+		return all_contrib_at116Cd, all_contrib_at130Te
+		
+
+
+def my_main_3(eventfile, scale, x_range, background, returns=None, savedir=None):
 	# 3) combined plots
+	bins = 250
 	all_isohist =[]
-	print('\n Checkpoint 5 \n')
 	for i_file in range(len(eventfile)):
 		thiscase = background+str(i_file)
 		data = read_evData(eventfile[i_file])
 
-		my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
-		my_detHists = create_sumsecHist(my_secHists, hcolor=True, k=thiscase)
-		iso_hist = create_iso_hist(my_detHists, eventfile[i_file], k=thiscase)
-		iso_sumhist = create_sumdetHist(my_detHists, k=thiscase)
+		my_secHists = create_sector_hists(data, scale[i_file], these_bins=bins, k=thiscase)
+		my_detHists = create_sumsecHist(my_secHists, hcolor=True, these_bins=bins, k=thiscase)
+		iso_hist = create_iso_hist(my_detHists, eventfile[i_file], these_bins=bins, k=thiscase)
+		iso_sumhist = create_sumdetHist(my_detHists, these_bins=bins, k=thiscase)
 		all_isohist.append(iso_sumhist)
 
 	all_mat_hist = create_material_hist(all_isohist, background)
-	sum_all_mat_hist = create_summaterial_hist(all_isohist, background)
-	save_material_hists(all_mat_hist, sum_all_mat_hist, background)
+	sum_all_mat_hist = create_summaterial_hist(all_isohist, background, these_bins=bins)
+	if savedir:
+		save_material_hists(all_mat_hist, sum_all_mat_hist, background, save_dir=savedir)
+	else:
+		save_material_hists(all_mat_hist, sum_all_mat_hist, background)
 
 	if returns:
 		return sum_all_mat_hist
 
+
 def compare_versions(ev_old, ev_new, scale, x_range, background, background_2):
 	for i_file in range(len(ev_old)):
-
 		data = read_evData(ev_old[i_file])
 		sim = ev_old[i_file].split('/')
 		sim = sim[len(sim)-1]
@@ -313,41 +412,7 @@ def compare_versions(ev_old, ev_new, scale, x_range, background, background_2):
 		my_secHists = create_sector_hists(data, scale[i_file], k=thiscase)
 		my_detHists = create_det_hists(my_secHists, k=thiscase)
 				
-		print('Check 1')
 		data_2 = read_evData(ev_new[i_file])
 		my_secHists_2 = create_sector_hists(data_2, scale[i_file], k=thiscase_2)
 		my_detHists_2 = create_det_hists(my_secHists_2, k=thiscase_2)
-		print('Check 2')
 		make_the_difference(my_detHists, my_detHists_2, thiscase, thiscase_2, sim)
-	
-
-#for i_background in range(len(background)):
-#	my_main_1(eventfile[i_background], scale[i_background], x_range[i_background])
-
-#my_main_1(eventfile[0], scale[0], x_range[0])
-#my_main_1(eventfile[1], scale[1], x_range[1])
-#my_main_1(eventfile[2], scale[2], x_range[2])
-
-
-#all_contrib_at116Cd_coating, all_contrib_at130Te_coating = my_main_2(eventfile_coating, scale_coating, x_range_coating, background[0], Q_val_ret=True)
-#my_main_2(eventfile_czt, scale_czt, x_range_czt, background[1])
-#sum_glyp_at116Cd = all_contrib_at116Cd_coating[0] + all_contrib_at116Cd_coating[2] + all_contrib_at116Cd_coating[4]
-#sum_epox_at116Cd = all_contrib_at116Cd_coating[1] + all_contrib_at116Cd_coating[3] + all_contrib_at116Cd_coating[5]
-#sum_glyp_at130Te = all_contrib_at130Te_coating[0] + all_contrib_at130Te_coating[2] + all_contrib_at130Te_coating[4]
-#sum_epox_at130Te = all_contrib_at130Te_coating[1] + all_contrib_at130Te_coating[3] + all_contrib_at130Te_coating[5]
-#sum_coating_at_116Cd = sum_glyp_at116Cd + sum_epox_at116Cd
-#sum_coating_at_130Te= sum_glyp_at130Te + sum_epox_at130Te
-#new_data = np.array([['glyptal', 'epoxy', 'sum'], [sum_epox_at116Cd, sum_glyp_at116Cd, sum_coating_at_116Cd], [sum_epox_at130Te, sum_glyp_at130Te, sum_coating_at_130Te]])
-#descriptions = ['Contributions at Qvalues', 'N in 1/kg/keV/yr ']
-#var_names = ['Isotope', 'N_at116Cd', 'N_at130Te']
-#write_detailed_txtfile(np.transpose(new_data), var_names, descriptions, './calc_solutions/', 'events_at_Qvalues_allcoating.txt' )
-
-
-#all_hists = []
-#all_hists.append(my_main_3(eventfile_plastic, scale_plastic, x_range_coating, background[0], returns=True))
-#all_hists.append(my_main_3(eventfile_coating, scale_coating, x_range_coating, background[1], returns=True))
-#all_hists.append(my_main_3(eventfile_czt, scale_czt, x_range_czt, background[2], returns=True))
-#
-#hists = create_sumHist(all_hists, background)
-#all_sumhists = create_allsumHist(all_hists, background)
-#save_sumHist(hists, all_sumhists, background)

@@ -1,0 +1,477 @@
+<!-- this is a file defining materials -->
+<!-- it is _not_ a standalone GDML file -->
+<materials>		
+		<!-- ========= ISOTOPES ========= -->
+		<isotope name="Cu63" Z="29" N="63">
+			<atom value="62.93" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cu65" Z="29" N="65">
+			<atom value="64.93" unit="g/mole"/>
+		</isotope>
+		<!-- neutron data missing, therefore we need to define Zn64 as element!
+		     If G4NDL version > 4.4 then check the neutron data again! -->
+		<element name="Zn64" formula="Zn" Z="30" N="34">
+			<atom value="63.929145" unit="g/mole"/>
+		</element>
+		<isotope name="Zn66" Z="30" N="36">
+			<atom value="65.926034" unit="g/mole"/>
+		</isotope>
+		<isotope name="Zn67" Z="30" N="37">
+			<atom value="66.927129" unit="g/mole"/>
+		</isotope>
+		<isotope name="Zn68" Z="30" N="38">
+			<atom value="67.924846" unit="g/mole"/>
+		</isotope>
+		<isotope name="Zn70" Z="30" N="40">
+			<atom value="69.925325" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd106" Z="48" N="58">
+			<atom value="105.906461" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd108" Z="48" N="60">
+			<atom value="107.904176" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd110" Z="48" N="62">
+			<atom value="109.903005" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd111" Z="48" N="63">
+			<atom value="110.904182" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd112" Z="48" N="64">
+			<atom value="111.902758" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd113" Z="48" N="65">
+			<atom value="112.904400" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd114" Z="48" N="66">
+			<atom value="113.903357" unit="g/mole"/>
+		</isotope>
+		<isotope name="Cd116" Z="48" N="68">
+			<atom value="115.904754	" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te122" Z="52" N="70">
+			<atom value="121.903054" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te123" Z="52" N="71">
+			<atom value="122.904271" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te124" Z="52" N="72">
+			<atom value="123.902823" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te125" Z="52" N="73">
+			<atom value="124.904433" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te126" Z="52" N="74">
+			<atom value="125.903314" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te128" Z="52" N="76">
+			<atom value="127.904463" unit="g/mole"/>
+		</isotope>
+		<isotope name="Te130" Z="52" N="78">
+			<atom value="129.906229" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb204" Z="82" N="204">
+			<atom value="203.97" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb206" Z="82" N="206">
+			<atom value="205.97" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb207" Z="82" N="207">
+			<atom value="206.98" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb208" Z="82" N="208">
+			<atom value="207.98" unit="g/mole"/>
+		</isotope>
+		<isotope name="Pb210" Z="82" N="210">
+			<atom value="209.98" unit="g/mole"/>
+		</isotope>
+		
+		<!-- ========= ELEMENTS =========
+		definition of fraction inside of element definition:
+		GDML: elements by isotope abundances -->
+		<element name="Hydrogen" formula="H" Z="1">
+			<atom value="1.01" unit="g/mole"/>
+  		</element>
+  		<element name="Lithium" formula="Li" Z="3">
+			<atom value="6.941" unit="g/mole"/>
+		</element>
+  		<element name="Boron" formula="B" Z="5">
+			<atom value="10.811" unit="g/mole"/>
+		</element>
+		<element name="Carbon" formula="C" Z="6">
+			<atom value="12" unit="g/mole"/>
+		</element>
+		<element name="Nitrogen" formula="N" Z="7">
+			<atom value="14.01" unit="g/mole"/>
+		</element>
+		<element name="Oxygen" formula="O" Z="8">
+			<atom value="16.0" unit="g/mole"/>
+		</element>
+		<element name="Fluorine" formula="F" Z="9">
+			<atom value="18.998403163" unit="g/mole"/>
+		</element>
+		<element name="Magnesium" formula="Mg" Z="12">
+			<atom value="24.305" unit="g/mole"/>
+		</element>
+		<element name="Silicon" formula="Si" Z="14">
+			<atom value="28.0855" unit="g/mole"/>
+		</element>
+		<element name="Chlorine" formula="Cl" Z="17">
+			<atom value="35.453" unit="g/mole"/>
+		</element>
+		<element name="Potassium" formula="K" Z="19">
+			<atom value="39.0983" unit="g/mole"/>
+		</element>
+		<element name="Calcium" formula="Ca" Z="20">
+			<atom value="40.078" unit="g/mole"/>
+		</element>
+		<element name="Chromium" formula="Cr" Z="24">
+			<atom value="51.9961" unit="g/mole"/>
+		</element>
+		<element name="Manganese" formula="Mn" Z="25" N="30">
+			<atom value="54.938044" unit="g/mole"/>
+		</element>
+		<element name="Iron" formula="Fe" Z="26">
+			<atom value="55.845" unit="g/mole"/>
+		</element>
+		<element name="Copper" formula="Cu" Z="29">
+			<fraction ref="Cu63" n="0.6917" />
+			<fraction ref="Cu65" n="0.3083" />
+		</element>
+		<element name="Zn_standard" formula="Zn" Z="30">
+			<fraction ref="Zn64" n="0.486"/>
+			<fraction ref="Zn66" n="0.279"/>
+			<fraction ref="Zn67" n="0.041"/>
+			<fraction ref="Zn68" n="0.188"/>
+			<fraction ref="Zn70" n="0.006"/>
+		</element>
+		<element name="Molybdenum" formula="Mo" Z="42">
+			<atom value="95.95" unit="g/mole"/>
+		</element>
+		<element name="Te_standard" formula="Te" Z="52" >
+			<fraction ref="Te122" n="0.0257"/>
+			<fraction ref="Te123" n="0.0089"/>
+			<fraction ref="Te124" n="0.0476"/>
+			<fraction ref="Te125" n="0.071"/>
+			<fraction ref="Te126" n="0.1889"/>
+			<fraction ref="Te128" n="0.3173"/>
+			<fraction ref="Te130" n="0.3397"/>
+		</element>
+		<element name="Cd_standard" formula="Cd" Z="48" >
+			<fraction ref="Cd106" n="0.0125" />
+			<fraction ref="Cd108" n="0.0089" />
+			<fraction ref="Cd110" n="0.1251" />
+			<fraction ref="Cd111" n="0.1281" />
+			<fraction ref="Cd112" n="0.2413" />
+			<fraction ref="Cd113" n="0.1222" />
+			<fraction ref="Cd114" n="0.2872" />
+			<fraction ref="Cd116" n="0.0747" />
+		</element>
+		<element name="Lead_standard" formula="Pb" Z="82">
+			<fraction ref="Pb208" n="0.524" />
+			<fraction ref="Pb207" n="0.221" />
+			<fraction ref="Pb206" n="0.241" />
+			<fraction ref="Pb204" n="0.014" />
+		</element>
+		<element name="Lead_active" formula="Pb" Z="82">
+			<fraction ref="Pb210" n="1.0" />
+		</element>
+		
+		<!-- ========= Materials ========= -->
+		<!--
+		definition of fraction inside of material definition:
+		GDML: materials by fraction of mass
+		-->
+		
+		<!-- Gases -->
+		<material name="Vacuum" state="gas">
+			<D value="1e-25" unit="g/cm3"/>
+			<fraction n="0.77" ref="Nitrogen" />
+			<fraction n="0.23" ref="Oxygen" />
+		</material>
+		<material name="Air" state="gas">
+			<D value="1.29" unit="mg/cm3"/>
+			<fraction n="0.77" ref="Nitrogen" />
+			<fraction n="0.23" ref="Oxygen" />
+		</material>
+		<material name="Nitrogengas" state="gas">
+			<D value="1.25" unit="mg/cm3"/>
+			<fraction n="1" ref="Nitrogen" />
+		</material>
+		
+		<!-- Liquids -->
+		<material name="Water" state="liquid">
+			<D value="1.0" unit="g/cm3"/>
+			<composite n="1" ref="Oxygen" />
+			<composite n="2" ref="Hydrogen" />
+		</material>
+		
+		<!-- Metals -->
+		<material name="E-Copper" state="solid">
+			<D value="8.92" unit="g/cm3"/>
+			<fraction ref="Copper" n="1" />
+		</material>
+		<material name="Brass" state="solid">
+			<D value="8.47" unit="g/cm3"/>
+			<fraction ref="Copper" n="0.58" />
+			<fraction ref="Zn_standard" n="0.39" />
+			<fraction ref="Lead_standard" n="0.03" />
+		</material>
+		<material name="Aluminium" Z="13" state="solid">
+			<D value="2.70" unit="g/cm3"/>
+			<atom value="26.98" />
+		</material>
+		<material name="St_Steel" state="solid">
+			<D value="7.8" unit="g/cm3"/>
+			<fraction n="0.88" ref="Iron" />
+			<fraction n="0.02" ref="Carbon" />
+			<fraction n="0.1" ref="Chromium" />
+		</material>
+		<material name="Steel" state="solid">
+			<D value="7.8" unit="g/cm3" />
+			<fraction n="0.98" ref="Iron" />
+			<fraction n="0.02" ref="Carbon" />
+		</material>
+		<material name="Lead" state="solid">
+			<D value="11.34" unit="g/cm3"/>
+			<fraction n="0.999999999999767" ref="Lead_standard"/>
+			<fraction n="0.000000000000233" ref="Lead_active"/>
+		</material>
+		<material name="Lead39" Z="82" state="solid">
+			<D value="11.34" unit="g/cm3"/>
+			<fraction n="0.9999999999999823" ref="Lead_standard"/>
+			<fraction n="0.0000000000000177" ref="Lead_active"/>
+		</material>
+		<material name="Lead03" Z="82" state="solid">
+			<D value="11.34" unit="g/cm3"/>
+			<fraction n="0.99999999999999646" ref="Lead_standard"/>
+			<fraction n="0.00000000000000354" ref="Lead_active"/>
+		</material>
+		<material name="Gold" Z="79" state="solid">
+			<D value="19.32" unit="g/cm3"/>
+			<atom value="196.97" unit="g/mole"/>
+		</material>
+		<material name="Palladium" Z="46" state="solid">
+			<D value="11.99" unit="g/cm3"/>
+			<atom value="106.42" unit="g/mole"/>
+		</material>
+		<material name="Silver" Z="47" state="solid">
+			<D value="10.49" unit="g/cm3"/>
+			<atom value="107.87" unit="g/mole"/>
+		</material>
+		<material name="Gold-Palladium" state="solid">
+			<D value="18.88" unit="g/cm3"/>
+			<!-- Density calculated by fractions of compound densities -->
+			<fraction n="0.94" ref="Gold" />
+			<fraction n="0.06" ref="Palladium" />
+		</material>
+		<material name="Cast_iron" state="solid">
+			<!-- density measured in Diploma thesis of TN -->
+			<D value="6.95" unit="g/cm3" />
+			<fraction n="0.98" ref="Iron" />
+			<fraction n="0.02" ref="Carbon" />
+		</material>
+		
+		<!-- Semiconductors -->
+		<material name="Germanium" Z="32" state="solid">
+			<D value="5.323" unit="g/cm3"/>
+			<atom value="72.61" unit="g/mole"/>
+		</material>
+		<material name="Germanium_dead_outside" state="solid">
+			<D value="5.323" unit="g/cm3"/>
+			<fraction n="1" ref="Germanium" />
+			<!-- Dr. H.-J. Lange, Canberra: Dead layers can be taken as dead germanium, Lithium no influence -->
+			<!-- <fraction n="0.10" ref="Lithium" /> -->
+		</material>
+		<material name="Germanium_dead_inside" state="solid">
+			<D value="5.323" unit="g/cm3"/>
+			<fraction n="1" ref="Germanium" />
+			<!-- <fraction n="0.10" ref="Boron" /> -->
+		</material>
+		<material name="CdZnTe" state="solid">
+			<D value="5.78" unit="g/cm3"/>
+			<fraction n="0.5" ref="Te_standard" />
+			<fraction n="0.05" ref="Zn_standard" />
+			<fraction n="0.45" ref="Cd_standard" />
+		</material>
+		
+		<!-- Plastics -->
+		<material name="PE" state="solid">
+			<D value="0.941" unit="g/cm3"/>
+			<composite n="2" ref="Carbon" />
+			<composite n="4" ref="Hydrogen" />
+		</material>
+		<material name="Polystyrene" state="solid">
+			<D value="1.050" unit="g/cm3"/>
+			<composite n="8" ref="Carbon" />
+			<composite n="8" ref="Hydrogen" />
+		</material>
+		<material name="Polypropylene" state="solid">
+			<D value="0.91" unit="g/cm3"/>
+			<composite n="3" ref="Carbon" />
+			<composite n="6" ref="Hydrogen" />
+		</material>
+		<!-- http://www.phys.ufl.edu/courses/phy4803L/group_I/muon/bicron_bc400-416.pdf
+		     Ratio: H/C Atoms: 1.104 => C=9 & H~=9.94 -->
+		<material name="PVT" state="solid">
+			<D value="1.032" unit="g/cm3"/>
+			<composite n="9" ref="Carbon" />
+			<composite n="10" ref="Hydrogen" />
+		</material>
+		<!-- just for colouring of reference source -->
+		<material name="Polypropylene_active" state="solid">
+			<D value="0.91" unit="g/cm3"/>
+			<composite n="3" ref="Carbon" />
+			<composite n="6" ref="Hydrogen" />
+		</material>
+		 <material name="Polyoxymethylene" state="solid">
+			<D value="1.410" unit="g/cm3"/>
+			<composite n="1" ref="Carbon" />
+			<composite n="2" ref="Hydrogen" />
+			<composite n="1" ref="Oxygen" />
+		</material>
+		<material name="Polymethyl_methacrylate" state="solid">
+			<D value="1.180" unit="g/cm3"/>
+			<composite n="5" ref="Carbon" />
+			<composite n="8" ref="Hydrogen" />
+			<composite n="2" ref="Oxygen" />
+		</material>
+		<material name="Perfluoroethylene_propylene_copolymer" state="solid">
+			<D value="1.41" unit="g/cm3"/>
+			<composite n="5" ref="Carbon"/>
+			<composite n="4" ref="Fluorine"/>
+			<composite n="6" ref="Hydrogen"/>
+		</material>
+		<material name="Medical_Steel" state="solid">
+			<D value="7.86" unit="g/cm3"/>
+			<composite n="14" ref="Manganese"/>
+			<composite n="18" ref="Chromium"/>
+			<composite n="3" ref="Molybdenum"/>
+			<composite n="4" ref="Copper"/>
+			<composite n="1" ref="Nitrogen"/>
+			<composite n="60" ref="Iron"/>
+		</material>
+		<material name="Aluminium_Oxide" state="solid">
+			<D value="3.94" unit="g/cm3"/>
+			<composite n="2" ref="Aluminium"/>
+			<composite n="3" ref="Oxygen"/>
+		</material>
+		
+		<!-- Chemicals -->
+		<material name="Ethoxypropanol" state="liquid">
+			<!-- 1-Ethoxypropan-2-ol -->
+			<D value="0.91" unit="g/cm3"/>
+			<composite n="5" ref="Carbon" />
+			<composite n="2" ref="Oxygen" />
+			<composite n="12" ref="Hydrogen" />
+		</material>
+		<material name="Ethanol" state="liquid">
+			<D value="0.78" unit="g/cm3"/>
+			<composite n="2" ref="Carbon" />
+			<composite n="1" ref="Oxygen" />
+			<composite n="6" ref="Hydrogen" />
+		</material>
+		<material name="Acetone" state="liquid">
+			<D value="0.79" unit="g/cm3"/>
+			<composite n="3" ref="Carbon" />
+			<composite n="1" ref="Oxygen" />
+			<composite n="6" ref="Hydrogen" />
+		</material>
+		<material name="Ethylacetat" state="liquid">
+			<D value="0.894" unit="g/cm3"/>
+			<composite n="4" ref="Carbon" />
+			<composite n="2" ref="Oxygen" />
+			<composite n="8" ref="Hydrogen" />
+		</material>
+		<material name="Dibutylphthalat" state="liquid">
+			<D value="1.04" unit="g/cm3"/>
+			<composite n="16" ref="Carbon" />
+			<composite n="4" ref="Oxygen" />
+			<composite n="22" ref="Hydrogen" />
+		</material>
+		
+		<!-- Mixtures -->
+		<material name="Potassium_chloride" state="solid">
+			<D value="1.98" unit="g/cm3"/>
+			<!-- Density taken from
+			http://www.sigmaaldrich.com/catalog/product/sial/p3911
+			2013-04-24 -->
+			<composite n="1" ref="Potassium" />
+			<composite n="1" ref="Chlorine" />
+		</material>
+		<material name="KCl_solution" state="liquid">
+			<D value="1.0" unit="g/cm3"/>
+			<!-- Density assumed -->
+			<fraction n="0.8966" ref="Water" />
+			<fraction n="0.1034" ref="Potassium_chloride" />
+		</material>
+		<material name="Diboron_trioxide" state="solid">
+			<D value="2.46" unit="g/cm3"/>
+			<!-- Density taken from
+			http://www.sigmaaldrich.com/catalog/product/sial/339075
+			2013-04-24 -->
+			<composite n="2" ref="Boron" />
+			<composite n="3" ref="Oxygen" />
+		</material>
+		<material name="B-PE" state="solid">
+			<D value="1.03" unit="g/cm3"/>
+			<!-- density calculated from volume and mass of sample,
+			which was measured at LNGS by M. Laubenstein -->
+			<fraction n="0.913" ref="PE" />
+			<fraction n="0.087" ref="Diboron_trioxide" />
+			<!-- Diboron trioxide content taken from the diploma
+			thesis by Sandra Oehl, 2004 -->
+		</material>
+		<material name="Silica" state="solid">
+			<D value="2.65" unit="g/cm3"/>
+			<composite n="1" ref="Silicon"/>
+			<composite n="1" ref="Oxygen"/>
+		</material>
+		<material name="Magnesia" state="solid">
+			<D value="3.58" unit="g/cm3"/>
+			<composite n="1" ref="Magnesium"/>
+			<composite n="1" ref="Oxygen"/>
+		</material>
+		<material name="Lime" state="solid">
+			<D value="3.35" unit="g/cm3"/>
+			<composite n="1" ref="Calcium"/>
+			<composite n="1" ref="Oxygen"/>
+		</material>
+		<material name="Concrete" state="solid">
+			<D value="2.3" unit="g/cm3"/>
+			<fraction n="0.227915" ref="Silicon"/>
+			<fraction n="0.60541" ref="Oxygen"/>
+			<fraction n="0.09972" ref="Hydrogen"/>
+			<fraction n="0.04986" ref="Calcium"/>
+			<fraction n="0.014245" ref="Aluminium"/>
+			<fraction n="0.00285" ref="Iron"/>
+			<!-- Composition taken from Venom, VXMAterials.cc -->
+		</material>
+		<material name="Barite_concrete" state="solid">
+			<D value="3.65" unit="g/cm3"/>
+			<!-- no barite content implemented, just higher density -->
+			<fraction n="1" ref="Concrete"/>
+		</material>
+		<material name="Sand_lime_brick" state="solid">
+			<D value="1.93" unit="g/cm3"/>
+			<!-- composition before end of production process for example at
+			http://chestofbooks.com/reference/Encyclopedia-Britannica-2/Sand-Lime-Bricks.html
+			silica (SiO), 84%; lime (CaO), 7%; alumina and oxide of iron, 2%; water, magnesia and alkalis, 7%. Under the action of the high-pressure steam the lime attacks the particles of sand, and a chemical compound of water, lime and silica is produced which forms a strong bond between the larger particles of sand.
+			simplified -->
+			<fraction n="0.8571" ref="Silica"/>
+			<fraction n="0.0714" ref="Lime"/>
+			<fraction n="0.03575" ref="Magnesia"/>
+			<fraction n="0.03575" ref="Water"/>
+		</material>
+		<material name="Soil" state="solid">
+			<D value="0.7424" unit="g/cm3"/>
+			<fraction n="0.227915" ref="Silicon"/>
+			<fraction n="0.60541" ref="Oxygen"/>
+			<fraction n="0.09972" ref="Hydrogen"/>
+			<fraction n="0.04986" ref="Calcium"/>
+			<fraction n="0.014245" ref="Aluminium"/>
+			<fraction n="0.00285" ref="Iron"/>
+			<!-- Soil assumed as Concrete with density 1.3 g/cm³, compare http://nestoras.ee.auth.gr/publications/html/hps_78.html -->
+			<!-- Density changed for IAEA Sample to 0.75g/cm³, calculated from mass and dimensions of container -->
+		</material>
+</materials>
